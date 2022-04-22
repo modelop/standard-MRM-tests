@@ -52,7 +52,6 @@ def metrics(df_baseline, df_sample):
         feature_dataclass=MONITORING_PARAMETERS["feature_dataclass"],
         special_values=MONITORING_PARAMETERS["special_values"],
         score_column=score_column,
-        label_column=MONITORING_PARAMETERS["label_column"],
         weight_column=MONITORING_PARAMETERS["weight_column"],
     )
 
