@@ -18,7 +18,7 @@ def init(init_param):
     DEPLOYABLE_MODEL = job['referenceModel']
     INPUT_SCHEMA = infer.extract_input_schema(init_param)
     
-def metrics(baseline, comparator) -> dict:
+def metrics(baseline, comparator):
     global DEPLOYABLE_MODEL
     global INPUT_SCHEMA
     
