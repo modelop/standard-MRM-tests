@@ -18,7 +18,7 @@ def init(init_param):
     DEPLOYABLE_MODEL = job['referenceModel']
     INPUT_SCHEMA = infer.extract_input_schema(init_param)
     
-def metrics(baseline, comparator):
+def metrics(baseline, comparator) -> dict:
     global DEPLOYABLE_MODEL
     global INPUT_SCHEMA
     
@@ -44,10 +44,19 @@ def metrics(baseline, comparator):
     
     result.update(calculate_variance_inflation_factor(comparator, INPUT_SCHEMA))
     
+    result.update(calculate_durbin_watson(comparator, INPUT_SCHEMA))
+
+    result.update(calculate_engle_lagrange_multiplier_test(comparator, INPUT_SCHEMA))
+    
+    result.update(calculate_anderson_darling_test(comparator, INPUT_SCHEMA))
+    
+    result.update(calculate_cramer_von_mises_test(comparator, INPUT_SCHEMA))
+    
+    result.update(calculate_kolmogorov_smirnov_test(comparator, INPUT_SCHEMA))
     
     yield result
     
-def calculate_performance(comparator, input_schema) -> dict:
+def calculate_performance(comparator, input_schema):
     try:
         monitoring_parameters = infer.set_monitoring_parameters(input_schema, check_schema=True)
         performance_test = performance.ModelEvaluator(dataframe=comparator,
@@ -77,7 +86,7 @@ def calculate_performance(comparator, input_schema) -> dict:
         print(traceback.format_exc())
         return {}
     
-def calculate_ks_drift(baseline, sample) -> dict:
+def calculate_ks_drift(baseline, sample):
     try:
         drift_test = drift.DriftDetector(df_baseline=baseline, df_sample=sample)
         drift_result = drift_test.calculate_drift(pre_defined_test='Kolmogorov-Smirnov')
@@ -88,7 +97,7 @@ def calculate_ks_drift(baseline, sample) -> dict:
         print(traceback.format_exc())
         return {}
                    
-def calculate_stability(df_baseline, df_comparator, input_schema) -> dict:
+def calculate_stability(df_baseline, df_comparator, input_schema):
     try:
         monitoring_parameters = infer.set_monitoring_parameters(input_schema, check_schema=True)
        
@@ -146,7 +155,7 @@ def calculate_stability(df_baseline, df_comparator, input_schema) -> dict:
         print(traceback.format_exc())
         return {}
 
-def calculate_breusch_pagan(dataframe, input_schema) -> dict:
+def calculate_breusch_pagan(dataframe, input_schema):
     """A function to run the Breauch-Pagan test on sample data
     Args:
         dataframe (pandas.DataFrame): Sample prod data containing scores (model outputs),
@@ -184,7 +193,7 @@ def calculate_breusch_pagan(dataframe, input_schema) -> dict:
         print(traceback.format_exc())
         return {}
     
-def calculate_variance_inflation_factor(dataframe, input_schema) -> dict:
+def calculate_variance_inflation_factor(dataframe, input_schema):
     """A function to compute Variance Inflation Factors on sample data
     Args:
         dataframe (pandas.DataFrame): Sample prod data containing numerical_columns (predictors)
@@ -214,7 +223,7 @@ def calculate_variance_inflation_factor(dataframe, input_schema) -> dict:
         print(traceback.format_exc())
         return {}        
 
-def calculate_linearity_metrics(dataframe, input_schema) -> dict:
+def calculate_linearity_metrics(dataframe, input_schema):
     """A function to compute Pearson Correlations on sample data
     Args:
         dataframe (pandas.DataFrame): Sample prod data containing scores (model outputs)
@@ -246,7 +255,7 @@ def calculate_linearity_metrics(dataframe, input_schema) -> dict:
         print(traceback.format_exc())
         return {}
     
-def calculate_ljung_box_q_test(dataframe, input_schema) -> dict:
+def calculate_ljung_box_q_test(dataframe, input_schema):
     """A function to run the Ljung-Box Q test on sample data
     Args:
         dataframe (pandas.DataFrame): Sample prod data containing scores (model outputs),
@@ -277,3 +286,184 @@ def calculate_ljung_box_q_test(dataframe, input_schema) -> dict:
         print(ex)
         print(traceback.format_exc())
         return {}
+    
+def calculate_durbin_watson(dataframe, input_schema):
+    """A function to run the Durban Watson test on sample data
+
+    Args:
+        dataframe (pandas.DataFrame): Sample prod data containing scores (model outputs) and
+        labels (ground truths)
+    Returns:
+        (dict): Durbin-Watson test results
+    """
+    try:
+        monitoring_parameters = infer.set_monitoring_parameters(input_schema, check_schema=True)
+        
+        # Initialize metrics class
+        autocorrelation_metrics = diagnostics.AutocorrelationMetrics(
+            dataframe=dataframe,
+            label_column=monitoring_parameters.get('label_column'),
+            score_column=monitoring_parameters.get('score_column')
+        )
+
+        # Run test
+        test_results = autocorrelation_metrics.durbin_watson_test()
+
+        result = {
+            # Top-level metrics
+            "dw_statistic": test_results["values"]["dw_statistic"],
+            # Vanilla AutocorrelationMetrics output
+            "autocorrelation_durbin_watson": [test_results],
+        }
+        return result
+    except:
+        print("Error occurred while calculating durban_watson test")
+        print(ex)
+        print(traceback.format_exc())
+        return {}
+
+def calculate_engle_lagrange_multiplier_test(dataframe, input_schema):
+    """A function to run the engle_lagrange_multiplier_test on sample data
+
+    Args:
+        dataframe (pandas.DataFrame): Sample prod data containing scores (model outputs),
+        labels (ground truths) and numerical_columns (predictors)
+    Returns:
+        (dict): Engle's Langrange Multiplier test results
+    """
+    try:
+        monitoring_parameters = infer.set_monitoring_parameters(input_schema, check_schema=True)
+        
+        # Initialize metrics class
+        homoscedasticity_metrics = diagnostics.HomoscedasticityMetrics(
+            dataframe=dataframe,
+            label_column=monitoring_parameters.get('label_column'),
+            score_column=monitoring_parameters.get('score_column'),
+            numerical_predictors=monitoring_parameters.get('numerical_columns')
+        )
+
+        # Run test
+        test_results = homoscedasticity_metrics.engle_lagrange_multiplier_test()
+
+        result = {
+            # Top-level metrics
+            "engle_lm_statistic": test_results["values"]["lm_statistic"],
+            "engle_lm_p_value": test_results["values"]["lm_p_value"],
+            # Vanilla HomoscedasticityMetrics output
+            "homoscedasticity_engle_lagrange": [test_results],
+        }
+        return result
+    except:
+        print("Error occurred while calculating durban_watson test")
+        print(ex)
+        print(traceback.format_exc())
+        return {}
+
+def calculate_anderson_darling_test(dataframe, input_schema):
+    """A function to run the calculate_anderson_darling_test on sample data
+
+    Args:
+        dataframe (pandas.DataFrame): Sample prod data containing scores (model outputs) and
+        labels (ground truths)
+    Returns:
+        (dict): Anderson-Darling test results
+    """
+    try:
+        monitoring_parameters = infer.set_monitoring_parameters(input_schema, check_schema=True)
+        
+        # Initialize metrics class
+        normality_metrics = diagnostics.NormalityMetrics(
+            dataframe=dataframe,
+            label_column=monitoring_parameters.get('label_column'),
+            score_column=monitoring_parameters.get('score_column')
+        )
+
+        # Run test
+        test_results = normality_metrics.anderson_darling_test()
+
+        result = {
+            # Top-level metrics
+            "ad_statistic": test_results["values"]["ad_statistic"],
+            "ad_p_value": test_results["values"]["ad_p_value"],
+            # Vanilla NormalityMetrics output
+            "normality_anderson_darling": [test_results],
+        }
+        return result
+    except:
+        print("Error occurred while calculating durban_watson test")
+        print(ex)
+        print(traceback.format_exc())
+        return {}
+    
+def calculate_cramer_von_mises_test(dataframe, input_schema):
+    """A function to run the cramer_von_mises_test on sample data
+
+    Args:
+        dataframe (pandas.DataFrame): Sample prod data containing scores (model outputs) and
+        labels (ground truths)
+    Returns:
+        (dict): Cramer-von Mises test results
+    """
+    try:
+        monitoring_parameters = infer.set_monitoring_parameters(input_schema, check_schema=True)
+        
+        # Initialize metrics class
+        normality_metrics = diagnostics.NormalityMetrics(
+            dataframe=dataframe,
+            label_column=monitoring_parameters.get('label_column'),
+            score_column=monitoring_parameters.get('score_column')
+        )
+
+        # Run test
+        test_results = normality_metrics.cramer_von_mises_test()
+
+        result = {
+            # Top-level metrics
+            "cvm_statistic": test_results["values"]["cvm_statistic"],
+            "cvm_p_value": test_results["values"]["cvm_p_value"],
+            # Vanilla NormalityMetrics output
+            "normality_cramer_von_mises": [test_results],
+        }
+        return result
+    except:
+        print("Error occurred while calculating durban_watson test")
+        print(ex)
+        print(traceback.format_exc())
+        return {}
+    
+def calculate_kolmogorov_smirnov_test(dataframe, input_schema):
+    """A function to run the kolmogorov_smirnov_test on sample data
+
+    Args:
+        dataframe (pandas.DataFrame): Sample prod data containing scores (model outputs) and
+        labels (ground truths)
+    Returns:
+        (dict): Kolmogorov-Smirnov test results
+    """
+    try:
+        monitoring_parameters = infer.set_monitoring_parameters(input_schema, check_schema=True)
+        
+        # Initialize metrics class
+        normality_metrics = diagnostics.NormalityMetrics(
+            dataframe=dataframe,
+            label_column=monitoring_parameters.get('label_column'),
+            score_column=monitoring_parameters.get('score_column')
+        )
+
+        # Run test
+        test_results = normality_metrics.kolmogorov_smirnov_test()
+
+        result = {
+            # Top-level metrics
+            "ks_statistic": test_results["values"]["ks_statistic"],
+            "ks_p_value": test_results["values"]["ks_p_value"],
+            # Vanilla NormalityMetrics output
+            "normality_kolmogorov_smirnov": [test_results],
+        }
+        return result
+    except:
+        print("Error occurred while calculating durban_watson test")
+        print(ex)
+        print(traceback.format_exc())
+        return {}
+    
