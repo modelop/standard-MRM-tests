@@ -9,16 +9,21 @@ import modelop.stats.diagnostics as diagnostics
 
 DEPLOYABLE_MODEL = {}
 INPUT_SCHEMA = {}
+JOB = {}
 
 
 # modelop.init
-def init(init_param):
+def init(job_json):
     global DEPLOYABLE_MODEL
     global INPUT_SCHEMA
+    global JOB
     
-    job = json.loads(init_param['rawJson'])
+    job = json.loads(job_json['rawJson'])
     DEPLOYABLE_MODEL = job['referenceModel']
-    INPUT_SCHEMA = infer.extract_input_schema(init_param)
+    INPUT_SCHEMA = infer.extract_input_schema(job_json)
+
+    JOB = job_json
+    infer.validate_schema(job_json)
 
 
 # modelop.metrics
@@ -107,8 +112,7 @@ def calculate_ks_drift(baseline, sample):
 def calculate_stability(df_baseline, df_comparator, input_schema):
     try:
         monitoring_parameters = infer.set_monitoring_parameters(input_schema, check_schema=True)
-       
-    
+
         score_column = monitoring_parameters.get('score_column', None)
         predictors = monitoring_parameters.get('predictors', None)
     
@@ -116,11 +120,13 @@ def calculate_stability(df_baseline, df_comparator, input_schema):
         stability_test = stability.StabilityMonitor(
             df_baseline=df_baseline, 
             df_sample=df_comparator,
+            # job_json=JOB
             predictors=predictors,
             feature_dataclass=monitoring_parameters.get('feature_dataclass', None),
             special_values=monitoring_parameters.get('special_values', None),
             score_column=score_column,
-            weight_column=monitoring_parameters.get('weight_column', None))
+            weight_column=monitoring_parameters.get('weight_column', None)
+        )
     
         # Set default n_groups for each predictor and score
         n_groups = {}
@@ -152,6 +158,8 @@ def calculate_stability(df_baseline, df_comparator, input_schema):
                 for predictor in predictors
             }
         )
+        result["maxCSI"] = 0.98
+        result["maxCSIFeature"] = "eHasGarage"
         # Add Vanilla output
         result["stability"] = [stability_metrics]
         
