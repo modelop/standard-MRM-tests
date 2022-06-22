@@ -7,9 +7,11 @@ import modelop.monitors.stability as stability
 import modelop.stats.diagnostics as diagnostics
 #import numpy as np
 
-DEPLOPYABLE_MODEL = {}
+DEPLOYABLE_MODEL = {}
 INPUT_SCHEMA = {}
 
+
+# modelop.init
 def init(init_param):
     global DEPLOYABLE_MODEL
     global INPUT_SCHEMA
@@ -17,7 +19,9 @@ def init(init_param):
     job = json.loads(init_param['rawJson'])
     DEPLOYABLE_MODEL = job['referenceModel']
     INPUT_SCHEMA = infer.extract_input_schema(init_param)
-    
+
+
+# modelop.metrics
 def metrics(baseline, comparator) -> dict:
     global DEPLOYABLE_MODEL
     global INPUT_SCHEMA
@@ -55,7 +59,8 @@ def metrics(baseline, comparator) -> dict:
     result.update(calculate_kolmogorov_smirnov_test(comparator, INPUT_SCHEMA))
     
     yield result
-    
+
+
 def calculate_performance(comparator, input_schema):
     try:
         monitoring_parameters = infer.set_monitoring_parameters(input_schema, check_schema=True)
@@ -85,7 +90,8 @@ def calculate_performance(comparator, input_schema):
         print(ex)
         print(traceback.format_exc())
         return {}
-    
+
+
 def calculate_ks_drift(baseline, sample):
     try:
         drift_test = drift.DriftDetector(df_baseline=baseline, df_sample=sample)
@@ -96,7 +102,8 @@ def calculate_ks_drift(baseline, sample):
         print(ex)
         print(traceback.format_exc())
         return {}
-                   
+
+
 def calculate_stability(df_baseline, df_comparator, input_schema):
     try:
         monitoring_parameters = infer.set_monitoring_parameters(input_schema, check_schema=True)
@@ -155,6 +162,7 @@ def calculate_stability(df_baseline, df_comparator, input_schema):
         print(traceback.format_exc())
         return {}
 
+
 def calculate_breusch_pagan(dataframe, input_schema):
     """A function to run the Breauch-Pagan test on sample data
     Args:
@@ -192,7 +200,8 @@ def calculate_breusch_pagan(dataframe, input_schema):
         print(ex)
         print(traceback.format_exc())
         return {}
-    
+
+
 def calculate_variance_inflation_factor(dataframe, input_schema):
     """A function to compute Variance Inflation Factors on sample data
     Args:
@@ -222,6 +231,7 @@ def calculate_variance_inflation_factor(dataframe, input_schema):
         print(ex)
         print(traceback.format_exc())
         return {}        
+
 
 def calculate_linearity_metrics(dataframe, input_schema):
     """A function to compute Pearson Correlations on sample data
@@ -254,7 +264,8 @@ def calculate_linearity_metrics(dataframe, input_schema):
         print(ex)
         print(traceback.format_exc())
         return {}
-    
+
+
 def calculate_ljung_box_q_test(dataframe, input_schema):
     """A function to run the Ljung-Box Q test on sample data
     Args:
@@ -286,7 +297,8 @@ def calculate_ljung_box_q_test(dataframe, input_schema):
         print(ex)
         print(traceback.format_exc())
         return {}
-    
+
+
 def calculate_durbin_watson(dataframe, input_schema):
     """A function to run the Durban Watson test on sample data
 
@@ -321,6 +333,7 @@ def calculate_durbin_watson(dataframe, input_schema):
         print(ex)
         print(traceback.format_exc())
         return {}
+
 
 def calculate_engle_lagrange_multiplier_test(dataframe, input_schema):
     """A function to run the engle_lagrange_multiplier_test on sample data
@@ -359,6 +372,7 @@ def calculate_engle_lagrange_multiplier_test(dataframe, input_schema):
         print(traceback.format_exc())
         return {}
 
+
 def calculate_anderson_darling_test(dataframe, input_schema):
     """A function to run the calculate_anderson_darling_test on sample data
 
@@ -394,7 +408,8 @@ def calculate_anderson_darling_test(dataframe, input_schema):
         print(ex)
         print(traceback.format_exc())
         return {}
-    
+
+
 def calculate_cramer_von_mises_test(dataframe, input_schema):
     """A function to run the cramer_von_mises_test on sample data
 
@@ -430,7 +445,8 @@ def calculate_cramer_von_mises_test(dataframe, input_schema):
         print(ex)
         print(traceback.format_exc())
         return {}
-    
+
+
 def calculate_kolmogorov_smirnov_test(dataframe, input_schema):
     """A function to run the kolmogorov_smirnov_test on sample data
 
