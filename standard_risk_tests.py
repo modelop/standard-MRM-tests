@@ -23,7 +23,7 @@ def init(job_json):
     INPUT_SCHEMA = infer.extract_input_schema(job_json)
 
     JOB = job_json
-    infer.validate_schema(job_json)
+    # infer.validate_schema(job_json)
 
 
 # modelop.metrics
