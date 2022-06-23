@@ -39,29 +39,29 @@ def metrics(baseline, comparator) -> dict:
         'modelRisk': DEPLOYABLE_MODEL.get('storedModel', {}).get('modelMetaData', {}).get('modelRisk', ''),
         'modelMethodology': DEPLOYABLE_MODEL.get('storedModel', {}).get('modelMetaData', {}).get('modelMethodology', '')}
                  )
-    # result.update(calculate_performance(comparator, INPUT_SCHEMA))
-    #
-    # result.update(calculate_ks_drift(baseline, comparator))
+    result.update(calculate_performance(comparator, INPUT_SCHEMA))
+
+    result.update(calculate_ks_drift(baseline, comparator))
     
-    result.update(calculate_stability(baseline, comparator, INPUT_SCHEMA))
+    result.update(calculate_stability(baseline, comparator))
     
-    # result.update(calculate_breusch_pagan(comparator, INPUT_SCHEMA))
-    #
-    # result.update(calculate_linearity_metrics(comparator, INPUT_SCHEMA))
-    #
-    # result.update(calculate_ljung_box_q_test(comparator, INPUT_SCHEMA))
-    #
-    # result.update(calculate_variance_inflation_factor(comparator, INPUT_SCHEMA))
-    #
-    # result.update(calculate_durbin_watson(comparator, INPUT_SCHEMA))
-    #
-    # result.update(calculate_engle_lagrange_multiplier_test(comparator, INPUT_SCHEMA))
-    #
-    # result.update(calculate_anderson_darling_test(comparator, INPUT_SCHEMA))
-    #
-    # result.update(calculate_cramer_von_mises_test(comparator, INPUT_SCHEMA))
-    #
-    # result.update(calculate_kolmogorov_smirnov_test(comparator, INPUT_SCHEMA))
+    result.update(calculate_breusch_pagan(comparator, INPUT_SCHEMA))
+
+    result.update(calculate_linearity_metrics(comparator, INPUT_SCHEMA))
+
+    result.update(calculate_ljung_box_q_test(comparator, INPUT_SCHEMA))
+
+    result.update(calculate_variance_inflation_factor(comparator, INPUT_SCHEMA))
+
+    result.update(calculate_durbin_watson(comparator, INPUT_SCHEMA))
+
+    result.update(calculate_engle_lagrange_multiplier_test(comparator, INPUT_SCHEMA))
+
+    result.update(calculate_anderson_darling_test(comparator, INPUT_SCHEMA))
+
+    result.update(calculate_cramer_von_mises_test(comparator, INPUT_SCHEMA))
+
+    result.update(calculate_kolmogorov_smirnov_test(comparator, INPUT_SCHEMA))
     
     yield result
 
@@ -109,60 +109,20 @@ def calculate_ks_drift(baseline, sample):
         return {}
 
 
-def calculate_stability(df_baseline, df_comparator, input_schema):
+def calculate_stability(df_baseline, df_comparator):
     try:
-        monitoring_parameters = infer.set_monitoring_parameters(input_schema, check_schema=True)
-
-        score_column = monitoring_parameters.get('score_column', None)
-        predictors = monitoring_parameters.get('predictors', None)
-    
         # Initialize StabilityMonitor
         stability_test = stability.StabilityMonitor(
             df_baseline=df_baseline, 
             df_sample=df_comparator,
             job_json=JOB
-            # predictors=predictors,
-            # feature_dataclass=monitoring_parameters.get('feature_dataclass', None),
-            # special_values=monitoring_parameters.get('special_values', None),
-            # score_column=score_column,
-            # weight_column=monitoring_parameters.get('weight_column', None)
         )
-    
-        # Set default n_groups for each predictor and score
-        n_groups = {}
-        for feature in monitoring_parameters.get('numerical_columns', None) + [monitoring_parameters.get('score_column', None)]:
-        # If a feature has more than 1 unique value, set n_groups to 2; else set to 1
-            feature_has_distinct_values = int(
-                (min(df_baseline[feature]) != max(df_baseline[feature]))
-            )
-            n_groups[feature] = 1 + feature_has_distinct_values
 
         # Compute stability metrics
         stability_metrics = stability_test.compute_stability_indices(include_top_level=True)
         
-        # result = {
-        #     # Top-level metrics
-        #     str(score_column + "_PSI"): stability_metrics["values"][score_column][
-        #         "stability_index"
-        #     ]
-        # }
-        
-        # result.update(
-        #     # Top-level metrics
-        #     {
-        #         str(predictor + "_CSI"): stability_metrics["values"][predictor][
-        #             "stability_index"
-        #         ]
-        #         for predictor in predictors
-        #     }
-        # )
-        # result["maxCSI"] = 0.98
-        # result["maxCSIFeature"] = "eHasGarage"
-        # # Add Vanilla output
-        # result["stability"] = [stability_metrics]
-        
         return stability_metrics
-    except:
+    except Exception as ex:
         print("Error occurred while calculating stability")
         print(ex)
         print(traceback.format_exc())
