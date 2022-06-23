@@ -23,7 +23,7 @@ def init(job_json):
     INPUT_SCHEMA = infer.extract_input_schema(job_json)
 
     JOB = job_json
-    # infer.validate_schema(job_json)
+    infer.validate_schema(job_json)
 
 
 # modelop.metrics
@@ -120,12 +120,12 @@ def calculate_stability(df_baseline, df_comparator, input_schema):
         stability_test = stability.StabilityMonitor(
             df_baseline=df_baseline, 
             df_sample=df_comparator,
-            # job_json=JOB
-            predictors=predictors,
-            feature_dataclass=monitoring_parameters.get('feature_dataclass', None),
-            special_values=monitoring_parameters.get('special_values', None),
-            score_column=score_column,
-            weight_column=monitoring_parameters.get('weight_column', None)
+            job_json=JOB
+            # predictors=predictors,
+            # feature_dataclass=monitoring_parameters.get('feature_dataclass', None),
+            # special_values=monitoring_parameters.get('special_values', None),
+            # score_column=score_column,
+            # weight_column=monitoring_parameters.get('weight_column', None)
         )
     
         # Set default n_groups for each predictor and score
@@ -138,32 +138,30 @@ def calculate_stability(df_baseline, df_comparator, input_schema):
             n_groups[feature] = 1 + feature_has_distinct_values
 
         # Compute stability metrics
-        stability_metrics = stability_test.compute_stability_indices(
-            n_groups=n_groups, group_cuts={}
-        )
+        stability_metrics = stability_test.compute_stability_indices(include_top_level=True)
         
-        result = {
-            # Top-level metrics
-            str(score_column + "_PSI"): stability_metrics["values"][score_column][
-                "stability_index"
-            ]
-        }
+        # result = {
+        #     # Top-level metrics
+        #     str(score_column + "_PSI"): stability_metrics["values"][score_column][
+        #         "stability_index"
+        #     ]
+        # }
         
-        result.update(
-            # Top-level metrics
-            {
-                str(predictor + "_CSI"): stability_metrics["values"][predictor][
-                    "stability_index"
-                ]
-                for predictor in predictors
-            }
-        )
-        result["maxCSI"] = 0.98
-        result["maxCSIFeature"] = "eHasGarage"
-        # Add Vanilla output
-        result["stability"] = [stability_metrics]
+        # result.update(
+        #     # Top-level metrics
+        #     {
+        #         str(predictor + "_CSI"): stability_metrics["values"][predictor][
+        #             "stability_index"
+        #         ]
+        #         for predictor in predictors
+        #     }
+        # )
+        # result["maxCSI"] = 0.98
+        # result["maxCSIFeature"] = "eHasGarage"
+        # # Add Vanilla output
+        # result["stability"] = [stability_metrics]
         
-        return result
+        return stability_metrics
     except:
         print("Error occurred while calculating stability")
         print(ex)
