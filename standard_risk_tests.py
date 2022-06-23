@@ -39,29 +39,29 @@ def metrics(baseline, comparator) -> dict:
         'modelRisk': DEPLOYABLE_MODEL.get('storedModel', {}).get('modelMetaData', {}).get('modelRisk', ''),
         'modelMethodology': DEPLOYABLE_MODEL.get('storedModel', {}).get('modelMetaData', {}).get('modelMethodology', '')}
                  )
-    result.update(calculate_performance(comparator, INPUT_SCHEMA))
-    
-    result.update(calculate_ks_drift(baseline, comparator))
+    # result.update(calculate_performance(comparator, INPUT_SCHEMA))
+    #
+    # result.update(calculate_ks_drift(baseline, comparator))
     
     result.update(calculate_stability(baseline, comparator, INPUT_SCHEMA))
     
-    result.update(calculate_breusch_pagan(comparator, INPUT_SCHEMA))
-    
-    result.update(calculate_linearity_metrics(comparator, INPUT_SCHEMA))
-    
-    result.update(calculate_ljung_box_q_test(comparator, INPUT_SCHEMA))
-    
-    result.update(calculate_variance_inflation_factor(comparator, INPUT_SCHEMA))
-    
-    result.update(calculate_durbin_watson(comparator, INPUT_SCHEMA))
-
-    result.update(calculate_engle_lagrange_multiplier_test(comparator, INPUT_SCHEMA))
-    
-    result.update(calculate_anderson_darling_test(comparator, INPUT_SCHEMA))
-    
-    result.update(calculate_cramer_von_mises_test(comparator, INPUT_SCHEMA))
-    
-    result.update(calculate_kolmogorov_smirnov_test(comparator, INPUT_SCHEMA))
+    # result.update(calculate_breusch_pagan(comparator, INPUT_SCHEMA))
+    #
+    # result.update(calculate_linearity_metrics(comparator, INPUT_SCHEMA))
+    #
+    # result.update(calculate_ljung_box_q_test(comparator, INPUT_SCHEMA))
+    #
+    # result.update(calculate_variance_inflation_factor(comparator, INPUT_SCHEMA))
+    #
+    # result.update(calculate_durbin_watson(comparator, INPUT_SCHEMA))
+    #
+    # result.update(calculate_engle_lagrange_multiplier_test(comparator, INPUT_SCHEMA))
+    #
+    # result.update(calculate_anderson_darling_test(comparator, INPUT_SCHEMA))
+    #
+    # result.update(calculate_cramer_von_mises_test(comparator, INPUT_SCHEMA))
+    #
+    # result.update(calculate_kolmogorov_smirnov_test(comparator, INPUT_SCHEMA))
     
     yield result
 
