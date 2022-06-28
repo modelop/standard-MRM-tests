@@ -275,7 +275,7 @@ def calculate_cramer_von_mises_test(dataframe):
         return {}
 
 
-def calculate_kolmogorov_smirnov_test(dataframe, input_schema):
+def calculate_kolmogorov_smirnov_test(dataframe):
     """A function to run the kolmogorov_smirnov_test on sample data
 
     Args:
