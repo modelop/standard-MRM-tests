@@ -5,6 +5,7 @@ import modelop.monitors.performance as performance
 import modelop.monitors.drift as drift
 import modelop.monitors.stability as stability
 import modelop.stats.diagnostics as diagnostics
+from modelop_sdk.utils import dashboard_utils as dashboard_utils
 
 DEPLOYABLE_MODEL = {}
 JOB = {}
@@ -70,6 +71,7 @@ def metrics(baseline, comparator) -> dict:
 
 def calculate_performance(comparator, execution_errors_array):
     try:
+        dashboard_utils.assert_df_not_none_and_not_empty(comparator, "Required comparator")
         model_evaluator = performance.ModelEvaluator(dataframe=comparator, job_json=JOB)
         if DEPLOYABLE_MODEL.get('storedModel', {}).get('modelMetaData', {}).get('modelMethodology', '').casefold() == 'regression'.casefold():
             return model_evaluator.evaluate_performance(pre_defined_metrics='regression_metrics')
@@ -84,6 +86,8 @@ def calculate_performance(comparator, execution_errors_array):
 
 def calculate_ks_drift(baseline, sample, execution_errors_array):
     try:
+        dashboard_utils.assert_df_not_none_and_not_empty(baseline, "Required baseline")
+        dashboard_utils.assert_df_not_none_and_not_empty(sample, "Required comparator")
         drift_test = drift.DriftDetector(df_baseline=baseline, df_sample=sample, job_json=JOB)
         return drift_test.calculate_drift(pre_defined_test='Kolmogorov-Smirnov', result_wrapper_key='data_drift')
     except Exception as ex:
@@ -94,6 +98,8 @@ def calculate_ks_drift(baseline, sample, execution_errors_array):
 
 def calculate_stability(df_baseline, df_comparator, execution_errors_array):
     try:
+        dashboard_utils.assert_df_not_none_and_not_empty(df_baseline, "Required baseline")
+        dashboard_utils.assert_df_not_none_and_not_empty(df_comparator, "Required comparator")
         stability_test = stability.StabilityMonitor(
             df_baseline=df_baseline, 
             df_sample=df_comparator,
@@ -117,6 +123,7 @@ def calculate_breusch_pagan(dataframe, execution_errors_array):
         (dict): Breusch-Pagan test results
     """
     try:
+        dashboard_utils.assert_df_not_none_and_not_empty(dataframe, "Required comparator")
         homoscedasticity_metrics = diagnostics.HomoscedasticityMetrics(
             dataframe=dataframe,
             job_json=JOB
@@ -138,6 +145,7 @@ def calculate_variance_inflation_factor(dataframe, execution_errors_array):
         (dict): Pearson Correlation results
     """
     try:
+        dashboard_utils.assert_df_not_none_and_not_empty(dataframe, "Required comparator")
         dataframe=dataframe.astype('float')
         multicollinearity_metrics = diagnostics.MulticollinearityMetrics(
             dataframe=dataframe,
@@ -161,6 +169,7 @@ def calculate_linearity_metrics(dataframe, execution_errors_array):
         (dict): Pearson Correlation results
     """
     try:
+        dashboard_utils.assert_df_not_none_and_not_empty(dataframe, "Required comparator")
         linearity_metrics = diagnostics.LinearityMetrics(
             dataframe=dataframe,
             job_json=JOB
@@ -183,6 +192,7 @@ def calculate_ljung_box_q_test(dataframe, execution_errors_array):
         (dict): Ljung-Box Q test results
     """
     try:
+        dashboard_utils.assert_df_not_none_and_not_empty(dataframe, "Required comparator")
         homoscedasticity_metrics = diagnostics.HomoscedasticityMetrics(
             dataframe=dataframe,
             job_json=JOB
@@ -205,6 +215,7 @@ def calculate_durbin_watson(dataframe, execution_errors_array):
         (dict): Durbin-Watson test results
     """
     try:
+        dashboard_utils.assert_df_not_none_and_not_empty(dataframe, "Required comparator")
         autocorrelation_metrics = diagnostics.AutocorrelationMetrics(
             dataframe=dataframe,
             job_json=JOB
@@ -228,6 +239,7 @@ def calculate_engle_lagrange_multiplier_test(dataframe, execution_errors_array):
         (dict): Engle's Langrange Multiplier test results
     """
     try:
+        dashboard_utils.assert_df_not_none_and_not_empty(dataframe, "Required comparator")
         homoscedasticity_metrics = diagnostics.HomoscedasticityMetrics(
             dataframe=dataframe,
             job_json=JOB
@@ -251,6 +263,7 @@ def calculate_anderson_darling_test(dataframe, execution_errors_array):
         (dict): Anderson-Darling test results
     """
     try:
+        dashboard_utils.assert_df_not_none_and_not_empty(dataframe, "Required comparator")
         normality_metrics = diagnostics.NormalityMetrics(
             dataframe=dataframe,
             job_json=JOB
@@ -274,6 +287,7 @@ def calculate_cramer_von_mises_test(dataframe, execution_errors_array):
         (dict): Cramer-von Mises test results
     """
     try:
+        dashboard_utils.assert_df_not_none_and_not_empty(dataframe, "Required comparator")
         normality_metrics = diagnostics.NormalityMetrics(
             dataframe=dataframe,
             job_json=JOB
@@ -297,6 +311,7 @@ def calculate_kolmogorov_smirnov_test(dataframe, execution_errors_array):
         (dict): Kolmogorov-Smirnov test results
     """
     try:
+        dashboard_utils.assert_df_not_none_and_not_empty(dataframe, "Required comparator")
         normality_metrics = diagnostics.NormalityMetrics(
             dataframe=dataframe,
             job_json=JOB
