@@ -1,7 +1,10 @@
 import json
 import traceback
+
+from sympy import comp
 import modelop.schema.infer as infer
 import modelop.monitors.performance as performance
+import modelop.monitors.bias as bias
 import modelop.monitors.drift as drift
 import modelop.monitors.stability as stability
 import modelop.stats.diagnostics as diagnostics
@@ -41,7 +44,11 @@ def metrics(baseline, comparator) -> dict:
 
     result.update(calculate_performance(comparator, execution_errors_array))
 
+    result.update(calculate_bias(comparator, execution_errors_array))
+
     result.update(calculate_ks_drift(baseline, comparator, execution_errors_array))
+
+    result.update(calculate_ks_concept_drift(baseline, comparator, execution_errors_array))
     
     result.update(calculate_stability(baseline, comparator, execution_errors_array))
     
@@ -72,7 +79,10 @@ def metrics(baseline, comparator) -> dict:
 def calculate_performance(comparator, execution_errors_array):
     try:
         dashboard_utils.assert_df_not_none_and_not_empty(comparator, "Required comparator")
-        model_evaluator = performance.ModelEvaluator(dataframe=comparator, job_json=JOB)
+        model_evaluator = performance.ModelEvaluator(
+            dataframe=comparator, 
+            job_json=JOB
+        )
         if DEPLOYABLE_MODEL.get('storedModel', {}).get('modelMetaData', {}).get('modelMethodology', '').casefold() == 'regression'.casefold():
             return model_evaluator.evaluate_performance(pre_defined_metrics='regression_metrics')
         else:
@@ -84,12 +94,46 @@ def calculate_performance(comparator, execution_errors_array):
         return {}
 
 
+def calculate_bias(comparator, execution_errors_array):
+    try:
+        dashboard_utils.assert_df_not_none_and_not_empty(comparator, "Required comparator")
+        bias_monitor = bias.BiasMonitor(
+            dataframe=comparator, 
+            job_json=JOB
+        )
+        return bias_monitor.compute_bias_metrics()
+    except Exception as ex:
+        error_message = f"Error occurred calculating performance metrics: {str(ex)}"
+        print(error_message)
+        execution_errors_array.append(error_message)
+        return {}
+
 def calculate_ks_drift(baseline, sample, execution_errors_array):
     try:
         dashboard_utils.assert_df_not_none_and_not_empty(baseline, "Required baseline")
         dashboard_utils.assert_df_not_none_and_not_empty(sample, "Required comparator")
-        drift_test = drift.DriftDetector(df_baseline=baseline, df_sample=sample, job_json=JOB)
-        return drift_test.calculate_drift(pre_defined_test='Kolmogorov-Smirnov', result_wrapper_key='data_drift')
+        drift_test = drift.DriftDetector(
+            df_baseline=baseline, 
+            df_sample=sample, 
+            job_json=JOB
+        )
+        return drift_test.calculate_drift(pre_defined_test='Kolmogorov-Smirnov')
+    except Exception as ex:
+        error_message = f"Error occurred while calculating drift: {str(ex)}"
+        print(error_message)
+        execution_errors_array.append(error_message)
+        return {}
+
+def calculate_ks_concept_drift(baseline, sample, execution_errors_array):
+    try:
+        dashboard_utils.assert_df_not_none_and_not_empty(baseline, "Required baseline")
+        dashboard_utils.assert_df_not_none_and_not_empty(sample, "Required comparator")
+        concept_drift_test = drift.ConceptDriftDetector(
+            df_baseline=baseline, 
+            df_sample=sample, 
+            job_json=JOB
+        )
+        return concept_drift_test.calculate_concept_drift(pre_defined_test='Kolmogorov-Smirnov')
     except Exception as ex:
         error_message = f"Error occurred while calculating drift: {str(ex)}"
         print(error_message)
