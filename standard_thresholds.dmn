@@ -197,7 +197,7 @@
           <text>false</text>
         </outputEntry>
         <outputEntry id="LiteralExpression_1b1dpgd">
-          <text>"auc below allowed Value of 0.7"</text>
+          <text>"auc below allowed value of 0.7"</text>
         </outputEntry>
         <outputEntry id="LiteralExpression_013wtgy">
           <text>"Performance"</text>
@@ -256,7 +256,7 @@
           <text>false</text>
         </outputEntry>
         <outputEntry id="LiteralExpression_1x33auk">
-          <text>"One or more features of Data Drift are above allowed value of 2"</text>
+          <text>"one or more features of Data Drift are above allowed value of 2"</text>
         </outputEntry>
         <outputEntry id="LiteralExpression_03bglut">
           <text>"Data Drift - Kolmorgorov Smirnov"</text>
@@ -335,7 +335,7 @@
           <text></text>
         </inputEntry>
         <inputEntry id="UnaryTests_167j2e2">
-          <text>&gt;2</text>
+          <text>&gt;0.2</text>
         </inputEntry>
         <inputEntry id="UnaryTests_0m8rpum">
           <text></text>
@@ -374,7 +374,7 @@
           <text>false</text>
         </outputEntry>
         <outputEntry id="LiteralExpression_04ieeiv">
-          <text>"one or more features of Characteristic Stability are above allowed value of 2"</text>
+          <text>"one or more features of Characteristic Stability are above allowed value of 0.2"</text>
         </outputEntry>
         <outputEntry id="LiteralExpression_0p1d0u6">
           <text>"Characteristic Stability"</text>
@@ -610,7 +610,7 @@
           <text>false</text>
         </outputEntry>
         <outputEntry id="LiteralExpression_10t3urb">
-          <text>"lm_p_value below allowed value of 0.05"</text>
+          <text>"f_p_value below allowed value of 0.05"</text>
         </outputEntry>
         <outputEntry id="LiteralExpression_0njczs9">
           <text>"Homoscedacticity"</text>
@@ -669,7 +669,7 @@
           <text>false</text>
         </outputEntry>
         <outputEntry id="LiteralExpression_1xs7qir">
-          <text>"one or more feature of Homoscedacticity Iijung Box Q are below allowed value of 0.05"</text>
+          <text>"lm_p_value below allowed value of 0.05"</text>
         </outputEntry>
         <outputEntry id="LiteralExpression_1szm5ga">
           <text>"Homoscedacticity"</text>
@@ -728,7 +728,7 @@
           <text>false</text>
         </outputEntry>
         <outputEntry id="LiteralExpression_0f9ggg4">
-          <text>"one or more feature of Homoscedacticity are below allowed value of 0.05"</text>
+          <text>"one or more feature of Homoscedacticity Ijung Box Q are below allowed value of 0.05"</text>
         </outputEntry>
         <outputEntry id="LiteralExpression_1u5xj54">
           <text>"Homoscedacticity"</text>
