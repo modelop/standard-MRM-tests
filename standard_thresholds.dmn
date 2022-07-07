@@ -1,93 +1,1032 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<definitions xmlns="https://www.omg.org/spec/DMN/20191111/MODEL/" xmlns:dmndi="https://www.omg.org/spec/DMN/20191111/DMNDI/" xmlns:dc="http://www.omg.org/spec/DMN/20180521/DC/" xmlns:camunda="http://camunda.org/schema/1.0/dmn" xmlns:biodi="http://bpmn.io/schema/dmn/biodi/2.0" id="Definitions_0wb2acp" name="DRD" namespace="http://camunda.org/schema/1.0/dmn" exporter="Camunda Modeler" exporterVersion="4.3.0">
+<definitions xmlns="https://www.omg.org/spec/DMN/20191111/MODEL/" xmlns:dmndi="https://www.omg.org/spec/DMN/20191111/DMNDI/" xmlns:dc="http://www.omg.org/spec/DMN/20180521/DC/" xmlns:biodi="http://bpmn.io/schema/dmn/biodi/2.0" id="Definitions_0wb2acp" name="DRD" namespace="http://camunda.org/schema/1.0/dmn" exporter="Camunda Modeler" exporterVersion="5.0.0">
   <decision id="Decision_0q87m1a" name="Model Test Comparator">
     <decisionTable id="decisionTable_1" hitPolicy="COLLECT">
-      <input id="input_1" label="r2_score" camunda:inputVariable="r2_score">
-        <inputExpression id="inputExpression_1" typeRef="double" expressionLanguage="feel">
-          <text></text>
+      <input id="input_1" label="r2_score">
+        <inputExpression id="inputExpression_1" typeRef="string" expressionLanguage="feel">
+          <text>modelMethodology</text>
         </inputExpression>
       </input>
-      <input id="InputClause_08e7ybd" label="breusch_pagan_f_statistic" camunda:inputVariable="breusch_pagan_f_statistic">
-        <inputExpression id="LiteralExpression_0nr86e9" typeRef="double" expressionLanguage="feel">
-          <text></text>
+      <input id="InputClause_1o6p1rf" label="auc">
+        <inputExpression id="LiteralExpression_0v2n3js" typeRef="string" expressionLanguage="feel">
+          <text>modelMethodology</text>
         </inputExpression>
       </input>
-      <input id="InputClause_1td5bzn" label="breusch_pagan_lm_statistic" camunda:inputVariable="breusch_pagan_lm_statistic">
-        <inputExpression id="LiteralExpression_0thcre4" typeRef="double">
-          <text></text>
+      <input id="InputClause_0fxnfev" label="DataDrift_maxKolmogorov-SmirnovPValue">
+        <inputExpression id="LiteralExpression_1k2fff2" typeRef="double">
+          <text>DataDrift_maxKolmogorov-SmirnovPValue</text>
+        </inputExpression>
+      </input>
+      <input id="InputClause_1hy2my2" label="ConceptDrift_maxKolmogorov-SmirnovPValue">
+        <inputExpression id="LiteralExpression_0kz8aqt" typeRef="double">
+          <text>ConceptDrift_maxKolmogorov-SmirnovPValue</text>
+        </inputExpression>
+      </input>
+      <input id="InputClause_02qfz52" label="CSI_maxCSI">
+        <inputExpression id="LiteralExpression_0q69swg" typeRef="double">
+          <text>CSI_maxCSI</text>
+        </inputExpression>
+      </input>
+      <input id="InputClause_1o2715w" label="Bias_maxPPRDisparityValue">
+        <inputExpression id="LiteralExpression_1nqojvr" typeRef="double">
+          <text>Bias_maxPPRDisparityValue</text>
+        </inputExpression>
+      </input>
+      <input id="InputClause_1sv5fma" label="Bias_minPPRDisparityValue">
+        <inputExpression id="LiteralExpression_1m4uy3b" typeRef="double">
+          <text>Bias_minPPRDisparityValue</text>
+        </inputExpression>
+      </input>
+      <input id="InputClause_0fdk3il" label="dw_statistic">
+        <inputExpression id="LiteralExpression_1rva5it" typeRef="double">
+          <text>dw_statistic</text>
+        </inputExpression>
+      </input>
+      <input id="InputClause_1jpgd4a" label="f_p_value">
+        <inputExpression id="LiteralExpression_025x56v" typeRef="double">
+          <text>f_p_value</text>
+        </inputExpression>
+      </input>
+      <input id="InputClause_0xepayo" label="lm_p_value">
+        <inputExpression id="LiteralExpression_0t5tuls" typeRef="double">
+          <text>lm_p_value</text>
+        </inputExpression>
+      </input>
+      <input id="InputClause_02vfh8a" label="Homoscedasticity_minLjungBoxQPValue">
+        <inputExpression id="LiteralExpression_18nq9d7" typeRef="double">
+          <text>Homoscedasticity_minLjungBoxQPValue</text>
+        </inputExpression>
+      </input>
+      <input id="InputClause_1jetfyd" label="ks_p_value" biodi:width="192">
+        <inputExpression id="LiteralExpression_1idigss" typeRef="double">
+          <text>ks_p_value</text>
+        </inputExpression>
+      </input>
+      <input id="InputClause_0vdyf96" label="ad_p_value">
+        <inputExpression id="LiteralExpression_0m7pi62" typeRef="double">
+          <text>ad_p_value</text>
+        </inputExpression>
+      </input>
+      <input id="InputClause_0wny3tc" label="cvm_p_value">
+        <inputExpression id="LiteralExpression_08upscq" typeRef="double">
+          <text>cvm_p_value</text>
+        </inputExpression>
+      </input>
+      <input id="InputClause_13h3xvq" label="Linearity_minPearsonCorrelationValue">
+        <inputExpression id="LiteralExpression_0v9q8ac" typeRef="double">
+          <text>Linearity_minPearsonCorrelationValue</text>
+        </inputExpression>
+      </input>
+      <input id="InputClause_0z7zo6w" label="Multicollinearity_maxVIFValue">
+        <inputExpression id="LiteralExpression_0t4ixqr" typeRef="double">
+          <text>Multicollinearity_maxVIFValue</text>
         </inputExpression>
       </input>
       <output id="output_1" label="passes" name="passes" typeRef="boolean" />
       <output id="OutputClause_05h1co6" label="reason" name="reason" typeRef="string" biodi:width="336" />
       <output id="OutputClause_1ids7f5" name="category" typeRef="string" />
-      <output id="OutputClause_0vplf2d" name="myCustomVariable" typeRef="string" />
       <rule id="DecisionRule_0aznir8">
-        <inputEntry id="UnaryTests_1x4xf13">
-          <text>&lt;0.8</text>
+        <inputEntry id="UnaryTests_1x4xf13" expressionLanguage="groovy">
+          <text>modelMethodology.equals("regression") &amp;&amp; r2_score &lt;0.7</text>
         </inputEntry>
-        <inputEntry id="UnaryTests_1wcb8sj">
+        <inputEntry id="UnaryTests_1n6kf5k">
           <text></text>
         </inputEntry>
-        <inputEntry id="UnaryTests_1i58mgp">
+        <inputEntry id="UnaryTests_0ljtjyo">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0wtqp1e">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1l1k2v1">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1e9pfmj">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_15zzzhr">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0r9gpb7">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1r2c6bp">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_17b81fg">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_04mpl6i">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0m9ymxp">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0ydu2ns">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0t9csak">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0431s7h">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_14dj91x">
           <text></text>
         </inputEntry>
         <outputEntry id="LiteralExpression_0a5bp3u">
           <text>false</text>
         </outputEntry>
         <outputEntry id="LiteralExpression_07v4w07">
-          <text>"R squared below allowed value"</text>
+          <text>"r squared below allowed value of 0.7"</text>
         </outputEntry>
         <outputEntry id="LiteralExpression_0tu87g9">
           <text>"Peformance"</text>
         </outputEntry>
-        <outputEntry id="LiteralExpression_1i5cis6">
-          <text>"customval"</text>
-        </outputEntry>
       </rule>
-      <rule id="DecisionRule_0ggwcp6">
-        <inputEntry id="UnaryTests_0lmlprd">
+      <rule id="DecisionRule_04181h5">
+        <inputEntry id="UnaryTests_073xy57">
           <text></text>
         </inputEntry>
-        <inputEntry id="UnaryTests_1u0j72q">
-          <text>&gt;6.0</text>
+        <inputEntry id="UnaryTests_1rikk29" expressionLanguage="groovy">
+          <text>!modelMethodology.equals("regression") &amp;&amp; auc &lt;0.7</text>
         </inputEntry>
-        <inputEntry id="UnaryTests_0q9dwkz">
+        <inputEntry id="UnaryTests_0rx1369">
           <text></text>
         </inputEntry>
-        <outputEntry id="LiteralExpression_1id0elh">
+        <inputEntry id="UnaryTests_0jg6gdq">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0s01j52">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_17udo9v">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_085qeb1">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_18ona5b">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0p35wy3">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1x65vpf">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1rjkltn">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0x6ijo6">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0bul7vl">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_08hd12h">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0gecb81">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1dcnebi">
+          <text></text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0b921o4">
           <text>false</text>
         </outputEntry>
-        <outputEntry id="LiteralExpression_1qpb76t">
-          <text>"breusch_pagan_f_statistic above allowed value"</text>
+        <outputEntry id="LiteralExpression_1b1dpgd">
+          <text>"auc below allowed Value of 0.7"</text>
         </outputEntry>
-        <outputEntry id="LiteralExpression_19mapv0">
-          <text>"Homoscedasticity"</text>
-        </outputEntry>
-        <outputEntry id="LiteralExpression_1jw7wpe">
-          <text>"customval"</text>
+        <outputEntry id="LiteralExpression_013wtgy">
+          <text>"Performance"</text>
         </outputEntry>
       </rule>
-      <rule id="DecisionRule_1jhzhxa">
-        <inputEntry id="UnaryTests_1nyhwnh">
+      <rule id="DecisionRule_136vohp">
+        <inputEntry id="UnaryTests_1cyg69w">
           <text></text>
         </inputEntry>
-        <inputEntry id="UnaryTests_0hgntoq">
+        <inputEntry id="UnaryTests_1yfsfnl">
           <text></text>
         </inputEntry>
-        <inputEntry id="UnaryTests_190evjk">
-          <text>&gt;90.0</text>
+        <inputEntry id="UnaryTests_0328tf6">
+          <text>&gt;2</text>
         </inputEntry>
-        <outputEntry id="LiteralExpression_03mgpyq">
+        <inputEntry id="UnaryTests_0txyd4l">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0sbtdhw">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0c0l5do">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_05q2rpm">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0xjm563">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_11xgcsb">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_03plhvi">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1dhhfyx">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1s81jvm">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_115tfgk">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1wpn9rk">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1uvhj0s">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_12zp8oh">
+          <text></text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0kgl4h5">
           <text>false</text>
         </outputEntry>
-        <outputEntry id="LiteralExpression_1pws6rq">
-          <text>"breusch_pagan_lm_statistic above allowed value"</text>
+        <outputEntry id="LiteralExpression_1x33auk">
+          <text>"One or more features of Data Drift are above allowed value of 2"</text>
         </outputEntry>
-        <outputEntry id="LiteralExpression_0925z4o">
-          <text>"Homoscedasticity"</text>
+        <outputEntry id="LiteralExpression_03bglut">
+          <text>"Data Drift - Kolmorgorov Smirnov"</text>
         </outputEntry>
-        <outputEntry id="LiteralExpression_0bgidqy">
-          <text>"customval"</text>
+      </rule>
+      <rule id="DecisionRule_013i31p">
+        <inputEntry id="UnaryTests_1o25xws">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0seh5uj">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1w59qln">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1mrpgq1">
+          <text>&gt;2</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_110dhjj">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1ahlwji">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1r5vao8">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0ncure1">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_033qsf9">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1v4b4ev">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_17f9aqi">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1ou7nw3">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_07b7o7t">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0vnvmuo">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1lsbp5e">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1j90511">
+          <text></text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1lgqli5">
+          <text>false</text>
+        </outputEntry>
+        <outputEntry id="LiteralExpression_14sfgvc">
+          <text>"one or more features of Concept Data Drift are above allowed value of 2"</text>
+        </outputEntry>
+        <outputEntry id="LiteralExpression_0ncbkq6">
+          <text>"Concept Drift - Kolmorgorov Smirnov"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_1hoy9kc">
+        <inputEntry id="UnaryTests_0pcuxaa">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1l9ma38">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1r8yflx">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1f0yh5b">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_167j2e2">
+          <text>&gt;2</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0m8rpum">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1m2ht8z">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1fdxeao">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0lpq9qc">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1xsl7px">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0enatvc">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0n94fmr">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0gv6ekf">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0ko6te4">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1l9tvk2">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_02evshp">
+          <text></text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_11e1wdo">
+          <text>false</text>
+        </outputEntry>
+        <outputEntry id="LiteralExpression_04ieeiv">
+          <text>"one or more features of Characteristic Stability are above allowed value of 2"</text>
+        </outputEntry>
+        <outputEntry id="LiteralExpression_0p1d0u6">
+          <text>"Characteristic Stability"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_1ck8gyx">
+        <inputEntry id="UnaryTests_0453ckg">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0h80r52">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0ihdvys">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1p79min">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0bcvtjd">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0b34m3v">
+          <text>&gt;1.2</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_054wnjj">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_19qtsa2">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0mggna2">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1jfjrv1">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0awo13j">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0yraqhk">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_14oqpnr">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_093q0bj">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1kzuq7t">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0749fno">
+          <text></text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_16tr5z9">
+          <text>false</text>
+        </outputEntry>
+        <outputEntry id="LiteralExpression_0bf48gr">
+          <text>"one or more features of Bias Disparity are above allowed value of max disparity of 1.2"</text>
+        </outputEntry>
+        <outputEntry id="LiteralExpression_0z5t6kq">
+          <text>"Bias Disparity"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0c3uo29">
+        <inputEntry id="UnaryTests_06e8xuh">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_142bow0">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0ab51ez">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0fit04b">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0w5u7vk">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_04a9fyk">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_03vakmh">
+          <text>&lt;0.8</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_06f2r7m">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_063g4mz">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0ch2y3m">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_18iipck">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1yebogj">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_16r8asd">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1k83zyf">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0epohce">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_19kqze1">
+          <text></text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0fs0xbt">
+          <text>false</text>
+        </outputEntry>
+        <outputEntry id="LiteralExpression_1wwc7rk">
+          <text>"one or more features of Bias Disparity are below allowed value of min disparity of 0.8"</text>
+        </outputEntry>
+        <outputEntry id="LiteralExpression_1sarfiy">
+          <text>"Bias Disparity"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_1sdg6hj">
+        <inputEntry id="UnaryTests_12xevoh">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1guuh2d">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0os921n">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0tx091g">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1s9h97l">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0880uwp">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0h24gvz">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0284w8q" expressionLanguage="feel">
+          <text>&lt;=1, &gt;=3</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1l3ohoq">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_05wxt46">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_02q5mdk">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1dz1dq4">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_03vybp3">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0khbxf2">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_18y1ge2">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0tnqdhg">
+          <text></text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_00rq59e">
+          <text>false</text>
+        </outputEntry>
+        <outputEntry id="LiteralExpression_1xhv8ga">
+          <text>"dw_statistic is below allowed value of 1 or above allowed value 3"</text>
+        </outputEntry>
+        <outputEntry id="LiteralExpression_11refiv">
+          <text>"Autocorrelation"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_1izuk36">
+        <inputEntry id="UnaryTests_0qsn3wa">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1dbul8w">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0bzkmv2">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0nkxgei">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_08o50lw">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0xh436y">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0ttjc3z">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1mc9q20">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0yfjxvc">
+          <text>&lt;=0.05</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1pt1qzd">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1fqqxgj">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1lejps3">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1vs36fv">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1ozpyzh">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0jwy1h8">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1vystwi">
+          <text></text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0mhu25q">
+          <text>false</text>
+        </outputEntry>
+        <outputEntry id="LiteralExpression_10t3urb">
+          <text>"lm_p_value below allowed value of 0.05"</text>
+        </outputEntry>
+        <outputEntry id="LiteralExpression_0njczs9">
+          <text>"Homoscedacticity"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_03q0dyt">
+        <inputEntry id="UnaryTests_02wiylr">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1b1d74j">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0q0rhhw">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_054tw7m">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1wgakmn">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1sq0df9">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1yzzla5">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0iysjrw">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_17wike6">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0w339il">
+          <text>&lt;=0.05</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0yt98sf">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0e1gpty">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_09itmqo">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_083fhem">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0aqiysm">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0ue3mkn">
+          <text></text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0sslpbm">
+          <text>false</text>
+        </outputEntry>
+        <outputEntry id="LiteralExpression_1xs7qir">
+          <text>"one or more feature of Homoscedacticity Iijung Box Q are below allowed value of 0.05"</text>
+        </outputEntry>
+        <outputEntry id="LiteralExpression_1szm5ga">
+          <text>"Homoscedacticity"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_1xdxzr6">
+        <inputEntry id="UnaryTests_0cg2d6l">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_00zzfer">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0v1rk5e">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0ei27av">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1ggzm6s">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_04d12hg">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1szkkzo">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1mxze6i">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0czs9qi">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1iafyk6">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0w483ok">
+          <text>&lt;=0.05</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_18b702t">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1tzob3w">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1go518u">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_08bv48z">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0k8av6x">
+          <text></text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0uj5o98">
+          <text>false</text>
+        </outputEntry>
+        <outputEntry id="LiteralExpression_0f9ggg4">
+          <text>"one or more feature of Homoscedacticity are below allowed value of 0.05"</text>
+        </outputEntry>
+        <outputEntry id="LiteralExpression_1u5xj54">
+          <text>"Homoscedacticity"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_1nsy8es">
+        <inputEntry id="UnaryTests_0k9hvlj">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0fdgg2s">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1gxba9d">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1ke7du2">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1uvbmbx">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0lofjje">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_034njuz">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_19yltv5">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_059da59">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_08i9spd">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1fks7qx">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0unb9el">
+          <text>&lt;=0.05</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1pn0o6z">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0h7z3wv">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0rndasx">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1q1tc3m">
+          <text></text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1ka64nu">
+          <text>false</text>
+        </outputEntry>
+        <outputEntry id="LiteralExpression_1jlkt2q">
+          <text>"ks_p_value below allowed value of 0.05"</text>
+        </outputEntry>
+        <outputEntry id="LiteralExpression_0ppfsrc">
+          <text>"Normality"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_1qjv2bh">
+        <inputEntry id="UnaryTests_03ejavr">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1d6aiuo">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1m5t1zv">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0420v63">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1kx03b1">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_04ccz7a">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_04xzsph">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0yx7adn">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0adp33m">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1wvwuj6">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1jmappt">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0dc0ni2">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_15rqjn0">
+          <text>&lt;=0.05</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1du0bco">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_04ljgmh">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_15fu290">
+          <text></text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0pwxdy1">
+          <text>false</text>
+        </outputEntry>
+        <outputEntry id="LiteralExpression_0rgrs2t">
+          <text>"ad_p_value below allowed value of 0.05"</text>
+        </outputEntry>
+        <outputEntry id="LiteralExpression_1xphqd8">
+          <text>"Normality"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0uw990g">
+        <inputEntry id="UnaryTests_05z6dw3">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1g7togo">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0ep5x5c">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_045neh6">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0h17u83">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1clivog">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1senx42">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1480wvx">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0wg9so1">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0hflgjm">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1hmlurw">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1j8xbur">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1isps66">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0o6e5be">
+          <text>&lt;=0.05</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0p4oqb5">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0wr6e6s">
+          <text></text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_198yg0b">
+          <text>false</text>
+        </outputEntry>
+        <outputEntry id="LiteralExpression_0l0gx9f">
+          <text>"cvm_p_value below allowed value of 0.05"</text>
+        </outputEntry>
+        <outputEntry id="LiteralExpression_1qrarv7">
+          <text>"Normality"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0ms850r">
+        <inputEntry id="UnaryTests_110vu93">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_02wfgxi">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0dxs0wn">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0ob55qg">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0coju9e">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1ljmyn4">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1joyka7">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1bat8p2">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0gmljrk">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1gsdl14">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1amf221">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1jz5yha">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0fqn2zo">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1gcrgj4">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0rr3plj">
+          <text>&lt;0.1</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0ckghhq">
+          <text></text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1qvt1w0">
+          <text>false</text>
+        </outputEntry>
+        <outputEntry id="LiteralExpression_069eroi">
+          <text>"one or more feature of Linearity are below allowed value of 0.05"</text>
+        </outputEntry>
+        <outputEntry id="LiteralExpression_053wxb4">
+          <text>"Linearity"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_08izkjo">
+        <inputEntry id="UnaryTests_0nf6t80">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1sk8tid">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_03vkuy9">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0ay34kr">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0sk6gf4">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1x1p0ex">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1g71gde">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0s7z984">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1gas3h1">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_10vcpfl">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1a0tkw1">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0ekdgpr">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1h65a3t">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0mf7mkn">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0z90wdu">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1gq4ch8">
+          <text>&gt;=10</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1bdu9ek">
+          <text>false</text>
+        </outputEntry>
+        <outputEntry id="LiteralExpression_1ie9x1u">
+          <text>"one or more feature of Mulitcolinearity are below allowed value of 0.05"</text>
+        </outputEntry>
+        <outputEntry id="LiteralExpression_1i2oldk">
+          <text>"Mulitcolinearity"</text>
         </outputEntry>
       </rule>
     </decisionTable>
