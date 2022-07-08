@@ -1,7 +1,5 @@
 import json
-import traceback
 
-from sympy import comp
 import modelop.schema.infer as infer
 import modelop.monitors.performance as performance
 import modelop.monitors.bias as bias
@@ -91,7 +89,7 @@ def calculate_performance(comparator, execution_errors_array):
         error_message = f"Error occurred calculating performance metrics: {str(ex)}"
         print(error_message)
         execution_errors_array.append(error_message)
-        return {}
+        return {"auc": -99, "r2_score": -99}
 
 
 def calculate_bias(comparator, execution_errors_array):
@@ -106,7 +104,7 @@ def calculate_bias(comparator, execution_errors_array):
         error_message = f"Error occurred calculating performance metrics: {str(ex)}"
         print(error_message)
         execution_errors_array.append(error_message)
-        return {}
+        return {"Bias_maxPPRDisparityValue": -99, "Bias_minPPRDisparityValue": -99}
 
 def calculate_ks_drift(baseline, sample, execution_errors_array):
     try:
@@ -122,7 +120,7 @@ def calculate_ks_drift(baseline, sample, execution_errors_array):
         error_message = f"Error occurred while calculating drift: {str(ex)}"
         print(error_message)
         execution_errors_array.append(error_message)
-        return {}
+        return {"DataDrift_maxKolmogorov-SmirnovPValue": -99}
 
 def calculate_ks_concept_drift(baseline, sample, execution_errors_array):
     try:
@@ -138,7 +136,7 @@ def calculate_ks_concept_drift(baseline, sample, execution_errors_array):
         error_message = f"Error occurred while calculating drift: {str(ex)}"
         print(error_message)
         execution_errors_array.append(error_message)
-        return {}
+        return {"ConceptDrift_maxKolmogorov-SmirnovPValue": -99}
 
 def calculate_stability(df_baseline, df_comparator, execution_errors_array):
     try:
@@ -154,7 +152,7 @@ def calculate_stability(df_baseline, df_comparator, execution_errors_array):
         error_message = f"Error occurred while calculating stability: {str(ex)}"
         print(error_message)
         execution_errors_array.append(error_message)
-        return {}
+        return {"CSI_maxCSIValue": -99}
 
 
 def calculate_breusch_pagan(dataframe, execution_errors_array):
@@ -177,7 +175,7 @@ def calculate_breusch_pagan(dataframe, execution_errors_array):
         error_message = f"Error occurred while calculating breusch_pagan: {str(ex)}"
         print(error_message)
         execution_errors_array.append(error_message)
-        return {}
+        return {"f_p_value": -99}
 
 
 def calculate_variance_inflation_factor(dataframe, execution_errors_array):
@@ -200,7 +198,7 @@ def calculate_variance_inflation_factor(dataframe, execution_errors_array):
         error_message = f"Error occurred while calculating variance_inflation_factor: {str(ex)}"
         print(error_message)
         execution_errors_array.append(error_message)
-        return {}
+        return {"Multicollinearity_maxVIFValue": -99}
 
 
 def calculate_linearity_metrics(dataframe, execution_errors_array):
@@ -223,7 +221,7 @@ def calculate_linearity_metrics(dataframe, execution_errors_array):
         error_message = f"Error occurred while calculating calculate_linearity_metrics: {str(ex)}"
         print(error_message)
         execution_errors_array.append(error_message)
-        return {}
+        return {"Linearity_minPearsonCorrelationValue": -99}
 
 
 def calculate_ljung_box_q_test(dataframe, execution_errors_array):
@@ -246,7 +244,7 @@ def calculate_ljung_box_q_test(dataframe, execution_errors_array):
         error_message = f"Error occurred while calculating calculate_ljung_box_q_test: {str(ex)}"
         print(error_message)
         execution_errors_array.append(error_message)
-        return {}
+        return {"Homoscedasticity_minLjungBoxQPValue": -99}
 
 def calculate_durbin_watson(dataframe, execution_errors_array):
     """A function to run the Durban Watson test on sample data
@@ -269,7 +267,7 @@ def calculate_durbin_watson(dataframe, execution_errors_array):
         error_message = f"Error occurred while calculating durban_watson test: {str(ex)}"
         print(error_message)
         execution_errors_array.append(error_message)
-        return {}
+        return {"dw_statistic": -99}
 
 
 def calculate_engle_lagrange_multiplier_test(dataframe, execution_errors_array):
@@ -293,7 +291,7 @@ def calculate_engle_lagrange_multiplier_test(dataframe, execution_errors_array):
         error_message = f"Error occurred while calculating engle_lagrange_multiplier test: {str(ex)}"
         print(error_message)
         execution_errors_array.append(error_message)
-        return {}
+        return {"lm_p_value": -99}
 
 
 def calculate_anderson_darling_test(dataframe, execution_errors_array):
@@ -317,7 +315,7 @@ def calculate_anderson_darling_test(dataframe, execution_errors_array):
         error_message = f"Error occurred while calculating anderson_darling test: {str(ex)}"
         print(error_message)
         execution_errors_array.append(error_message)
-        return {}
+        return {"ad_p_value": -99}
 
 
 def calculate_cramer_von_mises_test(dataframe, execution_errors_array):
@@ -341,7 +339,7 @@ def calculate_cramer_von_mises_test(dataframe, execution_errors_array):
         error_message = f"Error occurred while calculating cramer_von_mises test: {str(ex)}"
         print(error_message)
         execution_errors_array.append(error_message)
-        return {}
+        return {"cvm_p_value": -99}
 
 
 def calculate_kolmogorov_smirnov_test(dataframe, execution_errors_array):
@@ -365,5 +363,5 @@ def calculate_kolmogorov_smirnov_test(dataframe, execution_errors_array):
         error_message = f"Error occurred while calculating kolmogorov_smirnov test: {str(ex)}"
         print(error_message)
         execution_errors_array.append(error_message)
-        return {}
+        return {"ks_p_value": -99}
     
