@@ -101,7 +101,7 @@ def calculate_bias(comparator, execution_errors_array):
         )
         return bias_monitor.compute_bias_metrics()
     except Exception as ex:
-        error_message = f"Error occurred calculating performance metrics: {str(ex)}"
+        error_message = f"Error occurred calculating bias metrics: {str(ex)}"
         print(error_message)
         execution_errors_array.append(error_message)
         return {"Bias_maxPPRDisparityValue": -99, "Bias_minPPRDisparityValue": -99}
