@@ -175,7 +175,7 @@ def calculate_breusch_pagan(dataframe, execution_errors_array):
         error_message = f"Error occurred while calculating breusch_pagan: {str(ex)}"
         print(error_message)
         execution_errors_array.append(error_message)
-        return {"f_p_value": -99}
+        return {"breusch_pagan_f_p_value": -99}
 
 
 def calculate_variance_inflation_factor(dataframe, execution_errors_array):
