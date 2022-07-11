@@ -22,9 +22,9 @@
           <text>ConceptDrift_maxKolmogorov-SmirnovPValue</text>
         </inputExpression>
       </input>
-      <input id="InputClause_02qfz52" label="CSI_maxCSI">
+      <input id="InputClause_02qfz52" label="CSI_maxCSIValue">
         <inputExpression id="LiteralExpression_0q69swg" typeRef="double">
-          <text>CSI_maxCSI</text>
+          <text>CSI_maxCSIValue</text>
         </inputExpression>
       </input>
       <input id="InputClause_1o2715w" label="Bias_maxPPRDisparityValue">
@@ -267,7 +267,7 @@
           <text></text>
         </inputEntry>
         <inputEntry id="UnaryTests_1rikk29" expressionLanguage="groovy">
-          <text>!modelMethodology.equals("regression") &amp;&amp;auc&gt;0&amp;&amp; auc &lt;0.7</text>
+          <text>!modelMethodology.equals("regression") &amp;&amp;auc&gt;0&amp;&amp; auc &lt;0.6</text>
         </inputEntry>
         <inputEntry id="UnaryTests_0rx1369">
           <text></text>
@@ -495,7 +495,7 @@
           <text>"One or more features of Data Drift are above allowed value of 2"</text>
         </outputEntry>
         <outputEntry id="LiteralExpression_03bglut">
-          <text>"Data Drift - Kolmorgorov Smirnov"</text>
+          <text>"KS Data Drift"</text>
         </outputEntry>
       </rule>
       <rule id="DecisionRule_1h3lwsl">
@@ -506,7 +506,7 @@
           <text></text>
         </inputEntry>
         <inputEntry id="UnaryTests_0w9dlr9">
-          <text>&gt;-99, &lt;=2</text>
+          <text>]-99..2]</text>
         </inputEntry>
         <inputEntry id="UnaryTests_15vrs9x">
           <text></text>
@@ -554,7 +554,7 @@
           <text>"No issues detected"</text>
         </outputEntry>
         <outputEntry id="LiteralExpression_146wdbd">
-          <text>"Data Drift - Kolmorgorov Smirnov"</text>
+          <text>"KS Data Drift"</text>
         </outputEntry>
       </rule>
       <rule id="DecisionRule_06hjco3">
@@ -613,7 +613,7 @@
           <text>"Error occured calculating Data Drift metrics"</text>
         </outputEntry>
         <outputEntry id="LiteralExpression_0067pjg">
-          <text>"Data Drift - Kolmorgorov Smirnov"</text>
+          <text>"KS Data Drift"</text>
         </outputEntry>
       </rule>
       <rule id="DecisionRule_013i31p">
@@ -672,7 +672,7 @@
           <text>"One or more features of Concept Data Drift are above allowed value of 2"</text>
         </outputEntry>
         <outputEntry id="LiteralExpression_0ncbkq6">
-          <text>"Concept Drift - Kolmorgorov Smirnov"</text>
+          <text>"KS Concept Drift"</text>
         </outputEntry>
       </rule>
       <rule id="DecisionRule_034vogy">
@@ -686,7 +686,7 @@
           <text></text>
         </inputEntry>
         <inputEntry id="UnaryTests_0kq072t">
-          <text>&gt;-99, &lt;=2</text>
+          <text>]-99..2]</text>
         </inputEntry>
         <inputEntry id="UnaryTests_08roj9v">
           <text></text>
@@ -731,7 +731,7 @@
           <text>"No issues detected"</text>
         </outputEntry>
         <outputEntry id="LiteralExpression_1553uo9">
-          <text>"Concept Drift - Kolmorgorov Smirnov"</text>
+          <text>"KS Concept Drift"</text>
         </outputEntry>
       </rule>
       <rule id="DecisionRule_1ncbj5i">
@@ -790,7 +790,7 @@
           <text>"Error occured calculating Concept Drift metrics"</text>
         </outputEntry>
         <outputEntry id="LiteralExpression_0runzoo">
-          <text>"Concept Drift - Kolmorgorov Smirnov"</text>
+          <text>"KS Concept Drift"</text>
         </outputEntry>
       </rule>
       <rule id="DecisionRule_1hoy9kc">
@@ -866,7 +866,7 @@
           <text></text>
         </inputEntry>
         <inputEntry id="UnaryTests_032je4g">
-          <text>&gt;-99, &lt;=0.2</text>
+          <text>]-99..0.2]</text>
         </inputEntry>
         <inputEntry id="UnaryTests_0odbjt8">
           <text></text>
@@ -1046,7 +1046,7 @@
           <text></text>
         </inputEntry>
         <inputEntry id="UnaryTests_0jusvc4">
-          <text>&gt;-99, &lt;=1.2</text>
+          <text>]-99..1.2]</text>
         </inputEntry>
         <inputEntry id="UnaryTests_05vwv99">
           <text></text>
@@ -1167,7 +1167,7 @@
           <text></text>
         </inputEntry>
         <inputEntry id="UnaryTests_03vakmh">
-          <text>[-98..0.8]</text>
+          <text>]-99..0.8[</text>
         </inputEntry>
         <inputEntry id="UnaryTests_06f2r7m">
           <text></text>
@@ -1226,7 +1226,7 @@
           <text></text>
         </inputEntry>
         <inputEntry id="UnaryTests_1kprlms">
-          <text>&gt;0.8</text>
+          <text>&lt;0.8</text>
         </inputEntry>
         <inputEntry id="UnaryTests_07t8f4d">
           <text></text>
@@ -1288,7 +1288,7 @@
           <text></text>
         </inputEntry>
         <inputEntry id="UnaryTests_0284w8q" expressionLanguage="feel">
-          <text>&gt;-99,&lt;=1, &gt;=3</text>
+          <text>&gt;=3,]-99..1]</text>
         </inputEntry>
         <inputEntry id="UnaryTests_1l3ohoq">
           <text></text>
@@ -1347,7 +1347,7 @@
           <text></text>
         </inputEntry>
         <inputEntry id="UnaryTests_0du2t9y">
-          <text>&gt;1, &lt;3</text>
+          <text>]1..3[</text>
         </inputEntry>
         <inputEntry id="UnaryTests_0x48jfs">
           <text></text>
@@ -1468,7 +1468,7 @@
           <text></text>
         </inputEntry>
         <inputEntry id="UnaryTests_0yfjxvc">
-          <text>[-98..0.05]</text>
+          <text>]-99..0.05]</text>
         </inputEntry>
         <inputEntry id="UnaryTests_1pt1qzd">
           <text></text>
@@ -1648,7 +1648,7 @@
           <text></text>
         </inputEntry>
         <inputEntry id="UnaryTests_0w339il">
-          <text>[-98..0.05]</text>
+          <text>]-99..0.05]</text>
         </inputEntry>
         <inputEntry id="UnaryTests_0yt98sf">
           <text></text>
@@ -1828,7 +1828,7 @@
           <text></text>
         </inputEntry>
         <inputEntry id="UnaryTests_0w483ok">
-          <text>[-98..0.05]</text>
+          <text>]-99..0.05]</text>
         </inputEntry>
         <inputEntry id="UnaryTests_18b702t">
           <text></text>
@@ -2008,7 +2008,7 @@
           <text></text>
         </inputEntry>
         <inputEntry id="UnaryTests_0unb9el">
-          <text>[-98..0.05]</text>
+          <text>]-99..0.05]</text>
         </inputEntry>
         <inputEntry id="UnaryTests_1pn0o6z">
           <text></text>
@@ -2188,7 +2188,7 @@
           <text></text>
         </inputEntry>
         <inputEntry id="UnaryTests_15rqjn0">
-          <text>[-98..0.05]</text>
+          <text>]-99..0.05]</text>
         </inputEntry>
         <inputEntry id="UnaryTests_1du0bco">
           <text></text>
@@ -2368,7 +2368,7 @@
           <text></text>
         </inputEntry>
         <inputEntry id="UnaryTests_0o6e5be">
-          <text>[-98..0.05]</text>
+          <text>]-99..0.05]</text>
         </inputEntry>
         <inputEntry id="UnaryTests_0p4oqb5">
           <text></text>
@@ -2548,7 +2548,7 @@
           <text></text>
         </inputEntry>
         <inputEntry id="UnaryTests_0rr3plj">
-          <text>&gt;=-98,&lt;0.1</text>
+          <text>]-99..0.1[</text>
         </inputEntry>
         <inputEntry id="UnaryTests_0ckghhq">
           <text></text>
@@ -2557,7 +2557,7 @@
           <text>false</text>
         </outputEntry>
         <outputEntry id="LiteralExpression_069eroi">
-          <text>"One or more feature of Linearity are below allowed value of 0.05"</text>
+          <text>"One or more feature of Linearity are above allowed value of 0.1"</text>
         </outputEntry>
         <outputEntry id="LiteralExpression_053wxb4">
           <text>"Linearity"</text>
@@ -2607,7 +2607,7 @@
           <text></text>
         </inputEntry>
         <inputEntry id="UnaryTests_14regbi">
-          <text>&gt;0.1</text>
+          <text>&gt;=0.1</text>
         </inputEntry>
         <inputEntry id="UnaryTests_0g5iyhj">
           <text></text>
@@ -2734,7 +2734,7 @@
           <text>false</text>
         </outputEntry>
         <outputEntry id="LiteralExpression_1ie9x1u">
-          <text>"One or more feature of Mulitcolinearity are below allowed value of 0.05"</text>
+          <text>"One or more feature of Mulitcolinearity are above allowed value of 10"</text>
         </outputEntry>
         <outputEntry id="LiteralExpression_1i2oldk">
           <text>"Mulitcolinearity"</text>
@@ -2787,7 +2787,7 @@
           <text></text>
         </inputEntry>
         <inputEntry id="UnaryTests_0p8adv4">
-          <text>&gt;=-98,&lt;10</text>
+          <text>]-99..10[</text>
         </inputEntry>
         <outputEntry id="LiteralExpression_1xb24bj">
           <text>true</text>
