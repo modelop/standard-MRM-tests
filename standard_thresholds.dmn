@@ -42,7 +42,7 @@
           <text>dw_statistic</text>
         </inputExpression>
       </input>
-      <input id="InputClause_1jpgd4a" label="f_p_value">
+      <input id="InputClause_1jpgd4a" label="breusch_pagan_f_p_value">
         <inputExpression id="LiteralExpression_025x56v" typeRef="double">
           <text>f_p_value</text>
         </inputExpression>
