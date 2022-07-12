@@ -99,7 +99,7 @@ def calculate_bias(comparator, execution_errors_array):
             dataframe=comparator, 
             job_json=JOB
         )
-        return bias_monitor.compute_bias_metrics()
+        return bias_monitor.compute_bias_metrics(pre_defined_test="aequitas_bias")
     except Exception as ex:
         error_message = f"Error occurred calculating bias metrics: {str(ex)}"
         print(error_message)
@@ -188,7 +188,7 @@ def calculate_variance_inflation_factor(dataframe, execution_errors_array):
     """
     try:
         dashboard_utils.assert_df_not_none_and_not_empty(dataframe, "Required comparator")
-        dataframe=dataframe.astype('float')
+        #dataframe=dataframe.astype('float')
         multicollinearity_metrics = diagnostics.MulticollinearityMetrics(
             dataframe=dataframe,
             job_json=JOB
