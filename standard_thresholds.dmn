@@ -12,12 +12,12 @@
           <text>modelMethodology</text>
         </inputExpression>
       </input>
-      <input id="InputClause_0fxnfev" label="DataDrift_maxKolmogorovSmirnovPValue" camunda:inputVariable="DataDrift_maxKolmogorovSmirnovPValue">
+      <input id="InputClause_0fxnfev" label="DataDrift_maxKolmogorov-SmirnovPValue" camunda:inputVariable="DataDrift_maxKolmogorov-SmirnovPValue">
         <inputExpression id="LiteralExpression_1k2fff2" typeRef="double">
           <text></text>
         </inputExpression>
       </input>
-      <input id="InputClause_1hy2my2" label="ConceptDrift_maxKolmogorovSmirnovPValue" camunda:inputVariable="ConceptDrift_maxKolmogorovSmirnovPValue">
+      <input id="InputClause_1hy2my2" label="ConceptDrift_maxKolmogorov-SmirnovPValue" camunda:inputVariable="ConceptDrift_maxKolmogorov-SmirnovPValue">
         <inputExpression id="LiteralExpression_0kz8aqt" typeRef="double">
           <text></text>
         </inputExpression>
