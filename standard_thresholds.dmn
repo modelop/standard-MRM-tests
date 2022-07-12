@@ -47,9 +47,9 @@
           <text>breusch_pagan_f_p_value</text>
         </inputExpression>
       </input>
-      <input id="InputClause_0xepayo" label="lm_p_value">
+      <input id="InputClause_0xepayo" label="engle_lm_p_value">
         <inputExpression id="LiteralExpression_0t5tuls" typeRef="double">
-          <text>lm_p_value</text>
+          <text>engle_lm_p_value</text>
         </inputExpression>
       </input>
       <input id="InputClause_02vfh8a" label="Homoscedasticity_minLjungBoxQPValue">
@@ -1672,7 +1672,7 @@
           <text>false</text>
         </outputEntry>
         <outputEntry id="LiteralExpression_1xs7qir">
-          <text>"lm_p_value of Homoscedacticity is below allowed value of 0.05"</text>
+          <text>"engle_lm_p_value of Homoscedacticity is below allowed value of 0.05"</text>
         </outputEntry>
         <outputEntry id="LiteralExpression_1szm5ga">
           <text>"Homoscedacticity"</text>

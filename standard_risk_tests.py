@@ -291,7 +291,7 @@ def calculate_engle_lagrange_multiplier_test(dataframe, execution_errors_array):
         error_message = f"Error occurred while calculating engle_lagrange_multiplier test: {str(ex)}"
         print(error_message)
         execution_errors_array.append(error_message)
-        return {"lm_p_value": -99}
+        return {"engle_lm_p_value": -99}
 
 
 def calculate_anderson_darling_test(dataframe, execution_errors_array):
