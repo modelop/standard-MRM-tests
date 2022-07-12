@@ -1498,7 +1498,7 @@
           <text>"breusch_pagan_f_p_value of Homoscedacticity is below allowed value of 0.05"</text>
         </outputEntry>
         <outputEntry id="LiteralExpression_0njczs9">
-          <text>"Homoscedacticity"</text>
+          <text>"Homoscedacticity: Breusch Pagan"</text>
         </outputEntry>
       </rule>
       <rule id="DecisionRule_0lqbhy7">
@@ -1557,7 +1557,7 @@
           <text>"No issues detected"</text>
         </outputEntry>
         <outputEntry id="LiteralExpression_10mu5v2">
-          <text>"Homoscedacticity"</text>
+          <text>"Homoscedacticity: Breusch Pagan"</text>
         </outputEntry>
       </rule>
       <rule id="DecisionRule_016ao4q">
@@ -1616,7 +1616,7 @@
           <text>"Error occured calculating Homoscedacticity metrics"</text>
         </outputEntry>
         <outputEntry id="LiteralExpression_0jmmq0r">
-          <text>"Homoscedacticity"</text>
+          <text>"Homoscedacticity: Breusch Pagan"</text>
         </outputEntry>
       </rule>
       <rule id="DecisionRule_03q0dyt">
@@ -1675,7 +1675,7 @@
           <text>"engle_lm_p_value of Homoscedacticity is below allowed value of 0.05"</text>
         </outputEntry>
         <outputEntry id="LiteralExpression_1szm5ga">
-          <text>"Homoscedacticity"</text>
+          <text>"Homoscedacticity: Engle Lagrange Multiplier"</text>
         </outputEntry>
       </rule>
       <rule id="DecisionRule_0l0om9o">
@@ -1734,7 +1734,7 @@
           <text>"No issues detected"</text>
         </outputEntry>
         <outputEntry id="LiteralExpression_015zrsn">
-          <text>"Homoscedacticity"</text>
+          <text>"Homoscedacticity: Engle Lagrange Multiplier"</text>
         </outputEntry>
       </rule>
       <rule id="DecisionRule_02b7yk1">
@@ -1793,7 +1793,7 @@
           <text>"Error occured calculating Homoscedacticity metrics"</text>
         </outputEntry>
         <outputEntry id="LiteralExpression_0ol613m">
-          <text>"Homoscedacticity"</text>
+          <text>"Homoscedacticity: Engle Lagrange Multiplier"</text>
         </outputEntry>
       </rule>
       <rule id="DecisionRule_1xdxzr6">
@@ -1852,7 +1852,7 @@
           <text>"One or more feature of Homoscedacticity Ijung Box Q are below allowed value of 0.05"</text>
         </outputEntry>
         <outputEntry id="LiteralExpression_1u5xj54">
-          <text>"Homoscedacticity"</text>
+          <text>"Homoscedacticity: Ljung Box Q"</text>
         </outputEntry>
       </rule>
       <rule id="DecisionRule_1glfivb">
@@ -1911,7 +1911,7 @@
           <text>"No issues detected"</text>
         </outputEntry>
         <outputEntry id="LiteralExpression_1x2vjoh">
-          <text>"Homoscedacticity"</text>
+          <text>"Homoscedacticity: Ljung Box Q"</text>
         </outputEntry>
       </rule>
       <rule id="DecisionRule_1yaducq">
@@ -1970,7 +1970,7 @@
           <text>"Error occured calculating Homoscedacticity metrics"</text>
         </outputEntry>
         <outputEntry id="LiteralExpression_1j6lpbw">
-          <text>"Homoscedacticity"</text>
+          <text>"Homoscedacticity: Ljung Box Q"</text>
         </outputEntry>
       </rule>
       <rule id="DecisionRule_1nsy8es">
@@ -2029,7 +2029,7 @@
           <text>"ks_p_value of Normality is below allowed value of 0.05"</text>
         </outputEntry>
         <outputEntry id="LiteralExpression_0ppfsrc">
-          <text>"Normality"</text>
+          <text>"Normality: Kolmogorov Smirnov"</text>
         </outputEntry>
       </rule>
       <rule id="DecisionRule_0wmm0j1">
@@ -2088,7 +2088,7 @@
           <text>"No issues detected"</text>
         </outputEntry>
         <outputEntry id="LiteralExpression_1f6kw13">
-          <text>"Normality"</text>
+          <text>"Normality: Kolmogorov Smirnov"</text>
         </outputEntry>
       </rule>
       <rule id="DecisionRule_1pmcxza">
@@ -2147,7 +2147,7 @@
           <text>"Error occured calculating Normality metrics"</text>
         </outputEntry>
         <outputEntry id="LiteralExpression_1awkz2s">
-          <text>"Normality"</text>
+          <text>"Normality: Kolmogorov Smirnov"</text>
         </outputEntry>
       </rule>
       <rule id="DecisionRule_1qjv2bh">
@@ -2206,7 +2206,7 @@
           <text>"ad_p_value of Normality is below allowed value of 0.05"</text>
         </outputEntry>
         <outputEntry id="LiteralExpression_1xphqd8">
-          <text>"Normality"</text>
+          <text>"Normality: Anderson Darling"</text>
         </outputEntry>
       </rule>
       <rule id="DecisionRule_08i0xof">
@@ -2265,7 +2265,7 @@
           <text>"No issues detected"</text>
         </outputEntry>
         <outputEntry id="LiteralExpression_0bbdapl">
-          <text>"Normality"</text>
+          <text>"Normality: Anderson Darling"</text>
         </outputEntry>
       </rule>
       <rule id="DecisionRule_182s3s6">
@@ -2324,7 +2324,7 @@
           <text>"Error occured calculating Normality metrics"</text>
         </outputEntry>
         <outputEntry id="LiteralExpression_1d4obwn">
-          <text>"Normality"</text>
+          <text>"Normality: Anderson Darling"</text>
         </outputEntry>
       </rule>
       <rule id="DecisionRule_0uw990g">
@@ -2383,7 +2383,7 @@
           <text>"cvm_p_value of Normality is below allowed value of 0.05"</text>
         </outputEntry>
         <outputEntry id="LiteralExpression_1qrarv7">
-          <text>"Normality"</text>
+          <text>"Normality: Cramer Von Mises"</text>
         </outputEntry>
       </rule>
       <rule id="DecisionRule_0755ynk">
@@ -2442,7 +2442,7 @@
           <text>"No issues detected"</text>
         </outputEntry>
         <outputEntry id="LiteralExpression_1twpxnd">
-          <text>"Normality"</text>
+          <text>"Normality: Cramer Von Mises"</text>
         </outputEntry>
       </rule>
       <rule id="DecisionRule_00sjqx7">
@@ -2501,7 +2501,7 @@
           <text>"Error occured calculating Normality metrics"</text>
         </outputEntry>
         <outputEntry id="LiteralExpression_07xo1l0">
-          <text>"Normality"</text>
+          <text>"Normality: Cramer Von Mises"</text>
         </outputEntry>
       </rule>
       <rule id="DecisionRule_0ms850r">
@@ -2560,7 +2560,7 @@
           <text>"One or more feature of Linearity are above allowed value of 0.1"</text>
         </outputEntry>
         <outputEntry id="LiteralExpression_053wxb4">
-          <text>"Linearity"</text>
+          <text>"Linearity: Pearson Correlation"</text>
         </outputEntry>
       </rule>
       <rule id="DecisionRule_1bgzueg">
@@ -2619,7 +2619,7 @@
           <text>"No issues detected"</text>
         </outputEntry>
         <outputEntry id="LiteralExpression_06jx9de">
-          <text>"Linearity"</text>
+          <text>"Linearity: Pearson Correlation"</text>
         </outputEntry>
       </rule>
       <rule id="DecisionRule_1hhvngm">
@@ -2678,7 +2678,7 @@
           <text>"Error occured calculating Linearity metrics"</text>
         </outputEntry>
         <outputEntry id="LiteralExpression_0vn84sq">
-          <text>"Linearity"</text>
+          <text>"Linearity: Pearson Correlation"</text>
         </outputEntry>
       </rule>
       <rule id="DecisionRule_08izkjo">
