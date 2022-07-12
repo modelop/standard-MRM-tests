@@ -44,7 +44,7 @@
       </input>
       <input id="InputClause_1jpgd4a" label="breusch_pagan_f_p_value">
         <inputExpression id="LiteralExpression_025x56v" typeRef="double">
-          <text>f_p_value</text>
+          <text>breusch_pagan_f_p_value</text>
         </inputExpression>
       </input>
       <input id="InputClause_0xepayo" label="lm_p_value">
@@ -1495,7 +1495,7 @@
           <text>false</text>
         </outputEntry>
         <outputEntry id="LiteralExpression_10t3urb">
-          <text>"f_p_value of Homoscedacticity is below allowed value of 0.05"</text>
+          <text>"breusch_pagan_f_p_value of Homoscedacticity is below allowed value of 0.05"</text>
         </outputEntry>
         <outputEntry id="LiteralExpression_0njczs9">
           <text>"Homoscedacticity"</text>
