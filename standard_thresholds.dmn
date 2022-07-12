@@ -253,10 +253,10 @@
           <text></text>
         </inputEntry>
         <outputEntry id="LiteralExpression_1db5oho">
-          <text>false</text>
+          <text></text>
         </outputEntry>
         <outputEntry id="LiteralExpression_1vs4lsk">
-          <text>"Error occured calculating Performance metrics"</text>
+          <text>"Metric not applicable or error occured calculating Performance metrics"</text>
         </outputEntry>
         <outputEntry id="LiteralExpression_1ldrb63">
           <text>"Performance"</text>
@@ -430,10 +430,10 @@
           <text></text>
         </inputEntry>
         <outputEntry id="LiteralExpression_1o01nvv">
-          <text>false</text>
+          <text></text>
         </outputEntry>
         <outputEntry id="LiteralExpression_10xvdl0">
-          <text>"Error occured calculating Performance metrics"</text>
+          <text>"Metric not applicable or error occured calculating Performance metrics"</text>
         </outputEntry>
         <outputEntry id="LiteralExpression_1aboaxj">
           <text>"Performance"</text>
@@ -607,10 +607,10 @@
           <text></text>
         </inputEntry>
         <outputEntry id="LiteralExpression_1qtsqwe">
-          <text>false</text>
+          <text></text>
         </outputEntry>
         <outputEntry id="LiteralExpression_1lurogb">
-          <text>"Error occured calculating Data Drift metrics"</text>
+          <text>"Metric not applicable or error occured calculating Data Drift metrics"</text>
         </outputEntry>
         <outputEntry id="LiteralExpression_0067pjg">
           <text>"KS Data Drift"</text>
@@ -784,10 +784,10 @@
           <text></text>
         </inputEntry>
         <outputEntry id="LiteralExpression_16ztor6">
-          <text>false</text>
+          <text></text>
         </outputEntry>
         <outputEntry id="LiteralExpression_0wrri2i">
-          <text>"Error occured calculating Concept Drift metrics"</text>
+          <text>"Metric not applicable or error occured calculating Concept Drift metrics"</text>
         </outputEntry>
         <outputEntry id="LiteralExpression_0runzoo">
           <text>"KS Concept Drift"</text>
@@ -961,10 +961,10 @@
           <text></text>
         </inputEntry>
         <outputEntry id="LiteralExpression_0qowflp">
-          <text>false</text>
+          <text></text>
         </outputEntry>
         <outputEntry id="LiteralExpression_1s54f0r">
-          <text>"Error occured calculating Characteristic Stability metrics"</text>
+          <text>"Metric not applicable or error occured calculating Characteristic Stability metrics"</text>
         </outputEntry>
         <outputEntry id="LiteralExpression_1so8cr0">
           <text>"Characteristic Stability"</text>
@@ -1138,10 +1138,10 @@
           <text></text>
         </inputEntry>
         <outputEntry id="LiteralExpression_0wd4g37">
-          <text>false</text>
+          <text></text>
         </outputEntry>
         <outputEntry id="LiteralExpression_0s771ll">
-          <text>"Error occured calculating Bias Disparity metrics"</text>
+          <text>"Metric not applicable or error occured calculating Bias Disparity metrics"</text>
         </outputEntry>
         <outputEntry id="LiteralExpression_1f4o4lw">
           <text>"Bias Disparity"</text>
@@ -1374,10 +1374,10 @@
           <text></text>
         </inputEntry>
         <outputEntry id="LiteralExpression_0z11mfz">
-          <text>false</text>
+          <text></text>
         </outputEntry>
         <outputEntry id="LiteralExpression_0rizxro">
-          <text>"Error occured calculating Autocorrelation metrics"</text>
+          <text>"Metric not applicable or error occured calculating Autocorrelation metrics"</text>
         </outputEntry>
         <outputEntry id="LiteralExpression_1y8g5zj">
           <text>"Autocorrelation"</text>
@@ -1551,10 +1551,10 @@
           <text></text>
         </inputEntry>
         <outputEntry id="LiteralExpression_0kmwe3o">
-          <text>false</text>
+          <text></text>
         </outputEntry>
         <outputEntry id="LiteralExpression_18drjty">
-          <text>"Error occured calculating Homoscedacticity metrics"</text>
+          <text>"Metric not applicable or error occured calculating Homoscedacticity metrics"</text>
         </outputEntry>
         <outputEntry id="LiteralExpression_0jmmq0r">
           <text>"Homoscedacticity: Breusch Pagan"</text>
@@ -1728,10 +1728,10 @@
           <text></text>
         </inputEntry>
         <outputEntry id="LiteralExpression_0n3r1k2">
-          <text>false</text>
+          <text></text>
         </outputEntry>
         <outputEntry id="LiteralExpression_03tg6ou">
-          <text>"Error occured calculating Homoscedacticity metrics"</text>
+          <text>"Metric not applicable or error occured calculating Homoscedacticity metrics"</text>
         </outputEntry>
         <outputEntry id="LiteralExpression_0ol613m">
           <text>"Homoscedacticity: Engle Lagrange Multiplier"</text>
@@ -1905,10 +1905,10 @@
           <text></text>
         </inputEntry>
         <outputEntry id="LiteralExpression_1582apa">
-          <text>false</text>
+          <text></text>
         </outputEntry>
         <outputEntry id="LiteralExpression_12e7980">
-          <text>"Error occured calculating Homoscedacticity metrics"</text>
+          <text>"Metric not applicable or error occured calculating Homoscedacticity metrics"</text>
         </outputEntry>
         <outputEntry id="LiteralExpression_1j6lpbw">
           <text>"Homoscedacticity: Ljung Box Q"</text>
@@ -2082,10 +2082,10 @@
           <text></text>
         </inputEntry>
         <outputEntry id="LiteralExpression_04p7e4s">
-          <text>false</text>
+          <text></text>
         </outputEntry>
         <outputEntry id="LiteralExpression_0f5285s">
-          <text>"Error occured calculating Normality metrics"</text>
+          <text>"Metric not applicable or error occured calculating Normality metrics"</text>
         </outputEntry>
         <outputEntry id="LiteralExpression_1awkz2s">
           <text>"Normality: Kolmogorov Smirnov"</text>
@@ -2259,10 +2259,10 @@
           <text></text>
         </inputEntry>
         <outputEntry id="LiteralExpression_0hyqvz7">
-          <text>false</text>
+          <text></text>
         </outputEntry>
         <outputEntry id="LiteralExpression_0kipqbl">
-          <text>"Error occured calculating Normality metrics"</text>
+          <text>"Metric not applicable or error occured calculating Normality metrics"</text>
         </outputEntry>
         <outputEntry id="LiteralExpression_1d4obwn">
           <text>"Normality: Anderson Darling"</text>
@@ -2436,10 +2436,10 @@
           <text></text>
         </inputEntry>
         <outputEntry id="LiteralExpression_0g0rryk">
-          <text>false</text>
+          <text></text>
         </outputEntry>
         <outputEntry id="LiteralExpression_1lkbgkv">
-          <text>"Error occured calculating Normality metrics"</text>
+          <text>"Metric not applicable or error occured calculating Normality metrics"</text>
         </outputEntry>
         <outputEntry id="LiteralExpression_07xo1l0">
           <text>"Normality: Cramer Von Mises"</text>
@@ -2613,10 +2613,10 @@
           <text></text>
         </inputEntry>
         <outputEntry id="LiteralExpression_08gu19a">
-          <text>false</text>
+          <text></text>
         </outputEntry>
         <outputEntry id="LiteralExpression_1mwyhk7">
-          <text>"Error occured calculating Linearity metrics"</text>
+          <text>"Metric not applicable or error occured calculating Linearity metrics"</text>
         </outputEntry>
         <outputEntry id="LiteralExpression_0vn84sq">
           <text>"Linearity: Pearson Correlation"</text>
@@ -2790,13 +2790,72 @@
           <text>-99</text>
         </inputEntry>
         <outputEntry id="LiteralExpression_17nag9f">
-          <text>false</text>
+          <text></text>
         </outputEntry>
         <outputEntry id="LiteralExpression_1mh780q">
-          <text>"Error occured calculating Mulitcolinearity metrics"</text>
+          <text>"Metric not applicable or error occured calculating Mulitcolinearity metrics"</text>
         </outputEntry>
         <outputEntry id="LiteralExpression_0sl4uel">
           <text>"Mulitcolinearity"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_1tywbzi">
+        <inputEntry id="UnaryTests_0g2r0dk">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1dq2x4n">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_02e5bas">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1yzr5po">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0vv1nmq">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1sgc5ac">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1wsvyu2">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_048bukr">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1dsiznm">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1hkgabj">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0qffjf4">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0ll2jox">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0d02x5t">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_087ch66">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0dbvpyy">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0szf8gs">
+          <text></text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_18scxzj">
+          <text></text>
+        </outputEntry>
+        <outputEntry id="LiteralExpression_0bmkchn">
+          <text></text>
+        </outputEntry>
+        <outputEntry id="LiteralExpression_0coseio">
+          <text></text>
         </outputEntry>
       </rule>
     </decisionTable>
