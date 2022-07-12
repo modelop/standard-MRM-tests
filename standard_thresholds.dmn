@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<definitions xmlns="https://www.omg.org/spec/DMN/20191111/MODEL/" xmlns:dmndi="https://www.omg.org/spec/DMN/20191111/DMNDI/" xmlns:dc="http://www.omg.org/spec/DMN/20180521/DC/" xmlns:biodi="http://bpmn.io/schema/dmn/biodi/2.0" id="Definitions_0wb2acp" name="DRD" namespace="http://camunda.org/schema/1.0/dmn" exporter="Camunda Modeler" exporterVersion="5.0.0">
+<definitions xmlns="https://www.omg.org/spec/DMN/20191111/MODEL/" xmlns:dmndi="https://www.omg.org/spec/DMN/20191111/DMNDI/" xmlns:dc="http://www.omg.org/spec/DMN/20180521/DC/" xmlns:biodi="http://bpmn.io/schema/dmn/biodi/2.0" xmlns:camunda="http://camunda.org/schema/1.0/dmn" id="Definitions_0wb2acp" name="DRD" namespace="http://camunda.org/schema/1.0/dmn" exporter="Camunda Modeler" exporterVersion="5.0.0">
   <decision id="Decision_0q87m1a" name="Model Test Comparator">
     <decisionTable id="decisionTable_1" hitPolicy="COLLECT">
       <input id="input_1" label="r2_score">
@@ -12,14 +12,14 @@
           <text>modelMethodology</text>
         </inputExpression>
       </input>
-      <input id="InputClause_0fxnfev" label="DataDrift_maxKolmogorovSmirnovPValue">
+      <input id="InputClause_0fxnfev" label="DataDrift_maxKolmogorovSmirnovPValue" camunda:inputVariable="DataDrift_maxKolmogorovSmirnovPValue">
         <inputExpression id="LiteralExpression_1k2fff2" typeRef="double">
-          <text>DataDrift_maxKolmogorovSmirnovPValue</text>
+          <text></text>
         </inputExpression>
       </input>
-      <input id="InputClause_1hy2my2" label="ConceptDrift_maxKolmogorovSmirnovPValue">
+      <input id="InputClause_1hy2my2" label="ConceptDrift_maxKolmogorovSmirnovPValue" camunda:inputVariable="ConceptDrift_maxKolmogorovSmirnovPValue">
         <inputExpression id="LiteralExpression_0kz8aqt" typeRef="double">
-          <text>ConceptDrift_maxKolmogorovSmirnovPValue</text>
+          <text></text>
         </inputExpression>
       </input>
       <input id="InputClause_02qfz52" label="CSI_maxCSIValue">
