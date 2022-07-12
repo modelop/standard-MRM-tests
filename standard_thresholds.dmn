@@ -17,7 +17,7 @@
           <text></text>
         </inputExpression>
       </input>
-      <input id="InputClause_1hy2my2" label="ConceptDrift_maxKolmogorov-SmirnovPValue" camunda:inputVariable="ConceptDrift_maxKolmogorov-SmirnovPValue">
+      <input id="InputClause_1hy2my2" label="ConceptDrift_maxKolmogorov-SmirnovPValueValue" camunda:inputVariable="ConceptDrift_maxKolmogorov-SmirnovPValueValue">
         <inputExpression id="LiteralExpression_0kz8aqt" typeRef="double">
           <text></text>
         </inputExpression>
