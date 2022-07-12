@@ -12,14 +12,14 @@
           <text>modelMethodology</text>
         </inputExpression>
       </input>
-      <input id="InputClause_0fxnfev" label="DataDrift_maxKolmogorov-SmirnovPValue">
+      <input id="InputClause_0fxnfev" label="DataDrift_maxKolmogorovSmirnovPValue">
         <inputExpression id="LiteralExpression_1k2fff2" typeRef="double">
-          <text>DataDrift_maxKolmogorov-SmirnovPValue</text>
+          <text>DataDrift_maxKolmogorovSmirnovPValue</text>
         </inputExpression>
       </input>
-      <input id="InputClause_1hy2my2" label="ConceptDrift_maxKolmogorov-SmirnovPValue">
+      <input id="InputClause_1hy2my2" label="ConceptDrift_maxKolmogorovSmirnovPValue">
         <inputExpression id="LiteralExpression_0kz8aqt" typeRef="double">
-          <text>ConceptDrift_maxKolmogorov-SmirnovPValue</text>
+          <text>ConceptDrift_maxKolmogorovSmirnovPValue</text>
         </inputExpression>
       </input>
       <input id="InputClause_02qfz52" label="CSI_maxCSIValue">
