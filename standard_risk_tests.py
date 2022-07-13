@@ -164,7 +164,10 @@ def calculate_breusch_pagan(dataframe, execution_errors_array):
             dataframe=dataframe,
             job_json=JOB
         )
-        return homoscedasticity_metrics.breusch_pagan_test()
+        if DEPLOYABLE_MODEL.get('storedModel', {}).get('modelMetaData', {}).get('modelMethodology','').casefold() == 'regression'.casefold():
+            return homoscedasticity_metrics.breusch_pagan_test()
+        else:
+            raise Exception("Breusch-Pagan metrics can only be run for regression models.")
     except Exception as ex:
         error_message = f"Error occurred while calculating breusch_pagan: {str(ex)}"
         print(error_message)
@@ -233,7 +236,10 @@ def calculate_ljung_box_q_test(dataframe, execution_errors_array):
             dataframe=dataframe,
             job_json=JOB
         )
-        return homoscedasticity_metrics.ljung_box_q_test()
+        if DEPLOYABLE_MODEL.get('storedModel', {}).get('modelMetaData', {}).get('modelMethodology','').casefold() == 'regression'.casefold():
+            return homoscedasticity_metrics.ljung_box_q_test()
+        else:
+            raise Exception("Ljung-Box Q metrics can only be run for regression models.")
     except Exception as ex:
         error_message = f"Error occurred while calculating calculate_ljung_box_q_test: {str(ex)}"
         print(error_message)
@@ -280,7 +286,10 @@ def calculate_engle_lagrange_multiplier_test(dataframe, execution_errors_array):
             dataframe=dataframe,
             job_json=JOB
         )
-        return homoscedasticity_metrics.engle_lagrange_multiplier_test()
+        if DEPLOYABLE_MODEL.get('storedModel', {}).get('modelMetaData', {}).get('modelMethodology','').casefold() == 'regression'.casefold():
+            return homoscedasticity_metrics.engle_lagrange_multiplier_test()
+        else:
+            raise Exception("Engle's Langrange Multiplier metrics can only be run for regression models.")
     except Exception as ex:
         error_message = f"Error occurred while calculating engle_lagrange_multiplier test: {str(ex)}"
         print(error_message)
