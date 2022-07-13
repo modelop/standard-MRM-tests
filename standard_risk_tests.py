@@ -100,7 +100,7 @@ def calculate_bias(comparator, execution_errors_array):
             job_json=JOB
         )
         if DEPLOYABLE_MODEL.get('storedModel', {}).get('modelMetaData', {}).get('modelMethodology','').casefold() == 'regression'.casefold():
-            raise Exception("Performance metrics can only be run for regression models.")
+            raise Exception("Bias metrics can not be run for regression models.")
         else:
             return bias_monitor.compute_bias_metrics(pre_defined_test="aequitas_bias")
     except Exception as ex:
