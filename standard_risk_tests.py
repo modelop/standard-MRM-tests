@@ -84,8 +84,7 @@ def calculate_performance(comparator, execution_errors_array):
         if DEPLOYABLE_MODEL.get('storedModel', {}).get('modelMetaData', {}).get('modelMethodology', '').casefold() == 'regression'.casefold():
             return model_evaluator.evaluate_performance(pre_defined_metrics='regression_metrics')
         else:
-            raise Exception("Performance metrics can only be run for regression models.")
-            #return model_evaluator.evaluate_performance(pre_defined_metrics ='classification_metrics')
+            return model_evaluator.evaluate_performance(pre_defined_metrics ='classification_metrics')
     except Exception as ex:
         error_message = f"Error occurred calculating performance metrics: {str(ex)}"
         print(error_message)
@@ -100,7 +99,10 @@ def calculate_bias(comparator, execution_errors_array):
             dataframe=comparator, 
             job_json=JOB
         )
-        return bias_monitor.compute_bias_metrics(pre_defined_test="aequitas_bias")
+        if DEPLOYABLE_MODEL.get('storedModel', {}).get('modelMetaData', {}).get('modelMethodology','').casefold() == 'regression'.casefold():
+            raise Exception("Performance metrics can only be run for regression models.")
+        else:
+            return bias_monitor.compute_bias_metrics(pre_defined_test="aequitas_bias")
     except Exception as ex:
         error_message = f"Error occurred calculating bias metrics: {str(ex)}"
         print(error_message)
