@@ -7,6 +7,7 @@ import modelop.monitors.drift as drift
 import modelop.monitors.stability as stability
 import modelop.stats.diagnostics as diagnostics
 from modelop_sdk.utils import dashboard_utils as dashboard_utils
+import modelop.utils as utils
 
 DEPLOYABLE_MODEL = {}
 JOB = {}
@@ -40,34 +41,24 @@ def metrics(baseline, comparator) -> dict:
         }
     )
 
-    result.update(calculate_performance(comparator, execution_errors_array))
+    result = utils.merge(
+        result,
+        calculate_performance(comparator, execution_errors_array),
+        calculate_bias(comparator, execution_errors_array),
+        calculate_ks_drift(baseline, comparator, execution_errors_array),
+        calculate_ks_concept_drift(baseline, comparator, execution_errors_array),
+        calculate_stability(baseline, comparator, execution_errors_array),
+        calculate_breusch_pagan(comparator, execution_errors_array),
+        calculate_linearity_metrics(comparator, execution_errors_array),
+        calculate_ljung_box_q_test(comparator, execution_errors_array),
+        calculate_variance_inflation_factor(comparator, execution_errors_array),
+        calculate_durbin_watson(comparator, execution_errors_array),
+        calculate_engle_lagrange_multiplier_test(comparator, execution_errors_array),
+        calculate_anderson_darling_test(comparator, execution_errors_array),
+        calculate_cramer_von_mises_test(comparator, execution_errors_array),
+        calculate_kolmogorov_smirnov_test(comparator, execution_errors_array)
+    )
 
-    result.update(calculate_bias(comparator, execution_errors_array))
-
-    result.update(calculate_ks_drift(baseline, comparator, execution_errors_array))
-
-    result.update(calculate_ks_concept_drift(baseline, comparator, execution_errors_array))
-    
-    result.update(calculate_stability(baseline, comparator, execution_errors_array))
-    
-    result.update(calculate_breusch_pagan(comparator, execution_errors_array))
-
-    result.update(calculate_linearity_metrics(comparator, execution_errors_array))
-
-    result.update(calculate_ljung_box_q_test(comparator, execution_errors_array))
-
-    result.update(calculate_variance_inflation_factor(comparator, execution_errors_array))
-
-    result.update(calculate_durbin_watson(comparator, execution_errors_array))
-
-    result.update(calculate_engle_lagrange_multiplier_test(comparator, execution_errors_array))
-
-    result.update(calculate_anderson_darling_test(comparator, execution_errors_array))
-
-    result.update(calculate_cramer_von_mises_test(comparator, execution_errors_array))
-
-    result.update(calculate_kolmogorov_smirnov_test(comparator, execution_errors_array))
-    
     result.update({"executionErrors": execution_errors_array})
     result.update({"executionErrorsCount": len(execution_errors_array)})
 
