@@ -159,12 +159,12 @@ def calculate_breusch_pagan(dataframe, execution_errors_array):
         (dict): Breusch-Pagan test results
     """
     try:
-        dashboard_utils.assert_df_not_none_and_not_empty(dataframe, "Required comparator")
-        homoscedasticity_metrics = diagnostics.HomoscedasticityMetrics(
-            dataframe=dataframe,
-            job_json=JOB
-        )
         if DEPLOYABLE_MODEL.get('storedModel', {}).get('modelMetaData', {}).get('modelMethodology','').casefold() == 'regression'.casefold():
+            dashboard_utils.assert_df_not_none_and_not_empty(dataframe, "Required comparator")
+            homoscedasticity_metrics = diagnostics.HomoscedasticityMetrics(
+                dataframe=dataframe,
+                job_json=JOB
+            )
             return homoscedasticity_metrics.breusch_pagan_test()
         else:
             raise Exception("Breusch-Pagan metrics can only be run for regression models.")
@@ -231,12 +231,12 @@ def calculate_ljung_box_q_test(dataframe, execution_errors_array):
         (dict): Ljung-Box Q test results
     """
     try:
-        dashboard_utils.assert_df_not_none_and_not_empty(dataframe, "Required comparator")
-        homoscedasticity_metrics = diagnostics.HomoscedasticityMetrics(
-            dataframe=dataframe,
-            job_json=JOB
-        )
         if DEPLOYABLE_MODEL.get('storedModel', {}).get('modelMetaData', {}).get('modelMethodology','').casefold() == 'regression'.casefold():
+            dashboard_utils.assert_df_not_none_and_not_empty(dataframe, "Required comparator")
+            homoscedasticity_metrics = diagnostics.HomoscedasticityMetrics(
+                dataframe=dataframe,
+                job_json=JOB
+            )
             return homoscedasticity_metrics.ljung_box_q_test()
         else:
             raise Exception("Ljung-Box Q metrics can only be run for regression models.")
@@ -281,12 +281,12 @@ def calculate_engle_lagrange_multiplier_test(dataframe, execution_errors_array):
         (dict): Engle's Langrange Multiplier test results
     """
     try:
-        dashboard_utils.assert_df_not_none_and_not_empty(dataframe, "Required comparator")
-        homoscedasticity_metrics = diagnostics.HomoscedasticityMetrics(
-            dataframe=dataframe,
-            job_json=JOB
-        )
         if DEPLOYABLE_MODEL.get('storedModel', {}).get('modelMetaData', {}).get('modelMethodology','').casefold() == 'regression'.casefold():
+            dashboard_utils.assert_df_not_none_and_not_empty(dataframe, "Required comparator")
+            homoscedasticity_metrics = diagnostics.HomoscedasticityMetrics(
+                dataframe=dataframe,
+                job_json=JOB
+            )
             return homoscedasticity_metrics.engle_lagrange_multiplier_test()
         else:
             raise Exception("Engle's Langrange Multiplier metrics can only be run for regression models.")
