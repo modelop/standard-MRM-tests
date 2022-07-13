@@ -84,7 +84,8 @@ def calculate_performance(comparator, execution_errors_array):
         if DEPLOYABLE_MODEL.get('storedModel', {}).get('modelMetaData', {}).get('modelMethodology', '').casefold() == 'regression'.casefold():
             return model_evaluator.evaluate_performance(pre_defined_metrics='regression_metrics')
         else:
-            return model_evaluator.evaluate_performance(pre_defined_metrics ='classification_metrics')
+            raise Exception("Performance metrics can only be run for regression models.")
+            #return model_evaluator.evaluate_performance(pre_defined_metrics ='classification_metrics')
     except Exception as ex:
         error_message = f"Error occurred calculating performance metrics: {str(ex)}"
         print(error_message)
