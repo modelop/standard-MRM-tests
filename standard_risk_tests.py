@@ -133,10 +133,10 @@ def calculate_ks_concept_drift(baseline, sample, execution_errors_array):
         )
         return concept_drift_test.calculate_concept_drift(pre_defined_test='Kolmogorov-Smirnov')
     except Exception as ex:
-        error_message = f"Error occurred while calculating drift: {str(ex)}"
+        error_message = f"Error occurred while calculating concept drift: {str(ex)}"
         print(error_message)
         execution_errors_array.append(error_message)
-        return {"ConceptDrift_maxKolmogorov-SmirnovPValue": -99}
+        return {"ConceptDrift_maxKolmogorov-SmirnovPValueValue": -99}
 
 def calculate_stability(df_baseline, df_comparator, execution_errors_array):
     try:
