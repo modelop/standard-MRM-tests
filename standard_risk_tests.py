@@ -7,6 +7,7 @@ import modelop.monitors.drift as drift
 import modelop.monitors.stability as stability
 import modelop.stats.diagnostics as diagnostics
 from modelop_sdk.utils import dashboard_utils as dashboard_utils
+import modelop.utils as utils
 
 DEPLOYABLE_MODEL = {}
 JOB = {}
@@ -40,34 +41,24 @@ def metrics(baseline, comparator) -> dict:
         }
     )
 
-    result.update(calculate_performance(comparator, execution_errors_array))
+    result = utils.merge(
+        result,
+        calculate_performance(comparator, execution_errors_array),
+        calculate_bias(comparator, execution_errors_array),
+        calculate_ks_drift(baseline, comparator, execution_errors_array),
+        calculate_ks_concept_drift(baseline, comparator, execution_errors_array),
+        calculate_stability(baseline, comparator, execution_errors_array),
+        calculate_breusch_pagan(comparator, execution_errors_array),
+        calculate_linearity_metrics(comparator, execution_errors_array),
+        calculate_ljung_box_q_test(comparator, execution_errors_array),
+        calculate_variance_inflation_factor(comparator, execution_errors_array),
+        calculate_durbin_watson(comparator, execution_errors_array),
+        calculate_engle_lagrange_multiplier_test(comparator, execution_errors_array),
+        calculate_anderson_darling_test(comparator, execution_errors_array),
+        calculate_cramer_von_mises_test(comparator, execution_errors_array),
+        calculate_kolmogorov_smirnov_test(comparator, execution_errors_array)
+    )
 
-    result.update(calculate_bias(comparator, execution_errors_array))
-
-    result.update(calculate_ks_drift(baseline, comparator, execution_errors_array))
-
-    result.update(calculate_ks_concept_drift(baseline, comparator, execution_errors_array))
-    
-    result.update(calculate_stability(baseline, comparator, execution_errors_array))
-    
-    result.update(calculate_breusch_pagan(comparator, execution_errors_array))
-
-    result.update(calculate_linearity_metrics(comparator, execution_errors_array))
-
-    result.update(calculate_ljung_box_q_test(comparator, execution_errors_array))
-
-    result.update(calculate_variance_inflation_factor(comparator, execution_errors_array))
-
-    result.update(calculate_durbin_watson(comparator, execution_errors_array))
-
-    result.update(calculate_engle_lagrange_multiplier_test(comparator, execution_errors_array))
-
-    result.update(calculate_anderson_darling_test(comparator, execution_errors_array))
-
-    result.update(calculate_cramer_von_mises_test(comparator, execution_errors_array))
-
-    result.update(calculate_kolmogorov_smirnov_test(comparator, execution_errors_array))
-    
     result.update({"executionErrors": execution_errors_array})
     result.update({"executionErrorsCount": len(execution_errors_array)})
 
@@ -99,7 +90,10 @@ def calculate_bias(comparator, execution_errors_array):
             dataframe=comparator, 
             job_json=JOB
         )
-        return bias_monitor.compute_bias_metrics()
+        if DEPLOYABLE_MODEL.get('storedModel', {}).get('modelMetaData', {}).get('modelMethodology','').casefold() == 'regression'.casefold():
+            raise Exception("Bias metrics can not be run for regression models.")
+        else:
+            return bias_monitor.compute_bias_metrics(pre_defined_test="aequitas_bias")
     except Exception as ex:
         error_message = f"Error occurred calculating bias metrics: {str(ex)}"
         print(error_message)
@@ -133,10 +127,10 @@ def calculate_ks_concept_drift(baseline, sample, execution_errors_array):
         )
         return concept_drift_test.calculate_concept_drift(pre_defined_test='Kolmogorov-Smirnov')
     except Exception as ex:
-        error_message = f"Error occurred while calculating drift: {str(ex)}"
+        error_message = f"Error occurred while calculating concept drift: {str(ex)}"
         print(error_message)
         execution_errors_array.append(error_message)
-        return {"ConceptDrift_maxKolmogorov-SmirnovPValue": -99}
+        return {"ConceptDrift_maxKolmogorov-SmirnovPValueValue": -99}
 
 def calculate_stability(df_baseline, df_comparator, execution_errors_array):
     try:
@@ -165,12 +159,15 @@ def calculate_breusch_pagan(dataframe, execution_errors_array):
         (dict): Breusch-Pagan test results
     """
     try:
-        dashboard_utils.assert_df_not_none_and_not_empty(dataframe, "Required comparator")
-        homoscedasticity_metrics = diagnostics.HomoscedasticityMetrics(
-            dataframe=dataframe,
-            job_json=JOB
-        )
-        return homoscedasticity_metrics.breusch_pagan_test()
+        if DEPLOYABLE_MODEL.get('storedModel', {}).get('modelMetaData', {}).get('modelMethodology','').casefold() == 'regression'.casefold():
+            dashboard_utils.assert_df_not_none_and_not_empty(dataframe, "Required comparator")
+            homoscedasticity_metrics = diagnostics.HomoscedasticityMetrics(
+                dataframe=dataframe,
+                job_json=JOB
+            )
+            return homoscedasticity_metrics.breusch_pagan_test()
+        else:
+            raise Exception("Breusch-Pagan metrics can only be run for regression models.")
     except Exception as ex:
         error_message = f"Error occurred while calculating breusch_pagan: {str(ex)}"
         print(error_message)
@@ -188,7 +185,7 @@ def calculate_variance_inflation_factor(dataframe, execution_errors_array):
     """
     try:
         dashboard_utils.assert_df_not_none_and_not_empty(dataframe, "Required comparator")
-        dataframe=dataframe.astype('float')
+        #dataframe=dataframe.astype('float')
         multicollinearity_metrics = diagnostics.MulticollinearityMetrics(
             dataframe=dataframe,
             job_json=JOB
@@ -234,12 +231,15 @@ def calculate_ljung_box_q_test(dataframe, execution_errors_array):
         (dict): Ljung-Box Q test results
     """
     try:
-        dashboard_utils.assert_df_not_none_and_not_empty(dataframe, "Required comparator")
-        homoscedasticity_metrics = diagnostics.HomoscedasticityMetrics(
-            dataframe=dataframe,
-            job_json=JOB
-        )
-        return homoscedasticity_metrics.ljung_box_q_test()
+        if DEPLOYABLE_MODEL.get('storedModel', {}).get('modelMetaData', {}).get('modelMethodology','').casefold() == 'regression'.casefold():
+            dashboard_utils.assert_df_not_none_and_not_empty(dataframe, "Required comparator")
+            homoscedasticity_metrics = diagnostics.HomoscedasticityMetrics(
+                dataframe=dataframe,
+                job_json=JOB
+            )
+            return homoscedasticity_metrics.ljung_box_q_test()
+        else:
+            raise Exception("Ljung-Box Q metrics can only be run for regression models.")
     except Exception as ex:
         error_message = f"Error occurred while calculating calculate_ljung_box_q_test: {str(ex)}"
         print(error_message)
@@ -281,12 +281,15 @@ def calculate_engle_lagrange_multiplier_test(dataframe, execution_errors_array):
         (dict): Engle's Langrange Multiplier test results
     """
     try:
-        dashboard_utils.assert_df_not_none_and_not_empty(dataframe, "Required comparator")
-        homoscedasticity_metrics = diagnostics.HomoscedasticityMetrics(
-            dataframe=dataframe,
-            job_json=JOB
-        )
-        return homoscedasticity_metrics.engle_lagrange_multiplier_test()
+        if DEPLOYABLE_MODEL.get('storedModel', {}).get('modelMetaData', {}).get('modelMethodology','').casefold() == 'regression'.casefold():
+            dashboard_utils.assert_df_not_none_and_not_empty(dataframe, "Required comparator")
+            homoscedasticity_metrics = diagnostics.HomoscedasticityMetrics(
+                dataframe=dataframe,
+                job_json=JOB
+            )
+            return homoscedasticity_metrics.engle_lagrange_multiplier_test()
+        else:
+            raise Exception("Engle's Langrange Multiplier metrics can only be run for regression models.")
     except Exception as ex:
         error_message = f"Error occurred while calculating engle_lagrange_multiplier test: {str(ex)}"
         print(error_message)
