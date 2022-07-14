@@ -315,7 +315,7 @@
           <text>false</text>
         </outputEntry>
         <outputEntry id="LiteralExpression_1b1dpgd">
-          <text>"auc value of Performance is  below allowed value of 0.7"</text>
+          <text>"auc value of Performance is  below allowed value of 0.6"</text>
         </outputEntry>
         <outputEntry id="LiteralExpression_013wtgy">
           <text>"Performance"</text>
@@ -326,7 +326,7 @@
           <text></text>
         </inputEntry>
         <inputEntry id="UnaryTests_031g6jv" expressionLanguage="groovy">
-          <text>!modelMethodology.equals("regression") &amp;&amp;auc&gt;0&amp;&amp; auc &gt;=0.7</text>
+          <text>!modelMethodology.equals("regression") &amp;&amp;auc&gt;0&amp;&amp; auc &gt;=0.6</text>
         </inputEntry>
         <inputEntry id="UnaryTests_0ax888s">
           <text></text>
