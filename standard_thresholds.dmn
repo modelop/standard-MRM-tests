@@ -267,7 +267,7 @@
           <text></text>
         </inputEntry>
         <inputEntry id="UnaryTests_1rikk29" expressionLanguage="groovy">
-          <text>!modelMethodology.equals("regression") &amp;&amp;auc&gt;0&amp;&amp; auc &lt;0.6</text>
+          <text>!modelMethodology.equals("regression") &amp;&amp;auc&gt;0&amp;&amp; auc &lt;0.7</text>
         </inputEntry>
         <inputEntry id="UnaryTests_0rx1369">
           <text></text>
@@ -326,7 +326,7 @@
           <text></text>
         </inputEntry>
         <inputEntry id="UnaryTests_031g6jv" expressionLanguage="groovy">
-          <text>!modelMethodology.equals("regression") &amp;&amp;auc&gt;0&amp;&amp; auc &gt;=0.6</text>
+          <text>!modelMethodology.equals("regression") &amp;&amp;auc&gt;0&amp;&amp; auc &gt;=0.7</text>
         </inputEntry>
         <inputEntry id="UnaryTests_0ax888s">
           <text></text>
