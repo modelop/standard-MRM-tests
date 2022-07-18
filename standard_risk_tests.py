@@ -80,7 +80,7 @@ def calculate_performance(comparator, execution_errors_array):
         error_message = f"Error occurred calculating performance metrics: {str(ex)}"
         print(error_message)
         execution_errors_array.append(error_message)
-        return {"auc": -99, "r2_score": -99}
+        return {"auc": -99, "r2_score": 99}
 
 
 def calculate_bias(comparator, execution_errors_array):
