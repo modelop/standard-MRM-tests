@@ -2,12 +2,12 @@
 <definitions xmlns="https://www.omg.org/spec/DMN/20191111/MODEL/" xmlns:dmndi="https://www.omg.org/spec/DMN/20191111/DMNDI/" xmlns:dc="http://www.omg.org/spec/DMN/20180521/DC/" xmlns:biodi="http://bpmn.io/schema/dmn/biodi/2.0" xmlns:camunda="http://camunda.org/schema/1.0/dmn" id="Definitions_0wb2acp" name="DRD" namespace="http://camunda.org/schema/1.0/dmn" exporter="Camunda Modeler" exporterVersion="5.0.0">
   <decision id="Decision_0q87m1a" name="Model Test Comparator">
     <decisionTable id="decisionTable_1" hitPolicy="COLLECT">
-      <input id="input_1" label="r2_score">
+      <input id="input_1" label="r2_score" biodi:width="416">
         <inputExpression id="inputExpression_1" typeRef="string" expressionLanguage="feel">
           <text>modelMethodology</text>
         </inputExpression>
       </input>
-      <input id="InputClause_1o6p1rf" label="auc">
+      <input id="InputClause_1o6p1rf" label="auc" biodi:width="421">
         <inputExpression id="LiteralExpression_0v2n3js" typeRef="string" expressionLanguage="feel">
           <text>modelMethodology</text>
         </inputExpression>
@@ -87,7 +87,7 @@
       <output id="OutputClause_1ids7f5" label="category" name="category" typeRef="string" />
       <rule id="DecisionRule_0aznir8">
         <inputEntry id="UnaryTests_1x4xf13" expressionLanguage="groovy">
-          <text>modelMethodology.equals("regression") &amp;&amp; r2_score &gt;-99&amp;&amp;r2_score&lt;0.7</text>
+          <text>modelMethodology.equals("regression") &amp;&amp;r2_score&lt;0.7</text>
         </inputEntry>
         <inputEntry id="UnaryTests_1n6kf5k">
           <text></text>
@@ -146,7 +146,7 @@
       </rule>
       <rule id="DecisionRule_1j6rt8b">
         <inputEntry id="UnaryTests_0y0rd3h" expressionLanguage="groovy">
-          <text>modelMethodology.equals("regression") &amp;&amp; r2_score&gt;=0.7</text>
+          <text>modelMethodology.equals("regression") &amp;&amp; r2_score&gt;=0.7 &amp;&amp; r2_score&lt;99</text>
         </inputEntry>
         <inputEntry id="UnaryTests_1ymh48n">
           <text></text>
@@ -205,7 +205,7 @@
       </rule>
       <rule id="DecisionRule_1rkg92r">
         <inputEntry id="UnaryTests_1efx0va" expressionLanguage="groovy">
-          <text>modelMethodology.equals("regression") &amp;&amp; r2_score == -99</text>
+          <text>modelMethodology.equals("regression") &amp;&amp; r2_score == 99</text>
         </inputEntry>
         <inputEntry id="UnaryTests_1k2mo7o">
           <text></text>
@@ -315,7 +315,7 @@
           <text>false</text>
         </outputEntry>
         <outputEntry id="LiteralExpression_1b1dpgd">
-          <text>"auc value of Performance is  below allowed value of 0.6"</text>
+          <text>"auc value of Performance is  below allowed value of 0.7"</text>
         </outputEntry>
         <outputEntry id="LiteralExpression_013wtgy">
           <text>"Performance"</text>
@@ -326,7 +326,7 @@
           <text></text>
         </inputEntry>
         <inputEntry id="UnaryTests_031g6jv" expressionLanguage="groovy">
-          <text>!modelMethodology.equals("regression") &amp;&amp;auc&gt;0&amp;&amp; auc &gt;=0.7</text>
+          <text>!modelMethodology.equals("regression") &amp;&amp; auc &gt;=0.7</text>
         </inputEntry>
         <inputEntry id="UnaryTests_0ax888s">
           <text></text>
