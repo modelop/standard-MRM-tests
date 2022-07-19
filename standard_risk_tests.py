@@ -29,28 +29,10 @@ def init(job_json):
 def metrics(baseline, comparator) -> dict:
     global DEPLOYABLE_MODEL
 
-    result = {}
     execution_errors_array = []
 
-    result.update(
-        {
-            "modelUseCategory": DEPLOYABLE_MODEL.get("storedModel", {})
-            .get("modelMetaData", {})
-            .get("modelUseCategory", ""),
-            "modelOrganization": DEPLOYABLE_MODEL.get("storedModel", {})
-            .get("modelMetaData", {})
-            .get("modelOrganization", ""),
-            "modelRisk": DEPLOYABLE_MODEL.get("storedModel", {})
-            .get("modelMetaData", {})
-            .get("modelRisk", ""),
-            "modelMethodology": DEPLOYABLE_MODEL.get("storedModel", {})
-            .get("modelMetaData", {})
-            .get("modelMethodology", ""),
-        }
-    )
-
     result = utils.merge(
-        result,
+        extract_model_fields(JOB, DEPLOYABLE_MODEL, execution_errors_array),
         calculate_performance(comparator, execution_errors_array),
         calculate_bias(comparator, execution_errors_array),
         calculate_ks_drift(baseline, comparator, execution_errors_array),
@@ -71,6 +53,29 @@ def metrics(baseline, comparator) -> dict:
     result.update({"executionErrorsCount": len(execution_errors_array)})
 
     yield result
+
+
+def extract_model_fields(job, deployable_model, execution_errors_array):
+    try:
+        return {
+            "modelUseCategory": deployable_model.get("storedModel", {})
+                .get("modelMetaData", {})
+                .get("modelUseCategory", ""),
+            "modelOrganization": deployable_model.get("storedModel", {})
+                .get("modelMetaData", {})
+                .get("modelOrganization", ""),
+            "modelRisk": deployable_model.get("storedModel", {})
+                .get("modelMetaData", {})
+                .get("modelRisk", ""),
+            "modelMethodology": deployable_model.get("storedModel", {})
+                .get("modelMetaData", {})
+                .get("modelMethodology", ""),
+        }
+    except Exception as ex:
+        error_message = f"Something went wrong when extracting modelop default fields: {str(ex)}"
+        execution_errors_array.append(error_message)
+        print(error_message)
+        return {}
 
 
 def calculate_performance(comparator, execution_errors_array):
