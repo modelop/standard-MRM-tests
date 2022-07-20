@@ -11,15 +11,18 @@ from modelop_sdk.utils import dashboard_utils as dashboard_utils
 
 DEPLOYABLE_MODEL = {}
 JOB = {}
+MODEL_METHODOLOGY = ""
 
 
 # modelop.init
 def init(job_json):
     global DEPLOYABLE_MODEL
     global JOB
+    global MODEL_METHODOLOGY
 
     job = json.loads(job_json["rawJson"])
     DEPLOYABLE_MODEL = job["referenceModel"]
+    MODEL_METHODOLOGY = DEPLOYABLE_MODEL.get("storedModel", {}).get("modelMetaData", {}).get("modelMethodology", "")
 
     JOB = job_json
     infer.validate_schema(job_json)
@@ -27,12 +30,11 @@ def init(job_json):
 
 # modelop.metrics
 def metrics(baseline, comparator) -> dict:
-    global DEPLOYABLE_MODEL
 
     execution_errors_array = []
 
     result = utils.merge(
-        extract_model_fields(JOB, DEPLOYABLE_MODEL, execution_errors_array),
+        extract_model_fields(execution_errors_array),
         calculate_performance(comparator, execution_errors_array),
         calculate_bias(comparator, execution_errors_array),
         calculate_ks_drift(baseline, comparator, execution_errors_array),
@@ -55,21 +57,19 @@ def metrics(baseline, comparator) -> dict:
     yield result
 
 
-def extract_model_fields(job, deployable_model, execution_errors_array):
+def extract_model_fields(execution_errors_array):
     try:
         return {
-            "modelUseCategory": deployable_model.get("storedModel", {})
+            "modelUseCategory": DEPLOYABLE_MODEL.get("storedModel", {})
                 .get("modelMetaData", {})
                 .get("modelUseCategory", ""),
-            "modelOrganization": deployable_model.get("storedModel", {})
+            "modelOrganization": DEPLOYABLE_MODEL.get("storedModel", {})
                 .get("modelMetaData", {})
                 .get("modelOrganization", ""),
-            "modelRisk": deployable_model.get("storedModel", {})
+            "modelRisk": DEPLOYABLE_MODEL.get("storedModel", {})
                 .get("modelMetaData", {})
                 .get("modelRisk", ""),
-            "modelMethodology": deployable_model.get("storedModel", {})
-                .get("modelMetaData", {})
-                .get("modelMethodology", ""),
+            "modelMethodology": MODEL_METHODOLOGY
         }
     except Exception as ex:
         error_message = f"Something went wrong when extracting modelop default fields: {str(ex)}"
@@ -84,13 +84,7 @@ def calculate_performance(comparator, execution_errors_array):
             comparator, "Required comparator"
         )
         model_evaluator = performance.ModelEvaluator(dataframe=comparator, job_json=JOB)
-        if (
-            DEPLOYABLE_MODEL.get("storedModel", {})
-            .get("modelMetaData", {})
-            .get("modelMethodology", "")
-            .casefold()
-            == "regression".casefold()
-        ):
+        if "regression" in MODEL_METHODOLOGY.casefold():
             return model_evaluator.evaluate_performance(
                 pre_defined_metrics="regression_metrics"
             )
@@ -111,13 +105,7 @@ def calculate_bias(comparator, execution_errors_array):
             comparator, "Required comparator"
         )
         bias_monitor = bias.BiasMonitor(dataframe=comparator, job_json=JOB)
-        if (
-            DEPLOYABLE_MODEL.get("storedModel", {})
-            .get("modelMetaData", {})
-            .get("modelMethodology", "")
-            .casefold()
-            == "regression".casefold()
-        ):
+        if "regression" in MODEL_METHODOLOGY.casefold():
             raise Exception("Bias metrics can not be run for regression models.")
         else:
             return bias_monitor.compute_bias_metrics(pre_defined_test="aequitas_bias")
@@ -189,13 +177,7 @@ def calculate_breusch_pagan(dataframe, execution_errors_array):
         (dict): Breusch-Pagan test results
     """
     try:
-        if (
-            DEPLOYABLE_MODEL.get("storedModel", {})
-            .get("modelMetaData", {})
-            .get("modelMethodology", "")
-            .casefold()
-            == "regression".casefold()
-        ):
+        if "regression" in MODEL_METHODOLOGY.casefold():
             dashboard_utils.assert_df_not_none_and_not_empty(
                 dataframe, "Required comparator"
             )
@@ -276,13 +258,7 @@ def calculate_ljung_box_q_test(dataframe, execution_errors_array):
         (dict): Ljung-Box Q test results
     """
     try:
-        if (
-            DEPLOYABLE_MODEL.get("storedModel", {})
-            .get("modelMetaData", {})
-            .get("modelMethodology", "")
-            .casefold()
-            == "regression".casefold()
-        ):
+        if "regression" in MODEL_METHODOLOGY.casefold():
             dashboard_utils.assert_df_not_none_and_not_empty(
                 dataframe, "Required comparator"
             )
@@ -341,13 +317,7 @@ def calculate_engle_lagrange_multiplier_test(dataframe, execution_errors_array):
         (dict): Engle's Langrange Multiplier test results
     """
     try:
-        if (
-            DEPLOYABLE_MODEL.get("storedModel", {})
-            .get("modelMetaData", {})
-            .get("modelMethodology", "")
-            .casefold()
-            == "regression".casefold()
-        ):
+        if "regression" in MODEL_METHODOLOGY.casefold():
             dashboard_utils.assert_df_not_none_and_not_empty(
                 dataframe, "Required comparator"
             )
