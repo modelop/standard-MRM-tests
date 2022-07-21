@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<definitions xmlns="https://www.omg.org/spec/DMN/20191111/MODEL/" xmlns:dmndi="https://www.omg.org/spec/DMN/20191111/DMNDI/" xmlns:dc="http://www.omg.org/spec/DMN/20180521/DC/" xmlns:biodi="http://bpmn.io/schema/dmn/biodi/2.0" xmlns:camunda="http://camunda.org/schema/1.0/dmn" id="Definitions_0wb2acp" name="DRD" namespace="http://camunda.org/schema/1.0/dmn" exporter="Camunda Modeler" exporterVersion="5.0.0">
+<definitions xmlns="https://www.omg.org/spec/DMN/20191111/MODEL/" xmlns:dmndi="https://www.omg.org/spec/DMN/20191111/DMNDI/" xmlns:dc="http://www.omg.org/spec/DMN/20180521/DC/" xmlns:biodi="http://bpmn.io/schema/dmn/biodi/2.0" xmlns:camunda="http://camunda.org/schema/1.0/dmn" id="Definitions_0wb2acp" name="DRD" namespace="http://camunda.org/schema/1.0/dmn" exporter="Camunda Modeler" exporterVersion="4.3.0">
   <decision id="Decision_0q87m1a" name="Model Test Comparator">
     <decisionTable id="decisionTable_1" hitPolicy="COLLECT">
       <input id="input_1" label="r2_score" biodi:width="416">
@@ -256,7 +256,7 @@
           <text>false</text>
         </outputEntry>
         <outputEntry id="LiteralExpression_1vs4lsk">
-          <text>"Metric not applicable or error occured calculating Performance metrics"</text>
+          <text>"Metric not applicable or error occurred calculating Performance metrics"</text>
         </outputEntry>
         <outputEntry id="LiteralExpression_1ldrb63">
           <text>"Performance"</text>
@@ -433,7 +433,7 @@
           <text>false</text>
         </outputEntry>
         <outputEntry id="LiteralExpression_10xvdl0">
-          <text>"Metric not applicable or error occured calculating Performance metrics"</text>
+          <text>"Metric not applicable or error occurred calculating Performance metrics"</text>
         </outputEntry>
         <outputEntry id="LiteralExpression_1aboaxj">
           <text>"Performance"</text>
@@ -447,7 +447,7 @@
           <text></text>
         </inputEntry>
         <inputEntry id="UnaryTests_0328tf6">
-          <text>&gt;2</text>
+          <text>&gt;0.2</text>
         </inputEntry>
         <inputEntry id="UnaryTests_0txyd4l">
           <text></text>
@@ -492,7 +492,7 @@
           <text>false</text>
         </outputEntry>
         <outputEntry id="LiteralExpression_1x33auk">
-          <text>"One or more features of Data Drift are above allowed value of 2"</text>
+          <text>"One or more features of Data Drift are above allowed value of 0.2"</text>
         </outputEntry>
         <outputEntry id="LiteralExpression_03bglut">
           <text>"KS Data Drift"</text>
@@ -506,7 +506,7 @@
           <text></text>
         </inputEntry>
         <inputEntry id="UnaryTests_0w9dlr9">
-          <text>]-99..2]</text>
+          <text>]-99..0.2]</text>
         </inputEntry>
         <inputEntry id="UnaryTests_15vrs9x">
           <text></text>
@@ -610,7 +610,7 @@
           <text>false</text>
         </outputEntry>
         <outputEntry id="LiteralExpression_1lurogb">
-          <text>"Metric not applicable or error occured calculating Data Drift metrics"</text>
+          <text>"Metric not applicable or error occurred calculating Data Drift metrics"</text>
         </outputEntry>
         <outputEntry id="LiteralExpression_0067pjg">
           <text>"KS Data Drift"</text>
@@ -627,7 +627,7 @@
           <text></text>
         </inputEntry>
         <inputEntry id="UnaryTests_1mrpgq1">
-          <text>&gt;2</text>
+          <text>&gt;0.2</text>
         </inputEntry>
         <inputEntry id="UnaryTests_110dhjj">
           <text></text>
@@ -669,7 +669,7 @@
           <text>false</text>
         </outputEntry>
         <outputEntry id="LiteralExpression_14sfgvc">
-          <text>"One or more features of Concept Data Drift are above allowed value of 2"</text>
+          <text>"One or more features of Concept Data Drift are above allowed value of 0.2"</text>
         </outputEntry>
         <outputEntry id="LiteralExpression_0ncbkq6">
           <text>"KS Concept Drift"</text>
@@ -686,7 +686,7 @@
           <text></text>
         </inputEntry>
         <inputEntry id="UnaryTests_0kq072t">
-          <text>]-99..2]</text>
+          <text>]-99..0.2]</text>
         </inputEntry>
         <inputEntry id="UnaryTests_08roj9v">
           <text></text>
@@ -787,7 +787,7 @@
           <text>false</text>
         </outputEntry>
         <outputEntry id="LiteralExpression_0wrri2i">
-          <text>"Metric not applicable or error occured calculating Concept Drift metrics"</text>
+          <text>"Metric not applicable or error occurred calculating Concept Drift metrics"</text>
         </outputEntry>
         <outputEntry id="LiteralExpression_0runzoo">
           <text>"KS Concept Drift"</text>
@@ -964,7 +964,7 @@
           <text>false</text>
         </outputEntry>
         <outputEntry id="LiteralExpression_1s54f0r">
-          <text>"Metric not applicable or error occured calculating Characteristic Stability metrics"</text>
+          <text>"Metric not applicable or error occurred calculating Characteristic Stability metrics"</text>
         </outputEntry>
         <outputEntry id="LiteralExpression_1so8cr0">
           <text>"Characteristic Stability"</text>
@@ -1141,7 +1141,7 @@
           <text>false</text>
         </outputEntry>
         <outputEntry id="LiteralExpression_0s771ll">
-          <text>"Metric not applicable or error occured calculating Bias Disparity metrics"</text>
+          <text>"Metric not applicable or error occurred calculating Bias Disparity metrics"</text>
         </outputEntry>
         <outputEntry id="LiteralExpression_1f4o4lw">
           <text>"Bias Disparity"</text>
@@ -1377,7 +1377,7 @@
           <text>false</text>
         </outputEntry>
         <outputEntry id="LiteralExpression_0rizxro">
-          <text>"Metric not applicable or error occured calculating Autocorrelation metrics"</text>
+          <text>"Metric not applicable or error occurred calculating Autocorrelation metrics"</text>
         </outputEntry>
         <outputEntry id="LiteralExpression_1y8g5zj">
           <text>"Autocorrelation"</text>
@@ -1554,7 +1554,7 @@
           <text>false</text>
         </outputEntry>
         <outputEntry id="LiteralExpression_18drjty">
-          <text>"Metric not applicable or error occured calculating Homoscedacticity metrics"</text>
+          <text>"Metric not applicable or error occurred calculating Homoscedacticity metrics"</text>
         </outputEntry>
         <outputEntry id="LiteralExpression_0jmmq0r">
           <text>"Homoscedacticity: Breusch Pagan"</text>
@@ -1731,7 +1731,7 @@
           <text>false</text>
         </outputEntry>
         <outputEntry id="LiteralExpression_03tg6ou">
-          <text>"Metric not applicable or error occured calculating Homoscedacticity metrics"</text>
+          <text>"Metric not applicable or error occurred calculating Homoscedacticity metrics"</text>
         </outputEntry>
         <outputEntry id="LiteralExpression_0ol613m">
           <text>"Homoscedacticity: Engle Lagrange Multiplier"</text>
@@ -1908,7 +1908,7 @@
           <text>false</text>
         </outputEntry>
         <outputEntry id="LiteralExpression_12e7980">
-          <text>"Metric not applicable or error occured calculating Homoscedacticity metrics"</text>
+          <text>"Metric not applicable or error occurred calculating Homoscedacticity metrics"</text>
         </outputEntry>
         <outputEntry id="LiteralExpression_1j6lpbw">
           <text>"Homoscedacticity: Ljung Box Q"</text>
@@ -2085,7 +2085,7 @@
           <text>false</text>
         </outputEntry>
         <outputEntry id="LiteralExpression_0f5285s">
-          <text>"Metric not applicable or error occured calculating Normality metrics"</text>
+          <text>"Metric not applicable or error occurred calculating Normality metrics"</text>
         </outputEntry>
         <outputEntry id="LiteralExpression_1awkz2s">
           <text>"Normality: Kolmogorov Smirnov"</text>
@@ -2262,7 +2262,7 @@
           <text>false</text>
         </outputEntry>
         <outputEntry id="LiteralExpression_0kipqbl">
-          <text>"Metric not applicable or error occured calculating Normality metrics"</text>
+          <text>"Metric not applicable or error occurred calculating Normality metrics"</text>
         </outputEntry>
         <outputEntry id="LiteralExpression_1d4obwn">
           <text>"Normality: Anderson Darling"</text>
@@ -2439,7 +2439,7 @@
           <text>false</text>
         </outputEntry>
         <outputEntry id="LiteralExpression_1lkbgkv">
-          <text>"Metric not applicable or error occured calculating Normality metrics"</text>
+          <text>"Metric not applicable or error occurred calculating Normality metrics"</text>
         </outputEntry>
         <outputEntry id="LiteralExpression_07xo1l0">
           <text>"Normality: Cramer Von Mises"</text>
@@ -2616,7 +2616,7 @@
           <text>false</text>
         </outputEntry>
         <outputEntry id="LiteralExpression_1mwyhk7">
-          <text>"Metric not applicable or error occured calculating Linearity metrics"</text>
+          <text>"Metric not applicable or error occurred calculating Linearity metrics"</text>
         </outputEntry>
         <outputEntry id="LiteralExpression_0vn84sq">
           <text>"Linearity: Pearson Correlation"</text>
@@ -2793,7 +2793,7 @@
           <text>false</text>
         </outputEntry>
         <outputEntry id="LiteralExpression_1mh780q">
-          <text>"Metric not applicable or error occured calculating Mulitcolinearity metrics"</text>
+          <text>"Metric not applicable or error occurred calculating Mulitcolinearity metrics"</text>
         </outputEntry>
         <outputEntry id="LiteralExpression_0sl4uel">
           <text>"Mulitcolinearity"</text>
