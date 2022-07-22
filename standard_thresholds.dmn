@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<definitions xmlns="https://www.omg.org/spec/DMN/20191111/MODEL/" xmlns:dmndi="https://www.omg.org/spec/DMN/20191111/DMNDI/" xmlns:dc="http://www.omg.org/spec/DMN/20180521/DC/" xmlns:biodi="http://bpmn.io/schema/dmn/biodi/2.0" xmlns:camunda="http://camunda.org/schema/1.0/dmn" id="Definitions_0wb2acp" name="DRD" namespace="http://camunda.org/schema/1.0/dmn" exporter="Camunda Modeler" exporterVersion="4.3.0">
+<definitions xmlns="https://www.omg.org/spec/DMN/20191111/MODEL/" xmlns:dmndi="https://www.omg.org/spec/DMN/20191111/DMNDI/" xmlns:dc="http://www.omg.org/spec/DMN/20180521/DC/" xmlns:biodi="http://bpmn.io/schema/dmn/biodi/2.0" xmlns:camunda="http://camunda.org/schema/1.0/dmn" id="Definitions_0wb2acp" name="DRD" namespace="http://camunda.org/schema/1.0/dmn" exporter="Camunda Modeler" exporterVersion="5.0.0">
   <decision id="Decision_0q87m1a" name="Model Test Comparator">
     <decisionTable id="decisionTable_1" hitPolicy="COLLECT">
       <input id="input_1" label="r2_score" biodi:width="416">
@@ -447,7 +447,7 @@
           <text></text>
         </inputEntry>
         <inputEntry id="UnaryTests_0328tf6">
-          <text>&gt;0.2</text>
+          <text>&lt;0.05</text>
         </inputEntry>
         <inputEntry id="UnaryTests_0txyd4l">
           <text></text>
@@ -492,7 +492,7 @@
           <text>false</text>
         </outputEntry>
         <outputEntry id="LiteralExpression_1x33auk">
-          <text>"One or more features of Data Drift are above allowed value of 0.2"</text>
+          <text>"One or more features of Data Drift are below allowed value of 0.05"</text>
         </outputEntry>
         <outputEntry id="LiteralExpression_03bglut">
           <text>"KS Data Drift"</text>
@@ -506,7 +506,7 @@
           <text></text>
         </inputEntry>
         <inputEntry id="UnaryTests_0w9dlr9">
-          <text>]-99..0.2]</text>
+          <text>[0.05..1]</text>
         </inputEntry>
         <inputEntry id="UnaryTests_15vrs9x">
           <text></text>
@@ -627,7 +627,7 @@
           <text></text>
         </inputEntry>
         <inputEntry id="UnaryTests_1mrpgq1">
-          <text>&gt;0.2</text>
+          <text>&lt;0.05</text>
         </inputEntry>
         <inputEntry id="UnaryTests_110dhjj">
           <text></text>
@@ -669,7 +669,7 @@
           <text>false</text>
         </outputEntry>
         <outputEntry id="LiteralExpression_14sfgvc">
-          <text>"One or more features of Concept Data Drift are above allowed value of 0.2"</text>
+          <text>"One or more features of Concept Data Drift are below allowed value of 0.05"</text>
         </outputEntry>
         <outputEntry id="LiteralExpression_0ncbkq6">
           <text>"KS Concept Drift"</text>
@@ -686,7 +686,7 @@
           <text></text>
         </inputEntry>
         <inputEntry id="UnaryTests_0kq072t">
-          <text>]-99..0.2]</text>
+          <text>[0.05..1]</text>
         </inputEntry>
         <inputEntry id="UnaryTests_08roj9v">
           <text></text>
