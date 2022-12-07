@@ -1,0 +1,82 @@
+2022-06-08 06:16:05.445 [http-nio-8088-exec-17] INFO  c.o.m.l.NotificationAssignedListener - Sending notification update to the notification topic for notification: 170567b5-a4ae-47d9-a10a-bab559bf0f27
+2022-06-08 06:16:22.903 [http-nio-8088-exec-17] ERROR c.o.m.r.v.DeployedModelCustomRepositoryImpl - Failed to find the most recent snapshot id for model 'Dashboard Model'
+2022-06-08 06:16:32.163 [http-nio-8088-exec-10] INFO  c.o.m.listeners.JobChangeListener - Sending job update to the job topic for job: e3dd7a10-760b-41b6-90fc-451c3c6bc550
+2022-06-08 06:16:32.163 [http-nio-8088-exec-10] INFO  c.o.m.l.JobStatusChangeListener - Sending job status update to the job status topic for job: e3dd7a10-760b-41b6-90fc-451c3c6bc550, status change CREATED
+2022-06-08 06:16:32.165 [WebSocketClient-AsyncIO-4] INFO  c.o.m.monitors.BatchJobMonitor - e3dd7a10-760b-41b6-90fc-451c3c6bc550 has changed, status: CREATED
+2022-06-08 06:16:32.651 [http-nio-8088-exec-4] INFO  c.o.m.listeners.JobChangeListener - Sending job update to the job topic for job: e3dd7a10-760b-41b6-90fc-451c3c6bc550
+2022-06-08 06:16:32.653 [WebSocketClient-AsyncIO-4] INFO  c.o.m.monitors.BatchJobMonitor - e3dd7a10-760b-41b6-90fc-451c3c6bc550 has changed, status: CREATED
+2022-06-08 06:16:32.658 [WebSocketClient-AsyncIO-4] INFO  c.o.m.monitors.BatchJobMonitor - Found newly created job with an assigned engine, scheduling for execution...
+2022-06-08 06:16:32.688 [WebSocketClient-AsyncIO-4] INFO  c.o.m.monitors.BatchJobMonitor - Job scheduled on engine engine-modelop
+2022-06-08 06:16:32.702 [WebSocketClient-AsyncIO-4] INFO  c.o.m.listeners.JobChangeListener - Sending job update to the job topic for job: e3dd7a10-760b-41b6-90fc-451c3c6bc550
+2022-06-08 06:16:32.702 [WebSocketClient-AsyncIO-4] INFO  c.o.m.l.JobStatusChangeListener - Sending job status update to the job status topic for job: e3dd7a10-760b-41b6-90fc-451c3c6bc550, status change WAITING
+2022-06-08 06:16:32.704 [WebSocketClient-AsyncIO-4] INFO  c.o.m.monitors.BatchJobMonitor - e3dd7a10-760b-41b6-90fc-451c3c6bc550 has changed, status: WAITING
+2022-06-08 06:16:33.812 [scheduling-4] INFO  c.o.m.monitors.BatchJobMonitor - Found 1 oustanding jobs, updating from engines....
+2022-06-08 06:16:33.855 [scheduling-4] INFO  c.o.m.listeners.JobChangeListener - Sending job update to the job topic for job: e3dd7a10-760b-41b6-90fc-451c3c6bc550
+2022-06-08 06:16:33.855 [scheduling-4] INFO  c.o.m.l.JobStatusChangeListener - Sending job status update to the job status topic for job: e3dd7a10-760b-41b6-90fc-451c3c6bc550, status change RUNNING
+2022-06-08 06:16:33.857 [WebSocketClient-AsyncIO-4] INFO  c.o.m.monitors.BatchJobMonitor - e3dd7a10-760b-41b6-90fc-451c3c6bc550 has changed, status: RUNNING
+2022-06-08 06:16:35.812 [scheduling-11] INFO  c.o.m.monitors.BatchJobMonitor - Found 1 oustanding jobs, updating from engines....
+2022-06-08 06:16:35.854 [scheduling-11] INFO  c.o.m.listeners.JobChangeListener - Sending job update to the job topic for job: e3dd7a10-760b-41b6-90fc-451c3c6bc550
+2022-06-08 06:16:35.856 [WebSocketClient-AsyncIO-4] INFO  c.o.m.monitors.BatchJobMonitor - e3dd7a10-760b-41b6-90fc-451c3c6bc550 has changed, status: RUNNING
+2022-06-08 06:16:37.812 [scheduling-2] INFO  c.o.m.monitors.BatchJobMonitor - Found 1 oustanding jobs, updating from engines....
+2022-06-08 06:16:37.863 [scheduling-2] INFO  c.o.m.listeners.JobChangeListener - Sending job update to the job topic for job: e3dd7a10-760b-41b6-90fc-451c3c6bc550
+2022-06-08 06:16:37.866 [WebSocketClient-AsyncIO-4] INFO  c.o.m.monitors.BatchJobMonitor - e3dd7a10-760b-41b6-90fc-451c3c6bc550 has changed, status: RUNNING
+2022-06-08 06:16:39.812 [scheduling-20] INFO  c.o.m.monitors.BatchJobMonitor - Found 1 oustanding jobs, updating from engines....
+2022-06-08 06:16:39.857 [scheduling-20] INFO  c.o.m.listeners.JobChangeListener - Sending job update to the job topic for job: e3dd7a10-760b-41b6-90fc-451c3c6bc550
+2022-06-08 06:16:39.859 [WebSocketClient-AsyncIO-4] INFO  c.o.m.monitors.BatchJobMonitor - e3dd7a10-760b-41b6-90fc-451c3c6bc550 has changed, status: RUNNING
+2022-06-08 06:16:41.813 [scheduling-17] INFO  c.o.m.monitors.BatchJobMonitor - Found 1 oustanding jobs, updating from engines....
+2022-06-08 06:16:41.850 [scheduling-17] INFO  c.o.m.listeners.JobChangeListener - Sending job update to the job topic for job: e3dd7a10-760b-41b6-90fc-451c3c6bc550
+2022-06-08 06:16:41.852 [WebSocketClient-AsyncIO-4] INFO  c.o.m.monitors.BatchJobMonitor - e3dd7a10-760b-41b6-90fc-451c3c6bc550 has changed, status: RUNNING
+2022-06-08 06:16:43.812 [scheduling-19] INFO  c.o.m.monitors.BatchJobMonitor - Found 1 oustanding jobs, updating from engines....
+2022-06-08 06:16:43.852 [scheduling-19] INFO  c.o.m.listeners.JobChangeListener - Sending job update to the job topic for job: e3dd7a10-760b-41b6-90fc-451c3c6bc550
+2022-06-08 06:16:43.854 [WebSocketClient-AsyncIO-4] INFO  c.o.m.monitors.BatchJobMonitor - e3dd7a10-760b-41b6-90fc-451c3c6bc550 has changed, status: RUNNING
+2022-06-08 06:16:45.812 [scheduling-4] INFO  c.o.m.monitors.BatchJobMonitor - Found 1 oustanding jobs, updating from engines....
+2022-06-08 06:16:45.851 [scheduling-4] INFO  c.o.m.listeners.JobChangeListener - Sending job update to the job topic for job: e3dd7a10-760b-41b6-90fc-451c3c6bc550
+2022-06-08 06:16:45.853 [WebSocketClient-AsyncIO-4] INFO  c.o.m.monitors.BatchJobMonitor - e3dd7a10-760b-41b6-90fc-451c3c6bc550 has changed, status: RUNNING
+2022-06-08 06:16:47.027 [scheduling-14] ERROR o.s.s.s.TaskUtils$LoggingErrorHandler - Unexpected error occurred in scheduled task
+org.springframework.dao.OptimisticLockingFailureException: Cannot save entity 4ae4482a-e5a4-5d9a-85bb-4f80afcf6eb9 with version 80 to collection engine. Has it been modified meanwhile?
+	at org.springframework.data.mongodb.core.MongoTemplate.doSaveVersioned(MongoTemplate.java:1400)
+	at org.springframework.data.mongodb.core.MongoTemplate.save(MongoTemplate.java:1362)
+	at com.opendatagroup.modelmanage.security.RestrictingMongoTemplate.save(RestrictingMongoTemplate.java:412)
+	at org.springframework.data.mongodb.repository.support.SimpleMongoRepository.save(SimpleMongoRepository.java:88)
+	at sun.reflect.GeneratedMethodAccessor170.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.springframework.data.repository.core.support.ImplementationInvocationMetadata.invoke(ImplementationInvocationMetadata.java:72)
+	at org.springframework.data.repository.core.support.RepositoryComposition$RepositoryFragments.invoke(RepositoryComposition.java:382)
+	at org.springframework.data.repository.core.support.RepositoryComposition.invoke(RepositoryComposition.java:205)
+	at org.springframework.data.repository.core.support.RepositoryFactorySupport$ImplementationMethodExecutionInterceptor.invoke(RepositoryFactorySupport.java:549)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186)
+	at org.springframework.data.repository.core.support.QueryExecutorMethodInterceptor.doInvoke(QueryExecutorMethodInterceptor.java:155)
+	at org.springframework.data.repository.core.support.QueryExecutorMethodInterceptor.invoke(QueryExecutorMethodInterceptor.java:130)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186)
+	at org.springframework.data.projection.DefaultMethodInvokingMethodInterceptor.invoke(DefaultMethodInvokingMethodInterceptor.java:80)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186)
+	at org.springframework.aop.interceptor.ExposeInvocationInterceptor.invoke(ExposeInvocationInterceptor.java:95)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186)
+	at org.springframework.aop.framework.JdkDynamicAopProxy.invoke(JdkDynamicAopProxy.java:212)
+	at com.sun.proxy.$Proxy192.save(Unknown Source)
+	at com.opendatagroup.modelmanage.monitors.EngineMonitor.updateModelopEngine(EngineMonitor.java:102)
+	at com.opendatagroup.modelmanage.monitors.EngineMonitor.lambda$checkEngineStatus$0(EngineMonitor.java:117)
+	at java.util.ArrayList.forEach(ArrayList.java:1259)
+	at com.opendatagroup.modelmanage.monitors.EngineMonitor.checkEngineStatus(EngineMonitor.java:113)
+	at sun.reflect.GeneratedMethodAccessor175.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.springframework.scheduling.support.ScheduledMethodRunnable.run(ScheduledMethodRunnable.java:84)
+	at org.springframework.scheduling.support.DelegatingErrorHandlingRunnable.run(DelegatingErrorHandlingRunnable.java:54)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511)
+	at java.util.concurrent.FutureTask.runAndReset(FutureTask.java:308)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$301(ScheduledThreadPoolExecutor.java:180)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:294)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at java.lang.Thread.run(Thread.java:748)
+2022-06-08 06:16:47.812 [scheduling-15] INFO  c.o.m.monitors.BatchJobMonitor - Found 1 oustanding jobs, updating from engines....
+2022-06-08 06:16:47.860 [scheduling-15] INFO  c.o.m.listeners.JobChangeListener - Sending job update to the job topic for job: e3dd7a10-760b-41b6-90fc-451c3c6bc550
+2022-06-08 06:16:47.862 [WebSocketClient-AsyncIO-4] INFO  c.o.m.monitors.BatchJobMonitor - e3dd7a10-760b-41b6-90fc-451c3c6bc550 has changed, status: RUNNING
+2022-06-08 06:16:49.812 [scheduling-20] INFO  c.o.m.monitors.BatchJobMonitor - Found 1 oustanding jobs, updating from engines....
+2022-06-08 06:16:50.576 [scheduling-20] INFO  c.o.m.listeners.JobChangeListener - Sending job update to the job topic for job: e3dd7a10-760b-41b6-90fc-451c3c6bc550
+2022-06-08 06:16:50.576 [scheduling-20] INFO  c.o.m.l.JobStatusChangeListener - Sending job status update to the job status topic for job: e3dd7a10-760b-41b6-90fc-451c3c6bc550, status change COMPLETE
+2022-06-08 06:16:50.578 [WebSocketClient-AsyncIO-4] INFO  c.o.m.monitors.BatchJobMonitor - e3dd7a10-760b-41b6-90fc-451c3c6bc550 has changed, status: COMPLETE
+2022-06-08 06:16:53.016 [http-nio-8088-exec-16] INFO  c.o.m.l.NotificationAssignedListener - Sending notification update to the notification topic for notification: 49f5f9b6-ed78-439f-b275-35c8712df447
+2022-06-08 06:18:52.827 [WebSocketClient-AsyncIO-4] ERROR c.m.i.s.s.c.ReportingServiceClient - Received a null payload from the stomp queue: {message=[Session closed.], content-length=[0]}
