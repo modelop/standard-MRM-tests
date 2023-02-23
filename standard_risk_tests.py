@@ -39,7 +39,7 @@ def metrics(baseline, comparator) -> dict:
         calculate_bias(comparator, execution_errors_array),
         calculate_ks_drift(baseline, comparator, execution_errors_array),
         calculate_ks_concept_drift(baseline, comparator, execution_errors_array),
-        calculate_stability(baseline, comparator, execution_errors_array),
+        #calculate_stability(baseline, comparator, execution_errors_array),
         calculate_breusch_pagan(comparator, execution_errors_array),
         calculate_linearity_metrics(comparator, execution_errors_array),
         calculate_ljung_box_q_test(comparator, execution_errors_array),
