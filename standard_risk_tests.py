@@ -6,6 +6,8 @@ import modelop.monitors.performance as performance
 import modelop.monitors.stability as stability
 import modelop.schema.infer as infer
 import modelop.stats.diagnostics as diagnostics
+import rob as rank_order
+import performance_credit_scoring as performance_credit
 import modelop.utils as utils
 from modelop_sdk.utils import dashboard_utils as dashboard_utils
 
@@ -32,24 +34,30 @@ def init(job_json):
 def metrics(baseline, comparator) -> dict:
 
     execution_errors_array = []
-
-    result = utils.merge(
-        extract_model_fields(execution_errors_array),
-        calculate_performance(comparator, execution_errors_array),
-        calculate_bias(comparator, execution_errors_array),
-        calculate_ks_drift(baseline, comparator, execution_errors_array),
-        calculate_ks_concept_drift(baseline, comparator, execution_errors_array),
-        calculate_stability(baseline, comparator, execution_errors_array),
-        calculate_breusch_pagan(comparator, execution_errors_array),
-        calculate_linearity_metrics(comparator, execution_errors_array),
-        calculate_ljung_box_q_test(comparator, execution_errors_array),
-        calculate_variance_inflation_factor(comparator, execution_errors_array),
-        calculate_durbin_watson(comparator, execution_errors_array),
-        calculate_engle_lagrange_multiplier_test(comparator, execution_errors_array),
-        calculate_anderson_darling_test(comparator, execution_errors_array),
-        calculate_cramer_von_mises_test(comparator, execution_errors_array),
-        calculate_kolmogorov_smirnov_test(comparator, execution_errors_array),
-    )
+    if "creditPD" in MODEL_METHODOLOGY.casefold():
+        print("it's a credit model!!!")
+        result = utils.merge(
+            calculate_rob(comparator, execution_errors_array),
+            calculate_performance_credit(comparator, execution_errors_array),
+        )
+    else:
+        result = utils.merge(
+            extract_model_fields(execution_errors_array),
+            calculate_performance(comparator, execution_errors_array),
+            calculate_bias(comparator, execution_errors_array),
+            calculate_ks_drift(baseline, comparator, execution_errors_array),
+            calculate_ks_concept_drift(baseline, comparator, execution_errors_array),
+            calculate_stability(baseline, comparator, execution_errors_array),
+            calculate_breusch_pagan(comparator, execution_errors_array),
+            calculate_linearity_metrics(comparator, execution_errors_array),
+            calculate_ljung_box_q_test(comparator, execution_errors_array),
+            calculate_variance_inflation_factor(comparator, execution_errors_array),
+            calculate_durbin_watson(comparator, execution_errors_array),
+            calculate_engle_lagrange_multiplier_test(comparator, execution_errors_array),
+            calculate_anderson_darling_test(comparator, execution_errors_array),
+            calculate_cramer_von_mises_test(comparator, execution_errors_array),
+            calculate_kolmogorov_smirnov_test(comparator, execution_errors_array),
+        )
 
     result.update({"executionErrors": execution_errors_array})
     result.update({"executionErrorsCount": len(execution_errors_array)})
@@ -77,6 +85,31 @@ def extract_model_fields(execution_errors_array):
         print(error_message)
         return {}
 
+def calculate_rob(comparator, execution_errors_array):
+    try:
+        dashboard_utils.assert_df_not_none_and_not_empty(
+            comparator, "Required comparator"
+        )
+        rank_order.init(JOB)
+        return rank_order.metrics(comparator)
+    except Exception as ex:
+        error_message = f"Error occurred calculating Rank_Order metrics: {str(ex)}"
+        print(error_message)
+        execution_errors_array.append(error_message)
+        return {"rank_order": -99}
+
+def calculate_performance_credit(comparator, execution_errors_array):
+    try:
+        dashboard_utils.assert_df_not_none_and_not_empty(
+            comparator, "Required comparator"
+        )
+        performance_credit.init(JOB)
+        return performance_credit.metrics(comparator)
+    except Exception as ex:
+        error_message = f"Error occurred calculating Performance metrics: {str(ex)}"
+        print(error_message)
+        execution_errors_array.append(error_message)
+        return {"performance": -99}
 
 def calculate_performance(comparator, execution_errors_array):
     try:
