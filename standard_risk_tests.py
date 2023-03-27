@@ -34,7 +34,7 @@ def init(job_json):
 def metrics(baseline, comparator) -> dict:
 
     execution_errors_array = []
-    if "creditPD" in MODEL_METHODOLOGY.casefold():
+    if "creditpd" in MODEL_METHODOLOGY.casefold():
         print("it's a credit model!!!")
         result = utils.merge(
             calculate_rob(comparator, execution_errors_array),
