@@ -34,7 +34,7 @@ def metrics(baseline, comparator) -> dict:
     execution_errors_array = []
 
     result = utils.merge(
-        extract_model_fields(execution_errors_array),
+        #extract_model_fields(execution_errors_array),
         calculate_performance(comparator, execution_errors_array),
         calculate_bias(comparator, execution_errors_array),
         calculate_ks_drift(baseline, comparator, execution_errors_array),
