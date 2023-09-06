@@ -1,0 +1,11 @@
+{
+    "input_variables": [
+        "statement"
+    ],
+    "output_parser": null,
+    "partial_variables": {},
+    "template": "Here is a statement:\n\t        {statement}\n\t        Make a bullet point list of the assumptions you made when producing the above statement.\n\n",
+    "template_format": "f-string",
+    "validate_template": true,
+    "_type": "prompt"
+}

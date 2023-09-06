@@ -1,0 +1,1308 @@
+{
+  "id": "036e80c4-485b-4fad-a55b-25c7180f2338",
+  "group": "modelop",
+  "version": 10,
+  "jobType": "MODEL_BATCH_TEST_JOB",
+  "createdDate": "2022-03-22T21:36:16.693Z",
+  "lastModifiedDate": "2022-03-22T21:37:30.401Z",
+  "createdBy": "SYSTEM",
+  "lastModifiedBy": "SYSTEM",
+  "jobStatus": "WAITING",
+  "jobResult": "UNKNOWN",
+  "jobMessages": [
+  ],
+  "enableInputSchemaChecking": false,
+  "enableOutputSchemaChecking": false,
+  "jobRunTime": 1647984978523,
+  "jobWaitTime": 1647984978520,
+  "jobEndTime": 1647985041148,
+  "lastUpdateFromRuntime": "2022-03-22T21:37:30.401Z",
+  "jobParameters": {
+	"piiAnalysisColumn": "response",
+	"sentimentAnalysisColumn": "response",
+	"wordCountColumn": "response"
+  },
+  "inputData": [
+	{
+	  "filename": "dummy_input.csv",
+	  "name": "dummy_input.csv",
+	  "assetType": "FILE",
+	  "fileFormat": "CSV",
+	  "fileContentString": "val1\r\n1\r\n"
+	}
+  ],
+  "outputData": [
+	{
+	  "assetId": "91cdfb21-e1c9-4fcf-9494-d9c03cdf6e74",
+	  "name": "test_result.json",
+	  "assetType": "FILE",
+	  "assetRole": "UNKNOWN",
+	  "metaData": {
+		"custom": {},
+		"tags": []
+	  },
+	  "filename": "test_result.json",
+	  "fileFormat": "JSON",
+	  "fileSize": 0
+	}
+  ],
+  "model": {
+	"id": "756fa5ed-b256-4c6d-a289-a09e47a3680e",
+	"group": "modelop",
+	"version": 29,
+	"createdDate": "2022-03-22T20:54:23.817Z",
+	"lastModifiedDate": "2022-03-22T21:36:15.258Z",
+	"createdBy": "SYSTEM",
+	"lastModifiedBy": "SYSTEM",
+	"storedModel": {
+	  "id": "3572ceb0-03bb-4818-b875-b4890c4578b4",
+	  "group": "modelop",
+	  "version": 1,
+	  "createdDate": "2023-06-27T17:40:14.735Z",
+	  "lastModifiedDate": "2023-06-27T17:41:02.308Z",
+	  "createdBy": "SYSTEM",
+	  "lastModifiedBy": "SYSTEM",
+	  "modelMetaData": {
+		"custom": {},
+		"tags": [],
+		"name": "Support Chatbot LLM",
+		"description": "Model representing a chatbot for customer support",
+		"type": "PYTHON",
+		"inputSchema": [],
+		"outputSchema": [],
+		"enableInputSchemaChecking": false,
+		"enableOutputSchemaChecking": false,
+		"attachments": [],
+		"repositoryInfo": {
+		  "repositoryType": "GIT_REPO",
+		  "repositoryDirectory": "/tmp/model-manage-repos/master/3572ceb0-03bb-4818-b875-b4890c4578b4",
+		  "repositoryRemote": "https://github.com/modelop/LLMSupportChatbot.git",
+		  "repositoryBranch": "master",
+		  "lastCommitId": "25dc062141eacf7105764d4a2df3fd4fbf76032e",
+		  "lastSyncStatus": "SUCCESS",
+		  "lastSyncMessages": "2023-06-27T17:41:02.306Z: https://github.com/modelop/LLMSupportChatbot.git successfully updated",
+		  "lastSyncDate": "2023-06-27T17:41:02.306Z",
+		  "lastCommitDate": "2023-06-26T21:28:51Z"
+		},
+		"modelCategory": "BUSINESS_MODEL",
+		"modelUseCategory": "LLM",
+		"modelOrganization": "company",
+		"modelRisk": "unassigned",
+		"modelMethodology": "LLM"
+	  },
+	  "modelAssets": [
+		{
+		  "assetId": "b3be5f6a-5199-3030-a737-1c4ecf3aeb94",
+		  "name": "fact_check_prompt.json",
+		  "assetType": "SOURCE_CODE",
+		  "assetRole": "PROMPT_TEMPLATE",
+		  "metaData": {
+			"custom": {},
+			"tags": []
+		  },
+		  "repositoryInfo": {
+			"repositoryType": "GIT_REPO",
+			"repositoryDirectory": "/tmp/model-manage-repos/master/3572ceb0-03bb-4818-b875-b4890c4578b4",
+			"repositoryRemote": "https://github.com/modelop/LLMSupportChatbot.git",
+			"repositoryBranch": "master",
+			"lastCommitId": "25dc062141eacf7105764d4a2df3fd4fbf76032e",
+			"lastSyncStatus": "SUCCESS",
+			"lastSyncMessages": "2023-06-27T17:41:02.306Z: https://github.com/modelop/LLMSupportChatbot.git successfully updated",
+			"lastSyncDate": "2023-06-27T17:41:02.306Z",
+			"lastCommitDate": "2023-06-26T21:28:51Z"
+		  },
+		  "importedRepository": {
+			"repositoryType": "GIT_REPO",
+			"repositoryDirectory": "/tmp/model-manage-repos/master/3572ceb0-03bb-4818-b875-b4890c4578b4",
+			"repositoryRemote": "https://github.com/modelop/LLMSupportChatbot.git",
+			"repositoryBranch": "master",
+			"lastCommitId": "25dc062141eacf7105764d4a2df3fd4fbf76032e",
+			"lastSyncStatus": "SUCCESS",
+			"lastSyncMessages": "2023-06-27T17:41:02.306Z: https://github.com/modelop/LLMSupportChatbot.git successfully updated",
+			"lastSyncDate": "2023-06-27T17:41:02.306Z",
+			"lastCommitDate": "2023-06-26T21:28:51Z"
+		  },
+		  "primaryModelSource": false,
+		  "sourceCode": "{\n    \"input_variables\": [\n        \"assertions\"\n    ],\n    \"output_parser\": null,\n    \"partial_variables\": {},\n    \"template\": \"Here is a bullet point list of assertions:\\n    \\t{assertions}\\n    \\tFor each assertion, determine whether it is true or false. If it is false, explain why.\\n\\n\",\n    \"template_format\": \"f-string\",\n    \"validate_template\": true,\n    \"_type\": \"prompt\"\n}",
+		  "sourceCodeFilePath": "test_files/fact_check_prompt.json",
+		  "sourceCodeType": "MODEL"
+		},
+		{
+		  "assetId": "bdb5b6b4-a2ea-37b7-8499-26c23e0fbce6",
+		  "name": "rephrase_prompt.json",
+		  "assetType": "SOURCE_CODE",
+		  "assetRole": "PROMPT_TEMPLATE",
+		  "metaData": {
+			"custom": {},
+			"tags": []
+		  },
+		  "repositoryInfo": {
+			"repositoryType": "GIT_REPO",
+			"repositoryDirectory": "/tmp/model-manage-repos/master/3572ceb0-03bb-4818-b875-b4890c4578b4",
+			"repositoryRemote": "https://github.com/modelop/LLMSupportChatbot.git",
+			"repositoryBranch": "master",
+			"lastCommitId": "25dc062141eacf7105764d4a2df3fd4fbf76032e",
+			"lastSyncStatus": "SUCCESS",
+			"lastSyncMessages": "2023-06-27T17:41:02.306Z: https://github.com/modelop/LLMSupportChatbot.git successfully updated",
+			"lastSyncDate": "2023-06-27T17:41:02.306Z",
+			"lastCommitDate": "2023-06-26T21:28:51Z"
+		  },
+		  "importedRepository": {
+			"repositoryType": "GIT_REPO",
+			"repositoryDirectory": "/tmp/model-manage-repos/master/3572ceb0-03bb-4818-b875-b4890c4578b4",
+			"repositoryRemote": "https://github.com/modelop/LLMSupportChatbot.git",
+			"repositoryBranch": "master",
+			"lastCommitId": "25dc062141eacf7105764d4a2df3fd4fbf76032e",
+			"lastSyncStatus": "SUCCESS",
+			"lastSyncMessages": "2023-06-27T17:41:02.306Z: https://github.com/modelop/LLMSupportChatbot.git successfully updated",
+			"lastSyncDate": "2023-06-27T17:41:02.306Z",
+			"lastCommitDate": "2023-06-26T21:28:51Z"
+		  },
+		  "primaryModelSource": false,
+		  "sourceCode": "{\n    \"input_variables\": [\n        \"question\"\n    ],\n    \"output_parser\": null,\n    \"partial_variables\": {},\n    \"template\": \"{question}\\n\\n\",\n    \"template_format\": \"f-string\",\n    \"validate_template\": true,\n    \"_type\": \"prompt\"\n}",
+		  "sourceCodeFilePath": "test_files/rephrase_prompt.json",
+		  "sourceCodeType": "MODEL"
+		},
+		{
+		  "assetId": "afce61f1-d58a-3e9e-9309-2a743485b494",
+		  "name": "answer_prompt.json",
+		  "assetType": "SOURCE_CODE",
+		  "assetRole": "PROMPT_TEMPLATE",
+		  "metaData": {
+			"custom": {},
+			"tags": []
+		  },
+		  "repositoryInfo": {
+			"repositoryType": "GIT_REPO",
+			"repositoryDirectory": "/tmp/model-manage-repos/master/3572ceb0-03bb-4818-b875-b4890c4578b4",
+			"repositoryRemote": "https://github.com/modelop/LLMSupportChatbot.git",
+			"repositoryBranch": "master",
+			"lastCommitId": "25dc062141eacf7105764d4a2df3fd4fbf76032e",
+			"lastSyncStatus": "SUCCESS",
+			"lastSyncMessages": "2023-06-27T17:41:02.306Z: https://github.com/modelop/LLMSupportChatbot.git successfully updated",
+			"lastSyncDate": "2023-06-27T17:41:02.306Z",
+			"lastCommitDate": "2023-06-26T21:28:51Z"
+		  },
+		  "importedRepository": {
+			"repositoryType": "GIT_REPO",
+			"repositoryDirectory": "/tmp/model-manage-repos/master/3572ceb0-03bb-4818-b875-b4890c4578b4",
+			"repositoryRemote": "https://github.com/modelop/LLMSupportChatbot.git",
+			"repositoryBranch": "master",
+			"lastCommitId": "25dc062141eacf7105764d4a2df3fd4fbf76032e",
+			"lastSyncStatus": "SUCCESS",
+			"lastSyncMessages": "2023-06-27T17:41:02.306Z: https://github.com/modelop/LLMSupportChatbot.git successfully updated",
+			"lastSyncDate": "2023-06-27T17:41:02.306Z",
+			"lastCommitDate": "2023-06-26T21:28:51Z"
+		  },
+		  "primaryModelSource": false,
+		  "sourceCode": "{\n    \"input_variables\": [\n        \"question\",\n        \"facts\"\n    ],\n    \"output_parser\": null,\n    \"partial_variables\": {},\n    \"template\": \"{facts}\\nIn light of the above facts, how would you answer the question '{question}'\",\n    \"template_format\": \"f-string\",\n    \"validate_template\": true,\n    \"_type\": \"prompt\"\n}",
+		  "sourceCodeFilePath": "test_files/answer_prompt.json",
+		  "sourceCodeType": "MODEL"
+		},
+		{
+		  "assetId": "121679af-81ab-31b1-bdfb-f4d6cd3bdb28",
+		  "name": "assumptions_prompt.json",
+		  "assetType": "SOURCE_CODE",
+		  "assetRole": "PROMPT_TEMPLATE",
+		  "metaData": {
+			"custom": {},
+			"tags": []
+		  },
+		  "repositoryInfo": {
+			"repositoryType": "GIT_REPO",
+			"repositoryDirectory": "/tmp/model-manage-repos/master/3572ceb0-03bb-4818-b875-b4890c4578b4",
+			"repositoryRemote": "https://github.com/modelop/LLMSupportChatbot.git",
+			"repositoryBranch": "master",
+			"lastCommitId": "25dc062141eacf7105764d4a2df3fd4fbf76032e",
+			"lastSyncStatus": "SUCCESS",
+			"lastSyncMessages": "2023-06-27T17:41:02.306Z: https://github.com/modelop/LLMSupportChatbot.git successfully updated",
+			"lastSyncDate": "2023-06-27T17:41:02.306Z",
+			"lastCommitDate": "2023-06-26T21:28:51Z"
+		  },
+		  "importedRepository": {
+			"repositoryType": "GIT_REPO",
+			"repositoryDirectory": "/tmp/model-manage-repos/master/3572ceb0-03bb-4818-b875-b4890c4578b4",
+			"repositoryRemote": "https://github.com/modelop/LLMSupportChatbot.git",
+			"repositoryBranch": "master",
+			"lastCommitId": "25dc062141eacf7105764d4a2df3fd4fbf76032e",
+			"lastSyncStatus": "SUCCESS",
+			"lastSyncMessages": "2023-06-27T17:41:02.306Z: https://github.com/modelop/LLMSupportChatbot.git successfully updated",
+			"lastSyncDate": "2023-06-27T17:41:02.306Z",
+			"lastCommitDate": "2023-06-26T21:28:51Z"
+		  },
+		  "primaryModelSource": false,
+		  "sourceCode": "{\n    \"input_variables\": [\n        \"statement\"\n    ],\n    \"output_parser\": null,\n    \"partial_variables\": {},\n    \"template\": \"Here is a statement:\\n\\t        {statement}\\n\\t        Make a bullet point list of the assumptions you made when producing the above statement.\\n\\n\",\n    \"template_format\": \"f-string\",\n    \"validate_template\": true,\n    \"_type\": \"prompt\"\n}",
+		  "sourceCodeFilePath": "test_files/assumptions_prompt.json",
+		  "sourceCodeType": "MODEL"
+		},
+		{
+		  "assetId": "f2915997-63d1-3161-9e17-a76a55cd7c76",
+		  "name": "support_langchain.py",
+		  "assetType": "SOURCE_CODE",
+		  "assetRole": "MODEL_SOURCE",
+		  "metaData": {
+			"custom": {},
+			"tags": []
+		  },
+		  "repositoryInfo": {
+			"repositoryType": "GIT_REPO",
+			"repositoryDirectory": "/tmp/model-manage-repos/master/3572ceb0-03bb-4818-b875-b4890c4578b4",
+			"repositoryRemote": "https://github.com/modelop/LLMSupportChatbot.git",
+			"repositoryBranch": "master",
+			"lastCommitId": "25dc062141eacf7105764d4a2df3fd4fbf76032e",
+			"lastSyncStatus": "SUCCESS",
+			"lastSyncMessages": "2023-06-27T17:41:02.306Z: https://github.com/modelop/LLMSupportChatbot.git successfully updated",
+			"lastSyncDate": "2023-06-27T17:41:02.306Z",
+			"lastCommitDate": "2023-06-26T21:28:51Z"
+		  },
+		  "importedRepository": {
+			"repositoryType": "GIT_REPO",
+			"repositoryDirectory": "/tmp/model-manage-repos/master/3572ceb0-03bb-4818-b875-b4890c4578b4",
+			"repositoryRemote": "https://github.com/modelop/LLMSupportChatbot.git",
+			"repositoryBranch": "master",
+			"lastCommitId": "25dc062141eacf7105764d4a2df3fd4fbf76032e",
+			"lastSyncStatus": "SUCCESS",
+			"lastSyncMessages": "2023-06-27T17:41:02.306Z: https://github.com/modelop/LLMSupportChatbot.git successfully updated",
+			"lastSyncDate": "2023-06-27T17:41:02.306Z",
+			"lastCommitDate": "2023-06-26T21:28:51Z"
+		  },
+		  "primaryModelSource": true,
+		  "sourceCode": "import json\nimport pandas as pd\nfrom langchain import PromptTemplate\nfrom langchain.chains import LLMChain, SequentialChain  # import LangChain libraries\nfrom langchain.llms import OpenAI  # import OpenAI model\nfrom langchain.prompts import load_prompt\n\n\ndef answer_question(question: str):\n\tllm = OpenAI(temperature=0.7)\n\n\t# Chain 1: Generating a rephrased version of the user's question\n\tprompt_template = load_prompt(\"rephrase_prompt.json\")\n\tquestion_chain = LLMChain(llm=llm, prompt=prompt_template, output_key=\"statement\")\n\n\t# Chain 2: Generating assumptions made in the statement\n\tprompt_template = load_prompt(\"assumptions_prompt.json\")\n\tassumptions_chain = LLMChain(llm=llm, prompt=prompt_template, output_key=\"assertions\")\n\n\t# Chain 3: Fact checking the assumptions\n\tprompt_template = load_prompt(\"fact_check_prompt.json\")\n\tfact_checker_chain = LLMChain(llm=llm, prompt=prompt_template, output_key=\"facts\")\n\n\t# Final Chain: Generating the final answer to the user's question based on the facts and assumptions\n\tprompt_template = load_prompt(\"answer_prompt.json\")\n\tanswer_chain = LLMChain(llm=llm, prompt=prompt_template, output_key=\"answer\")\n\toverall_chain = SequentialChain(\n\t\tchains=[question_chain, assumptions_chain, fact_checker_chain, answer_chain],\n\t\tinput_variables=[\"question\"],\n\t\toutput_variables=[\"answer\", \"assertions\", \"facts\"],\n\t\tverbose=True\n\t)\n\tresults = overall_chain({\"question\": question})\n\n\tprint(f\"Facts: \\n{results['facts']}\")\n\tprint(f\"\\n\\nAnswer:{results['answer']}\\n\\n\")\n\n\treturn results\n\n\n# modelop.score\ndef action(data: dict):\n\tresult = answer_question(data['question'])\n\tyield {'facts': result['facts'], 'answer': result['answer']}\n\n\n# modelop.metrics\ndef metrics(data: pd.DataFrame):\n\tresults = {\"Questions, Facts, and Answers\": []}\n\tfor index, row in data.iterrows():\n\t\tllm = OpenAI(temperature=0.7)\n\t\tquestions = llm.predict(row['prompt'])\n\t\tfor question in iter(questions.splitlines()):\n\t\t\tresult = next(action({'question': question}))\n\t\t\tresults[\"Questions, Facts, and Answers\"].append(\n\t\t\t\t{\"question\": question, \"answer\": result[\"answer\"], \"facts\": result[\"facts\"]})\n\n\tyield results\n\n\ndef main():\n\t# generate_prompt_files()\n\tprint(json.dumps(next(action({'question': 'What was the town of tomichi in colorado like?'})), indent=2))\n\tprint(json.dumps(next(metrics(pd.DataFrame.from_dict([\n\t\t{'prompt': 'generate a list of random financial questions without line numbers and one per line'}]))), indent=2))\n\n\nif __name__ == '__main__':\n\tmain()\n",
+		  "sourceCodeFilePath": "test_files/support_langchain.py",
+		  "sourceCodeType": "MODEL",
+		  "scoreFunction": "action",
+		  "metricsFunction": "metrics"
+		},
+		{
+		  "assetId": "d387fc23-7019-47ae-8bb6-1596d80c8cae",
+		  "name": "3572ceb0-03bb-4818-b875-b4890c4578b4/d387fc23-7019-47ae-8bb6-1596d80c8cae.csv",
+		  "assetType": "EXTERNAL_FILE",
+		  "assetRole": "TEST_DATA",
+		  "metaData": {
+			"custom": {},
+			"tags": []
+		  },
+		  "repositoryInfo": {
+			"repositoryType": "S3_REPOSITORY",
+			"secure": false,
+			"host": "modelop",
+			"port": 9000,
+			"region": "default-region"
+		  },
+		  "importedRepository": {
+			"repositoryType": "GIT_REPO",
+			"repositoryDirectory": "/tmp/model-manage-repos/master/3572ceb0-03bb-4818-b875-b4890c4578b4",
+			"repositoryRemote": "https://github.com/modelop/LLMSupportChatbot.git",
+			"repositoryBranch": "master",
+			"lastCommitId": "25dc062141eacf7105764d4a2df3fd4fbf76032e",
+			"lastSyncStatus": "SUCCESS",
+			"lastSyncMessages": "2023-06-27T17:41:02.306Z: https://github.com/modelop/LLMSupportChatbot.git successfully updated",
+			"lastSyncDate": "2023-06-27T17:41:02.306Z",
+			"lastCommitDate": "2023-06-26T21:28:51Z"
+		  },
+		  "contentHash": {
+			"hashType": "SHA-256",
+			"hexString": "333fd61d9e4ee97b8c9fac7ab3d36e3b3a2b6047bac7b87b649feb4dbbafe03b"
+		  },
+		  "fileUrl": "http://modelop:9000/modelop/3572ceb0-03bb-4818-b875-b4890c4578b4/d387fc23-7019-47ae-8bb6-1596d80c8cae.csv",
+		  "browserUrl": "http://modelop:9000/buckets/modelop/browse/MzU3MmNlYjAtMDNiYi00ODE4LWI4NzUtYjQ4OTBjNDU3OGI0L2QzODdmYzIzLTcwMTktNDdhZS04YmI2LTE1OTZkODBjOGNhZS5jc3Y=",
+		  "filename": "chatgpt_financial_dataset.csv",
+		  "fileFormat": "CSV",
+		  "fileSize": 61280
+		},
+		{
+		  "assetId": "d5cfb88e-cdc5-4b48-8983-7018c475f824",
+		  "name": "README.md",
+		  "assetType": "FILE",
+		  "assetRole": "README_FILE",
+		  "metaData": {
+			"custom": {},
+			"tags": []
+		  },
+		  "repositoryInfo": {
+			"repositoryType": "GIT_REPO",
+			"repositoryDirectory": "/tmp/model-manage-repos/master/3572ceb0-03bb-4818-b875-b4890c4578b4",
+			"repositoryRemote": "https://github.com/modelop/LLMSupportChatbot.git",
+			"repositoryBranch": "master",
+			"lastCommitId": "25dc062141eacf7105764d4a2df3fd4fbf76032e",
+			"lastSyncStatus": "SUCCESS",
+			"lastSyncMessages": "2023-06-27T17:41:02.306Z: https://github.com/modelop/LLMSupportChatbot.git successfully updated",
+			"lastSyncDate": "2023-06-27T17:41:02.306Z",
+			"lastCommitDate": "2023-06-26T21:28:51Z"
+		  },
+		  "importedRepository": {
+			"repositoryType": "GIT_REPO",
+			"repositoryDirectory": "/tmp/model-manage-repos/master/3572ceb0-03bb-4818-b875-b4890c4578b4",
+			"repositoryRemote": "https://github.com/modelop/LLMSupportChatbot.git",
+			"repositoryBranch": "master",
+			"lastCommitId": "25dc062141eacf7105764d4a2df3fd4fbf76032e",
+			"lastSyncStatus": "SUCCESS",
+			"lastSyncMessages": "2023-06-27T17:41:02.306Z: https://github.com/modelop/LLMSupportChatbot.git successfully updated",
+			"lastSyncDate": "2023-06-27T17:41:02.306Z",
+			"lastCommitDate": "2023-06-26T21:28:51Z"
+		  },
+		  "filename": "README.md",
+		  "fileFormat": "UNKNOWN",
+		  "localFile": "/tmp/model-manage-repos/master/3572ceb0-03bb-4818-b875-b4890c4578b4/README.md",
+		  "fileSize": 74,
+		  "fileContentString": "# LLMSupportChatbot\nA model representing a chat-gpt style support chatbot\n",
+		  "fileContent": "IyBMTE1TdXBwb3J0Q2hhdGJvdApBIG1vZGVsIHJlcHJlc2VudGluZyBhIGNoYXQtZ3B0IHN0eWxlIHN1cHBvcnQgY2hhdGJvdAo="
+		},
+		{
+		  "assetId": "621477d5-ec91-4d3f-b0cf-79b9f22ab820",
+		  "name": "requirements.txt",
+		  "assetType": "FILE",
+		  "assetRole": "REQUIRED_LIBRARIES",
+		  "metaData": {
+			"custom": {},
+			"tags": []
+		  },
+		  "repositoryInfo": {
+			"repositoryType": "GIT_REPO",
+			"repositoryDirectory": "/tmp/model-manage-repos/master/3572ceb0-03bb-4818-b875-b4890c4578b4",
+			"repositoryRemote": "https://github.com/modelop/LLMSupportChatbot.git",
+			"repositoryBranch": "master",
+			"lastCommitId": "25dc062141eacf7105764d4a2df3fd4fbf76032e",
+			"lastSyncStatus": "SUCCESS",
+			"lastSyncMessages": "2023-06-27T17:41:02.306Z: https://github.com/modelop/LLMSupportChatbot.git successfully updated",
+			"lastSyncDate": "2023-06-27T17:41:02.306Z",
+			"lastCommitDate": "2023-06-26T21:28:51Z"
+		  },
+		  "importedRepository": {
+			"repositoryType": "GIT_REPO",
+			"repositoryDirectory": "/tmp/model-manage-repos/master/3572ceb0-03bb-4818-b875-b4890c4578b4",
+			"repositoryRemote": "https://github.com/modelop/LLMSupportChatbot.git",
+			"repositoryBranch": "master",
+			"lastCommitId": "25dc062141eacf7105764d4a2df3fd4fbf76032e",
+			"lastSyncStatus": "SUCCESS",
+			"lastSyncMessages": "2023-06-27T17:41:02.306Z: https://github.com/modelop/LLMSupportChatbot.git successfully updated",
+			"lastSyncDate": "2023-06-27T17:41:02.306Z",
+			"lastCommitDate": "2023-06-26T21:28:51Z"
+		  },
+		  "filename": "requirements.txt",
+		  "fileFormat": "UNKNOWN",
+		  "localFile": "/tmp/model-manage-repos/master/3572ceb0-03bb-4818-b875-b4890c4578b4/requirements.txt",
+		  "fileSize": 34,
+		  "fileContentString": "langchain>=0.0.209\nopenai>=0.27.8\n",
+		  "fileContent": "bGFuZ2NoYWluPj0wLjAuMjA5Cm9wZW5haT49MC4yNy44Cg=="
+		},
+		{
+		  "assetId": "1e9989f6-306f-4c00-bccc-a53c89a47e08",
+		  "name": "metadata.json",
+		  "assetType": "FILE",
+		  "assetRole": "MODEL_METADATA",
+		  "metaData": {
+			"custom": {},
+			"tags": []
+		  },
+		  "repositoryInfo": {
+			"repositoryType": "GIT_REPO",
+			"repositoryDirectory": "/tmp/model-manage-repos/master/3572ceb0-03bb-4818-b875-b4890c4578b4",
+			"repositoryRemote": "https://github.com/modelop/LLMSupportChatbot.git",
+			"repositoryBranch": "master",
+			"lastCommitId": "25dc062141eacf7105764d4a2df3fd4fbf76032e",
+			"lastSyncStatus": "SUCCESS",
+			"lastSyncMessages": "2023-06-27T17:41:02.306Z: https://github.com/modelop/LLMSupportChatbot.git successfully updated",
+			"lastSyncDate": "2023-06-27T17:41:02.306Z",
+			"lastCommitDate": "2023-06-26T21:28:51Z"
+		  },
+		  "importedRepository": {
+			"repositoryType": "GIT_REPO",
+			"repositoryDirectory": "/tmp/model-manage-repos/master/3572ceb0-03bb-4818-b875-b4890c4578b4",
+			"repositoryRemote": "https://github.com/modelop/LLMSupportChatbot.git",
+			"repositoryBranch": "master",
+			"lastCommitId": "25dc062141eacf7105764d4a2df3fd4fbf76032e",
+			"lastSyncStatus": "SUCCESS",
+			"lastSyncMessages": "2023-06-27T17:41:02.306Z: https://github.com/modelop/LLMSupportChatbot.git successfully updated",
+			"lastSyncDate": "2023-06-27T17:41:02.306Z",
+			"lastCommitDate": "2023-06-26T21:28:51Z"
+		  },
+		  "filename": "metadata.json",
+		  "fileFormat": "JSON",
+		  "localFile": "/tmp/model-manage-repos/master/3572ceb0-03bb-4818-b875-b4890c4578b4/metadata.json",
+		  "fileSize": 210,
+		  "fileContentString": "{\n    \"tags\": [],\n    \"name\": \"Support Chatbot LLM\",\n    \"description\": \"Model representing a chatbot for customer support\",\n    \"modelMethodology\": \"LLM\",\n    \"modelUseCategory\": \"LLM\",\n    \"type\": \"VENDOR\"\n}\n",
+		  "fileContent": "ewogICAgInRhZ3MiOiBbXSwKICAgICJuYW1lIjogIlN1cHBvcnQgQ2hhdGJvdCBMTE0iLAogICAgImRlc2NyaXB0aW9uIjogIk1vZGVsIHJlcHJlc2VudGluZyBhIGNoYXRib3QgZm9yIGN1c3RvbWVyIHN1cHBvcnQiLAogICAgIm1vZGVsTWV0aG9kb2xvZ3kiOiAiTExNIiwKICAgICJtb2RlbFVzZUNhdGVnb3J5IjogIkxMTSIsCiAgICAidHlwZSI6ICJWRU5ET1IiCn0K"
+		}
+	  ],
+	  "gitDifferences": [],
+	  "associatedModels": [],
+	  "requiredAssets": [],
+	  "_links": {
+		"self": {
+		  "href": "http://localhost:8090/model-manage/api/storedModels/3572ceb0-03bb-4818-b875-b4890c4578b4"
+		},
+		"storedModel": {
+		  "href": "http://localhost:8090/model-manage/api/storedModels/3572ceb0-03bb-4818-b875-b4890c4578b4"
+		}
+	  }
+	},
+	"metaData": {
+	  "custom": {},
+	  "tags": [],
+	  "name": "v1",
+	  "description": "Test Model"
+	},
+	"associatedModels": [],
+	"modelDocuments": [],
+	"targetRuntimes": []
+  },
+  "targetEngine": {
+	"id": "f6bee03f-80a9-59e6-a497-ef572fa124bc",
+	"group": "modelop",
+	"version": 74,
+	"createdDate": "2022-03-22T20:53:36.759Z",
+	"lastModifiedDate": "2022-03-22T21:35:05.110Z",
+	"createdBy": "SYSTEM",
+	"lastModifiedBy": "SYSTEM",
+	"engineType": "MODEL_OP_ENGINE",
+	"name": "engine-test",
+	"release": "2.5.2+build.1768.ref775c5b5",
+	"state": "INIT",
+	"inputEndpoints": [
+	  {
+		"endpointType": "FILE",
+		"encoding": "CSV",
+		"path": "training_data.csv"
+	  },
+	  {
+		"endpointType": "FILE",
+		"encoding": "CSV",
+		"path": "comparator_data.csv"
+	  }
+	],
+	"outputEndpoints": [
+	  {
+		"endpointType": "FILE",
+		"encoding": "JSON",
+		"path": "/tmp/playground/batch-bc236a78-ddca-4086-be12-39de2156096b/test_result.json"
+	  }
+	],
+	"tags": [
+	  "default",
+	  "default",
+	  "test"
+	],
+	"environmentName": "unassigned",
+	"inProduction": false,
+	"lastActivity": {
+	  "date": "2022-03-22T21:35:03.666Z",
+	  "type": "JOB"
+	},
+	"manifoldInfo": {
+	  "streams": [],
+	  "jets": [],
+	  "state": "init",
+	  "group": "modelop",
+	  "initialTags": [],
+	  "environmentName": "unassigned",
+	  "inProduction": false
+	}
+  },
+  "referenceModel": {
+	"id": "109dd2cc-9d45-43c0-a684-279e9163f02c",
+	"group": "modelop",
+	"version": 34,
+	"createdDate": "2022-03-22T21:36:13.151Z",
+	"lastModifiedDate": "2022-03-22T21:36:15.297Z",
+	"createdBy": "SYSTEM",
+	"lastModifiedBy": "SYSTEM",
+	"storedModel": {
+	  "id": "aa6ead08-27e5-4fbc-8433-1a49296e014a",
+	  "group": "modelop",
+	  "version": 1,
+	  "createdDate": "2022-03-22T21:35:56.398Z",
+	  "lastModifiedDate": "2022-03-22T21:35:56.675Z",
+	  "createdBy": "SYSTEM",
+	  "lastModifiedBy": "SYSTEM",
+	  "modelMetaData": {
+		"custom": {},
+		"tags": [],
+		"name": "Taxi Model 4",
+		"description": "smaller yet",
+		"type": "PYTHON",
+		"inputSchema": [
+		  {
+			"schemaId": "b8ee556e-1ad3-46a5-a463-27bf1e8a82ab",
+			"name": "input_schema.avsc",
+			"schemaDefinition": {
+			  "type": "record",
+			  "name": "input_schema.avsc",
+			  "fields": [
+				{
+				  "type": "int",
+				  "specialValues": [],
+				  "scoringOptional": false,
+				  "role": "predictor",
+				  "protectedClass": false,
+				  "name": "VendorID",
+				  "driftCandidate": false,
+				  "dataClass": "numerical"
+				},
+				{
+				  "type": "string",
+				  "specialValues": [],
+				  "scoringOptional": false,
+				  "role": "predictor",
+				  "protectedClass": false,
+				  "name": "lpep_pickup_datetime",
+				  "driftCandidate": false,
+				  "dataClass": "categorical"
+				},
+				{
+				  "type": "string",
+				  "specialValues": [],
+				  "scoringOptional": false,
+				  "role": "predictor",
+				  "protectedClass": false,
+				  "name": "lpep_dropoff_datetime",
+				  "driftCandidate": false,
+				  "dataClass": "categorical"
+				},
+				{
+				  "type": "string",
+				  "specialValues": [],
+				  "scoringOptional": false,
+				  "role": "predictor",
+				  "protectedClass": false,
+				  "name": "store_and_fwd_flag",
+				  "driftCandidate": false,
+				  "dataClass": "categorical"
+				},
+				{
+				  "type": "int",
+				  "specialValues": [],
+				  "scoringOptional": false,
+				  "role": "predictor",
+				  "protectedClass": false,
+				  "name": "RatecodeID",
+				  "driftCandidate": false,
+				  "dataClass": "numerical"
+				},
+				{
+				  "type": "int",
+				  "specialValues": [],
+				  "scoringOptional": false,
+				  "role": "predictor",
+				  "protectedClass": false,
+				  "name": "PULocationID",
+				  "driftCandidate": false,
+				  "dataClass": "numerical"
+				},
+				{
+				  "type": "int",
+				  "specialValues": [],
+				  "scoringOptional": false,
+				  "role": "predictor",
+				  "protectedClass": false,
+				  "name": "DOLocationID",
+				  "driftCandidate": false,
+				  "dataClass": "numerical"
+				},
+				{
+				  "type": "int",
+				  "specialValues": [],
+				  "scoringOptional": false,
+				  "role": "predictor",
+				  "protectedClass": false,
+				  "name": "passenger_count",
+				  "driftCandidate": true,
+				  "dataClass": "numerical"
+				},
+				{
+				  "type": "float",
+				  "specialValues": [],
+				  "scoringOptional": false,
+				  "role": "predictor",
+				  "protectedClass": false,
+				  "name": "trip_distance",
+				  "driftCandidate": true,
+				  "dataClass": "numerical"
+				},
+				{
+				  "type": "float",
+				  "specialValues": [],
+				  "scoringOptional": false,
+				  "role": "predictor",
+				  "protectedClass": false,
+				  "name": "fare_amount",
+				  "driftCandidate": true,
+				  "dataClass": "numerical"
+				},
+				{
+				  "type": "float",
+				  "specialValues": [],
+				  "scoringOptional": false,
+				  "role": "predictor",
+				  "protectedClass": false,
+				  "name": "extra",
+				  "driftCandidate": true,
+				  "dataClass": "numerical"
+				},
+				{
+				  "type": "float",
+				  "specialValues": [],
+				  "scoringOptional": false,
+				  "role": "predictor",
+				  "protectedClass": false,
+				  "name": "mta_tax",
+				  "driftCandidate": true,
+				  "dataClass": "numerical"
+				},
+				{
+				  "type": "float",
+				  "specialValues": [],
+				  "scoringOptional": false,
+				  "role": "label",
+				  "protectedClass": false,
+				  "name": "tip_amount",
+				  "driftCandidate": true,
+				  "dataClass": "numerical"
+				},
+				{
+				  "type": "float",
+				  "specialValues": [],
+				  "scoringOptional": false,
+				  "role": "predictor",
+				  "protectedClass": false,
+				  "name": "tolls_amount",
+				  "driftCandidate": true,
+				  "dataClass": "numerical"
+				},
+				{
+				  "type": "float",
+				  "specialValues": [],
+				  "scoringOptional": false,
+				  "role": "predictor",
+				  "protectedClass": false,
+				  "name": "improvement_surcharge",
+				  "driftCandidate": true,
+				  "dataClass": "numerical"
+				},
+				{
+				  "type": "float",
+				  "specialValues": [],
+				  "scoringOptional": false,
+				  "role": "predictor",
+				  "protectedClass": false,
+				  "name": "total_amount",
+				  "driftCandidate": true,
+				  "dataClass": "numerical"
+				},
+				{
+				  "type": "int",
+				  "specialValues": [],
+				  "scoringOptional": false,
+				  "role": "predictor",
+				  "protectedClass": false,
+				  "name": "payment_type",
+				  "driftCandidate": true,
+				  "dataClass": "numerical"
+				},
+				{
+				  "type": "int",
+				  "specialValues": [],
+				  "scoringOptional": false,
+				  "role": "predictor",
+				  "protectedClass": false,
+				  "name": "trip_type",
+				  "driftCandidate": true,
+				  "dataClass": "numerical"
+				},
+				{
+				  "type": "float",
+				  "specialValues": [],
+				  "scoringOptional": false,
+				  "role": "score",
+				  "protectedClass": false,
+				  "name": "predicted_tip_amount",
+				  "driftCandidate": true,
+				  "dataClass": "numerical"
+				}
+			  ]
+			}
+		  }
+		],
+		"outputSchema": [
+		  {
+			"schemaId": "8d8c7e7c-ad6f-431e-83e6-36b72e0d4c96",
+			"name": "output_schema.avsc",
+			"schemaDefinition": {
+			  "type": "record",
+			  "name": "input_schema.avsc",
+			  "fields": [
+				{
+				  "type": "int",
+				  "specialValues": [],
+				  "scoringOptional": false,
+				  "role": "predictor",
+				  "protectedClass": false,
+				  "name": "VendorID",
+				  "driftCandidate": false,
+				  "dataClass": "numerical"
+				},
+				{
+				  "type": "string",
+				  "specialValues": [],
+				  "scoringOptional": false,
+				  "role": "predictor",
+				  "protectedClass": false,
+				  "name": "lpep_pickup_datetime",
+				  "driftCandidate": false,
+				  "dataClass": "categorical"
+				},
+				{
+				  "type": "string",
+				  "specialValues": [],
+				  "scoringOptional": false,
+				  "role": "predictor",
+				  "protectedClass": false,
+				  "name": "lpep_dropoff_datetime",
+				  "driftCandidate": false,
+				  "dataClass": "categorical"
+				},
+				{
+				  "type": "string",
+				  "specialValues": [],
+				  "scoringOptional": false,
+				  "role": "predictor",
+				  "protectedClass": false,
+				  "name": "store_and_fwd_flag",
+				  "driftCandidate": false,
+				  "dataClass": "categorical"
+				},
+				{
+				  "type": "int",
+				  "specialValues": [],
+				  "scoringOptional": false,
+				  "role": "predictor",
+				  "protectedClass": false,
+				  "name": "RatecodeID",
+				  "driftCandidate": false,
+				  "dataClass": "numerical"
+				},
+				{
+				  "type": "int",
+				  "specialValues": [],
+				  "scoringOptional": false,
+				  "role": "predictor",
+				  "protectedClass": false,
+				  "name": "PULocationID",
+				  "driftCandidate": false,
+				  "dataClass": "numerical"
+				},
+				{
+				  "type": "int",
+				  "specialValues": [],
+				  "scoringOptional": false,
+				  "role": "predictor",
+				  "protectedClass": false,
+				  "name": "DOLocationID",
+				  "driftCandidate": false,
+				  "dataClass": "numerical"
+				},
+				{
+				  "type": "int",
+				  "specialValues": [],
+				  "scoringOptional": false,
+				  "role": "predictor",
+				  "protectedClass": false,
+				  "name": "passenger_count",
+				  "driftCandidate": true,
+				  "dataClass": "numerical"
+				},
+				{
+				  "type": "float",
+				  "specialValues": [],
+				  "scoringOptional": false,
+				  "role": "predictor",
+				  "protectedClass": false,
+				  "name": "trip_distance",
+				  "driftCandidate": true,
+				  "dataClass": "numerical"
+				},
+				{
+				  "type": "float",
+				  "specialValues": [],
+				  "scoringOptional": false,
+				  "role": "predictor",
+				  "protectedClass": false,
+				  "name": "fare_amount",
+				  "driftCandidate": true,
+				  "dataClass": "numerical"
+				},
+				{
+				  "type": "float",
+				  "specialValues": [],
+				  "scoringOptional": false,
+				  "role": "predictor",
+				  "protectedClass": false,
+				  "name": "extra",
+				  "driftCandidate": true,
+				  "dataClass": "numerical"
+				},
+				{
+				  "type": "float",
+				  "specialValues": [],
+				  "scoringOptional": false,
+				  "role": "predictor",
+				  "protectedClass": false,
+				  "name": "mta_tax",
+				  "driftCandidate": true,
+				  "dataClass": "numerical"
+				},
+				{
+				  "type": "float",
+				  "specialValues": [],
+				  "scoringOptional": false,
+				  "role": "label",
+				  "protectedClass": false,
+				  "name": "tip_amount",
+				  "driftCandidate": true,
+				  "dataClass": "numerical"
+				},
+				{
+				  "type": "float",
+				  "specialValues": [],
+				  "scoringOptional": false,
+				  "role": "predictor",
+				  "protectedClass": false,
+				  "name": "tolls_amount",
+				  "driftCandidate": true,
+				  "dataClass": "numerical"
+				},
+				{
+				  "type": "float",
+				  "specialValues": [],
+				  "scoringOptional": false,
+				  "role": "predictor",
+				  "protectedClass": false,
+				  "name": "improvement_surcharge",
+				  "driftCandidate": true,
+				  "dataClass": "numerical"
+				},
+				{
+				  "type": "float",
+				  "specialValues": [],
+				  "scoringOptional": false,
+				  "role": "predictor",
+				  "protectedClass": false,
+				  "name": "total_amount",
+				  "driftCandidate": true,
+				  "dataClass": "numerical"
+				},
+				{
+				  "type": "int",
+				  "specialValues": [],
+				  "scoringOptional": false,
+				  "role": "predictor",
+				  "protectedClass": false,
+				  "name": "payment_type",
+				  "driftCandidate": true,
+				  "dataClass": "numerical"
+				},
+				{
+				  "type": "int",
+				  "specialValues": [],
+				  "scoringOptional": false,
+				  "role": "predictor",
+				  "protectedClass": false,
+				  "name": "trip_type",
+				  "driftCandidate": true,
+				  "dataClass": "numerical"
+				},
+				{
+				  "type": "float",
+				  "specialValues": [],
+				  "scoringOptional": false,
+				  "role": "score",
+				  "protectedClass": false,
+				  "name": "predicted_tip_amount",
+				  "driftCandidate": true,
+				  "dataClass": "numerical"
+				}
+			  ]
+			}
+		  }
+		],
+		"enableInputSchemaChecking": false,
+		"enableOutputSchemaChecking": false,
+		"attachments": [],
+		"repositoryInfo": {
+		  "repositoryType": "GIT_REPO",
+		  "repositoryDirectory": "/tmp/model-manage-repos/master/d25c12c3-a648-4030-86ec-f51071582456",
+		  "repositoryRemote": "https://github.com/modelop/taxi_model.git",
+		  "repositoryBranch": "master",
+		  "lastCommitId": "c496a5bd4a2cae24c8386e065b964f9682528e9a",
+		  "lastSyncStatus": "SUCCESS",
+		  "lastSyncMessages": "2022-03-22T21:35:56.212Z: https://github.com/modelop/taxi_model.git successfully updated",
+		  "lastCommitDate": "2022-03-22T21:33:56Z"
+		},
+		"modelCategory": "BUSINESS_MODEL",
+		"modelUseCategory": "unassigned",
+		"modelOrganization": "company",
+		"modelRisk": "High",
+		"modelMethodology": "CNN"
+	  },
+	  "modelAssets": [
+		{
+		  "assetId": "b3be5f6a-5199-3030-a737-1c4ecf3aeb94",
+		  "name": "fact_check_prompt.json",
+		  "assetType": "SOURCE_CODE",
+		  "assetRole": "PROMPT_TEMPLATE",
+		  "metaData": {
+			"custom": {},
+			"tags": []
+		  },
+		  "repositoryInfo": {
+			"repositoryType": "GIT_REPO",
+			"repositoryDirectory": "/tmp/model-manage-repos/master/3572ceb0-03bb-4818-b875-b4890c4578b4",
+			"repositoryRemote": "https://github.com/modelop/LLMSupportChatbot.git",
+			"repositoryBranch": "master",
+			"lastCommitId": "25dc062141eacf7105764d4a2df3fd4fbf76032e",
+			"lastSyncStatus": "SUCCESS",
+			"lastSyncMessages": "2023-06-27T17:41:02.306Z: https://github.com/modelop/LLMSupportChatbot.git successfully updated",
+			"lastSyncDate": "2023-06-27T17:41:02.306Z",
+			"lastCommitDate": "2023-06-26T21:28:51Z"
+		  },
+		  "importedRepository": {
+			"repositoryType": "GIT_REPO",
+			"repositoryDirectory": "/tmp/model-manage-repos/master/3572ceb0-03bb-4818-b875-b4890c4578b4",
+			"repositoryRemote": "https://github.com/modelop/LLMSupportChatbot.git",
+			"repositoryBranch": "master",
+			"lastCommitId": "25dc062141eacf7105764d4a2df3fd4fbf76032e",
+			"lastSyncStatus": "SUCCESS",
+			"lastSyncMessages": "2023-06-27T17:41:02.306Z: https://github.com/modelop/LLMSupportChatbot.git successfully updated",
+			"lastSyncDate": "2023-06-27T17:41:02.306Z",
+			"lastCommitDate": "2023-06-26T21:28:51Z"
+		  },
+		  "primaryModelSource": false,
+		  "sourceCode": "{\n    \"input_variables\": [\n        \"assertions\"\n    ],\n    \"output_parser\": null,\n    \"partial_variables\": {},\n    \"template\": \"Here is a bullet point list of assertions:\\n    \\t{assertions}\\n    \\tFor each assertion, determine whether it is true or false. If it is false, explain why.\\n\\n\",\n    \"template_format\": \"f-string\",\n    \"validate_template\": true,\n    \"_type\": \"prompt\"\n}",
+		  "sourceCodeFilePath": "test_files/fact_check_prompt.json",
+		  "sourceCodeType": "MODEL"
+		},
+		{
+		  "assetId": "bdb5b6b4-a2ea-37b7-8499-26c23e0fbce6",
+		  "name": "rephrase_prompt.json",
+		  "assetType": "SOURCE_CODE",
+		  "assetRole": "PROMPT_TEMPLATE",
+		  "metaData": {
+			"custom": {},
+			"tags": []
+		  },
+		  "repositoryInfo": {
+			"repositoryType": "GIT_REPO",
+			"repositoryDirectory": "/tmp/model-manage-repos/master/3572ceb0-03bb-4818-b875-b4890c4578b4",
+			"repositoryRemote": "https://github.com/modelop/LLMSupportChatbot.git",
+			"repositoryBranch": "master",
+			"lastCommitId": "25dc062141eacf7105764d4a2df3fd4fbf76032e",
+			"lastSyncStatus": "SUCCESS",
+			"lastSyncMessages": "2023-06-27T17:41:02.306Z: https://github.com/modelop/LLMSupportChatbot.git successfully updated",
+			"lastSyncDate": "2023-06-27T17:41:02.306Z",
+			"lastCommitDate": "2023-06-26T21:28:51Z"
+		  },
+		  "importedRepository": {
+			"repositoryType": "GIT_REPO",
+			"repositoryDirectory": "/tmp/model-manage-repos/master/3572ceb0-03bb-4818-b875-b4890c4578b4",
+			"repositoryRemote": "https://github.com/modelop/LLMSupportChatbot.git",
+			"repositoryBranch": "master",
+			"lastCommitId": "25dc062141eacf7105764d4a2df3fd4fbf76032e",
+			"lastSyncStatus": "SUCCESS",
+			"lastSyncMessages": "2023-06-27T17:41:02.306Z: https://github.com/modelop/LLMSupportChatbot.git successfully updated",
+			"lastSyncDate": "2023-06-27T17:41:02.306Z",
+			"lastCommitDate": "2023-06-26T21:28:51Z"
+		  },
+		  "primaryModelSource": false,
+		  "sourceCode": "{\n    \"input_variables\": [\n        \"question\"\n    ],\n    \"output_parser\": null,\n    \"partial_variables\": {},\n    \"template\": \"{question}\\n\\n\",\n    \"template_format\": \"f-string\",\n    \"validate_template\": true,\n    \"_type\": \"prompt\"\n}",
+		  "sourceCodeFilePath": "test_files/rephrase_prompt.json",
+		  "sourceCodeType": "MODEL"
+		},
+		{
+		  "assetId": "afce61f1-d58a-3e9e-9309-2a743485b494",
+		  "name": "answer_prompt.json",
+		  "assetType": "SOURCE_CODE",
+		  "assetRole": "PROMPT_TEMPLATE",
+		  "metaData": {
+			"custom": {},
+			"tags": []
+		  },
+		  "repositoryInfo": {
+			"repositoryType": "GIT_REPO",
+			"repositoryDirectory": "/tmp/model-manage-repos/master/3572ceb0-03bb-4818-b875-b4890c4578b4",
+			"repositoryRemote": "https://github.com/modelop/LLMSupportChatbot.git",
+			"repositoryBranch": "master",
+			"lastCommitId": "25dc062141eacf7105764d4a2df3fd4fbf76032e",
+			"lastSyncStatus": "SUCCESS",
+			"lastSyncMessages": "2023-06-27T17:41:02.306Z: https://github.com/modelop/LLMSupportChatbot.git successfully updated",
+			"lastSyncDate": "2023-06-27T17:41:02.306Z",
+			"lastCommitDate": "2023-06-26T21:28:51Z"
+		  },
+		  "importedRepository": {
+			"repositoryType": "GIT_REPO",
+			"repositoryDirectory": "/tmp/model-manage-repos/master/3572ceb0-03bb-4818-b875-b4890c4578b4",
+			"repositoryRemote": "https://github.com/modelop/LLMSupportChatbot.git",
+			"repositoryBranch": "master",
+			"lastCommitId": "25dc062141eacf7105764d4a2df3fd4fbf76032e",
+			"lastSyncStatus": "SUCCESS",
+			"lastSyncMessages": "2023-06-27T17:41:02.306Z: https://github.com/modelop/LLMSupportChatbot.git successfully updated",
+			"lastSyncDate": "2023-06-27T17:41:02.306Z",
+			"lastCommitDate": "2023-06-26T21:28:51Z"
+		  },
+		  "primaryModelSource": false,
+		  "sourceCode": "{\n    \"input_variables\": [\n        \"question\",\n        \"facts\"\n    ],\n    \"output_parser\": null,\n    \"partial_variables\": {},\n    \"template\": \"{facts}\\nIn light of the above facts, how would you answer the question '{question}'\",\n    \"template_format\": \"f-string\",\n    \"validate_template\": true,\n    \"_type\": \"prompt\"\n}",
+		  "sourceCodeFilePath": "test_files/answer_prompt.json",
+		  "sourceCodeType": "MODEL"
+		},
+		{
+		  "assetId": "121679af-81ab-31b1-bdfb-f4d6cd3bdb28",
+		  "name": "assumptions_prompt.json",
+		  "assetType": "SOURCE_CODE",
+		  "assetRole": "PROMPT_TEMPLATE",
+		  "metaData": {
+			"custom": {},
+			"tags": []
+		  },
+		  "repositoryInfo": {
+			"repositoryType": "GIT_REPO",
+			"repositoryDirectory": "/tmp/model-manage-repos/master/3572ceb0-03bb-4818-b875-b4890c4578b4",
+			"repositoryRemote": "https://github.com/modelop/LLMSupportChatbot.git",
+			"repositoryBranch": "master",
+			"lastCommitId": "25dc062141eacf7105764d4a2df3fd4fbf76032e",
+			"lastSyncStatus": "SUCCESS",
+			"lastSyncMessages": "2023-06-27T17:41:02.306Z: https://github.com/modelop/LLMSupportChatbot.git successfully updated",
+			"lastSyncDate": "2023-06-27T17:41:02.306Z",
+			"lastCommitDate": "2023-06-26T21:28:51Z"
+		  },
+		  "importedRepository": {
+			"repositoryType": "GIT_REPO",
+			"repositoryDirectory": "/tmp/model-manage-repos/master/3572ceb0-03bb-4818-b875-b4890c4578b4",
+			"repositoryRemote": "https://github.com/modelop/LLMSupportChatbot.git",
+			"repositoryBranch": "master",
+			"lastCommitId": "25dc062141eacf7105764d4a2df3fd4fbf76032e",
+			"lastSyncStatus": "SUCCESS",
+			"lastSyncMessages": "2023-06-27T17:41:02.306Z: https://github.com/modelop/LLMSupportChatbot.git successfully updated",
+			"lastSyncDate": "2023-06-27T17:41:02.306Z",
+			"lastCommitDate": "2023-06-26T21:28:51Z"
+		  },
+		  "primaryModelSource": false,
+		  "sourceCode": "{\n    \"input_variables\": [\n        \"statement\"\n    ],\n    \"output_parser\": null,\n    \"partial_variables\": {},\n    \"template\": \"Here is a statement:\\n\\t        {statement}\\n\\t        Make a bullet point list of the assumptions you made when producing the above statement.\\n\\n\",\n    \"template_format\": \"f-string\",\n    \"validate_template\": true,\n    \"_type\": \"prompt\"\n}",
+		  "sourceCodeFilePath": "test_files/assumptions_prompt.json",
+		  "sourceCodeType": "MODEL"
+		},
+		{
+		  "assetId": "f2915997-63d1-3161-9e17-a76a55cd7c76",
+		  "name": "support_langchain.py",
+		  "assetType": "SOURCE_CODE",
+		  "assetRole": "MODEL_SOURCE",
+		  "metaData": {
+			"custom": {},
+			"tags": []
+		  },
+		  "repositoryInfo": {
+			"repositoryType": "GIT_REPO",
+			"repositoryDirectory": "/tmp/model-manage-repos/master/3572ceb0-03bb-4818-b875-b4890c4578b4",
+			"repositoryRemote": "https://github.com/modelop/LLMSupportChatbot.git",
+			"repositoryBranch": "master",
+			"lastCommitId": "25dc062141eacf7105764d4a2df3fd4fbf76032e",
+			"lastSyncStatus": "SUCCESS",
+			"lastSyncMessages": "2023-06-27T17:41:02.306Z: https://github.com/modelop/LLMSupportChatbot.git successfully updated",
+			"lastSyncDate": "2023-06-27T17:41:02.306Z",
+			"lastCommitDate": "2023-06-26T21:28:51Z"
+		  },
+		  "importedRepository": {
+			"repositoryType": "GIT_REPO",
+			"repositoryDirectory": "/tmp/model-manage-repos/master/3572ceb0-03bb-4818-b875-b4890c4578b4",
+			"repositoryRemote": "https://github.com/modelop/LLMSupportChatbot.git",
+			"repositoryBranch": "master",
+			"lastCommitId": "25dc062141eacf7105764d4a2df3fd4fbf76032e",
+			"lastSyncStatus": "SUCCESS",
+			"lastSyncMessages": "2023-06-27T17:41:02.306Z: https://github.com/modelop/LLMSupportChatbot.git successfully updated",
+			"lastSyncDate": "2023-06-27T17:41:02.306Z",
+			"lastCommitDate": "2023-06-26T21:28:51Z"
+		  },
+		  "primaryModelSource": true,
+		  "sourceCode": "import json\nimport pandas as pd\nfrom langchain import PromptTemplate\nfrom langchain.chains import LLMChain, SequentialChain  # import LangChain libraries\nfrom langchain.llms import OpenAI  # import OpenAI model\nfrom langchain.prompts import load_prompt\n\n\ndef answer_question(question: str):\n\tllm = OpenAI(temperature=0.7)\n\n\t# Chain 1: Generating a rephrased version of the user's question\n\tprompt_template = load_prompt(\"rephrase_prompt.json\")\n\tquestion_chain = LLMChain(llm=llm, prompt=prompt_template, output_key=\"statement\")\n\n\t# Chain 2: Generating assumptions made in the statement\n\tprompt_template = load_prompt(\"assumptions_prompt.json\")\n\tassumptions_chain = LLMChain(llm=llm, prompt=prompt_template, output_key=\"assertions\")\n\n\t# Chain 3: Fact checking the assumptions\n\tprompt_template = load_prompt(\"fact_check_prompt.json\")\n\tfact_checker_chain = LLMChain(llm=llm, prompt=prompt_template, output_key=\"facts\")\n\n\t# Final Chain: Generating the final answer to the user's question based on the facts and assumptions\n\tprompt_template = load_prompt(\"answer_prompt.json\")\n\tanswer_chain = LLMChain(llm=llm, prompt=prompt_template, output_key=\"answer\")\n\toverall_chain = SequentialChain(\n\t\tchains=[question_chain, assumptions_chain, fact_checker_chain, answer_chain],\n\t\tinput_variables=[\"question\"],\n\t\toutput_variables=[\"answer\", \"assertions\", \"facts\"],\n\t\tverbose=True\n\t)\n\tresults = overall_chain({\"question\": question})\n\n\tprint(f\"Facts: \\n{results['facts']}\")\n\tprint(f\"\\n\\nAnswer:{results['answer']}\\n\\n\")\n\n\treturn results\n\n\n# modelop.score\ndef action(data: dict):\n\tresult = answer_question(data['question'])\n\tyield {'facts': result['facts'], 'answer': result['answer']}\n\n\n# modelop.metrics\ndef metrics(data: pd.DataFrame):\n\tresults = {\"Questions, Facts, and Answers\": []}\n\tfor index, row in data.iterrows():\n\t\tllm = OpenAI(temperature=0.7)\n\t\tquestions = llm.predict(row['prompt'])\n\t\tfor question in iter(questions.splitlines()):\n\t\t\tresult = next(action({'question': question}))\n\t\t\tresults[\"Questions, Facts, and Answers\"].append(\n\t\t\t\t{\"question\": question, \"answer\": result[\"answer\"], \"facts\": result[\"facts\"]})\n\n\tyield results\n\n\ndef main():\n\t# generate_prompt_files()\n\tprint(json.dumps(next(action({'question': 'What was the town of tomichi in colorado like?'})), indent=2))\n\tprint(json.dumps(next(metrics(pd.DataFrame.from_dict([\n\t\t{'prompt': 'generate a list of random financial questions without line numbers and one per line'}]))), indent=2))\n\n\nif __name__ == '__main__':\n\tmain()\n",
+		  "sourceCodeFilePath": "test_files/support_langchain.py",
+		  "sourceCodeType": "MODEL",
+		  "scoreFunction": "action",
+		  "metricsFunction": "metrics"
+		},
+		{
+		  "assetId": "d387fc23-7019-47ae-8bb6-1596d80c8cae",
+		  "name": "3572ceb0-03bb-4818-b875-b4890c4578b4/d387fc23-7019-47ae-8bb6-1596d80c8cae.csv",
+		  "assetType": "EXTERNAL_FILE",
+		  "assetRole": "TEST_DATA",
+		  "metaData": {
+			"custom": {},
+			"tags": []
+		  },
+		  "repositoryInfo": {
+			"repositoryType": "S3_REPOSITORY",
+			"secure": false,
+			"host": "modelop",
+			"port": 9000,
+			"region": "default-region"
+		  },
+		  "importedRepository": {
+			"repositoryType": "GIT_REPO",
+			"repositoryDirectory": "/tmp/model-manage-repos/master/3572ceb0-03bb-4818-b875-b4890c4578b4",
+			"repositoryRemote": "https://github.com/modelop/LLMSupportChatbot.git",
+			"repositoryBranch": "master",
+			"lastCommitId": "25dc062141eacf7105764d4a2df3fd4fbf76032e",
+			"lastSyncStatus": "SUCCESS",
+			"lastSyncMessages": "2023-06-27T17:41:02.306Z: https://github.com/modelop/LLMSupportChatbot.git successfully updated",
+			"lastSyncDate": "2023-06-27T17:41:02.306Z",
+			"lastCommitDate": "2023-06-26T21:28:51Z"
+		  },
+		  "contentHash": {
+			"hashType": "SHA-256",
+			"hexString": "333fd61d9e4ee97b8c9fac7ab3d36e3b3a2b6047bac7b87b649feb4dbbafe03b"
+		  },
+		  "fileUrl": "http://modelop:9000/modelop/3572ceb0-03bb-4818-b875-b4890c4578b4/d387fc23-7019-47ae-8bb6-1596d80c8cae.csv",
+		  "browserUrl": "http://modelop:9000/buckets/modelop/browse/MzU3MmNlYjAtMDNiYi00ODE4LWI4NzUtYjQ4OTBjNDU3OGI0L2QzODdmYzIzLTcwMTktNDdhZS04YmI2LTE1OTZkODBjOGNhZS5jc3Y=",
+		  "filename": "chatgpt_financial_dataset.csv",
+		  "fileFormat": "CSV",
+		  "fileSize": 61280
+		},
+		{
+		  "assetId": "d5cfb88e-cdc5-4b48-8983-7018c475f824",
+		  "name": "README.md",
+		  "assetType": "FILE",
+		  "assetRole": "README_FILE",
+		  "metaData": {
+			"custom": {},
+			"tags": []
+		  },
+		  "repositoryInfo": {
+			"repositoryType": "GIT_REPO",
+			"repositoryDirectory": "/tmp/model-manage-repos/master/3572ceb0-03bb-4818-b875-b4890c4578b4",
+			"repositoryRemote": "https://github.com/modelop/LLMSupportChatbot.git",
+			"repositoryBranch": "master",
+			"lastCommitId": "25dc062141eacf7105764d4a2df3fd4fbf76032e",
+			"lastSyncStatus": "SUCCESS",
+			"lastSyncMessages": "2023-06-27T17:41:02.306Z: https://github.com/modelop/LLMSupportChatbot.git successfully updated",
+			"lastSyncDate": "2023-06-27T17:41:02.306Z",
+			"lastCommitDate": "2023-06-26T21:28:51Z"
+		  },
+		  "importedRepository": {
+			"repositoryType": "GIT_REPO",
+			"repositoryDirectory": "/tmp/model-manage-repos/master/3572ceb0-03bb-4818-b875-b4890c4578b4",
+			"repositoryRemote": "https://github.com/modelop/LLMSupportChatbot.git",
+			"repositoryBranch": "master",
+			"lastCommitId": "25dc062141eacf7105764d4a2df3fd4fbf76032e",
+			"lastSyncStatus": "SUCCESS",
+			"lastSyncMessages": "2023-06-27T17:41:02.306Z: https://github.com/modelop/LLMSupportChatbot.git successfully updated",
+			"lastSyncDate": "2023-06-27T17:41:02.306Z",
+			"lastCommitDate": "2023-06-26T21:28:51Z"
+		  },
+		  "filename": "README.md",
+		  "fileFormat": "UNKNOWN",
+		  "localFile": "/tmp/model-manage-repos/master/3572ceb0-03bb-4818-b875-b4890c4578b4/README.md",
+		  "fileSize": 74,
+		  "fileContentString": "# LLMSupportChatbot\nA model representing a chat-gpt style support chatbot\n",
+		  "fileContent": "IyBMTE1TdXBwb3J0Q2hhdGJvdApBIG1vZGVsIHJlcHJlc2VudGluZyBhIGNoYXQtZ3B0IHN0eWxlIHN1cHBvcnQgY2hhdGJvdAo="
+		},
+		{
+		  "assetId": "621477d5-ec91-4d3f-b0cf-79b9f22ab820",
+		  "name": "requirements.txt",
+		  "assetType": "FILE",
+		  "assetRole": "REQUIRED_LIBRARIES",
+		  "metaData": {
+			"custom": {},
+			"tags": []
+		  },
+		  "repositoryInfo": {
+			"repositoryType": "GIT_REPO",
+			"repositoryDirectory": "/tmp/model-manage-repos/master/3572ceb0-03bb-4818-b875-b4890c4578b4",
+			"repositoryRemote": "https://github.com/modelop/LLMSupportChatbot.git",
+			"repositoryBranch": "master",
+			"lastCommitId": "25dc062141eacf7105764d4a2df3fd4fbf76032e",
+			"lastSyncStatus": "SUCCESS",
+			"lastSyncMessages": "2023-06-27T17:41:02.306Z: https://github.com/modelop/LLMSupportChatbot.git successfully updated",
+			"lastSyncDate": "2023-06-27T17:41:02.306Z",
+			"lastCommitDate": "2023-06-26T21:28:51Z"
+		  },
+		  "importedRepository": {
+			"repositoryType": "GIT_REPO",
+			"repositoryDirectory": "/tmp/model-manage-repos/master/3572ceb0-03bb-4818-b875-b4890c4578b4",
+			"repositoryRemote": "https://github.com/modelop/LLMSupportChatbot.git",
+			"repositoryBranch": "master",
+			"lastCommitId": "25dc062141eacf7105764d4a2df3fd4fbf76032e",
+			"lastSyncStatus": "SUCCESS",
+			"lastSyncMessages": "2023-06-27T17:41:02.306Z: https://github.com/modelop/LLMSupportChatbot.git successfully updated",
+			"lastSyncDate": "2023-06-27T17:41:02.306Z",
+			"lastCommitDate": "2023-06-26T21:28:51Z"
+		  },
+		  "filename": "requirements.txt",
+		  "fileFormat": "UNKNOWN",
+		  "localFile": "/tmp/model-manage-repos/master/3572ceb0-03bb-4818-b875-b4890c4578b4/requirements.txt",
+		  "fileSize": 34,
+		  "fileContentString": "langchain>=0.0.209\nopenai>=0.27.8\n",
+		  "fileContent": "bGFuZ2NoYWluPj0wLjAuMjA5Cm9wZW5haT49MC4yNy44Cg=="
+		},
+		{
+		  "assetId": "1e9989f6-306f-4c00-bccc-a53c89a47e08",
+		  "name": "metadata.json",
+		  "assetType": "FILE",
+		  "assetRole": "MODEL_METADATA",
+		  "metaData": {
+			"custom": {},
+			"tags": []
+		  },
+		  "repositoryInfo": {
+			"repositoryType": "GIT_REPO",
+			"repositoryDirectory": "/tmp/model-manage-repos/master/3572ceb0-03bb-4818-b875-b4890c4578b4",
+			"repositoryRemote": "https://github.com/modelop/LLMSupportChatbot.git",
+			"repositoryBranch": "master",
+			"lastCommitId": "25dc062141eacf7105764d4a2df3fd4fbf76032e",
+			"lastSyncStatus": "SUCCESS",
+			"lastSyncMessages": "2023-06-27T17:41:02.306Z: https://github.com/modelop/LLMSupportChatbot.git successfully updated",
+			"lastSyncDate": "2023-06-27T17:41:02.306Z",
+			"lastCommitDate": "2023-06-26T21:28:51Z"
+		  },
+		  "importedRepository": {
+			"repositoryType": "GIT_REPO",
+			"repositoryDirectory": "/tmp/model-manage-repos/master/3572ceb0-03bb-4818-b875-b4890c4578b4",
+			"repositoryRemote": "https://github.com/modelop/LLMSupportChatbot.git",
+			"repositoryBranch": "master",
+			"lastCommitId": "25dc062141eacf7105764d4a2df3fd4fbf76032e",
+			"lastSyncStatus": "SUCCESS",
+			"lastSyncMessages": "2023-06-27T17:41:02.306Z: https://github.com/modelop/LLMSupportChatbot.git successfully updated",
+			"lastSyncDate": "2023-06-27T17:41:02.306Z",
+			"lastCommitDate": "2023-06-26T21:28:51Z"
+		  },
+		  "filename": "metadata.json",
+		  "fileFormat": "JSON",
+		  "localFile": "/tmp/model-manage-repos/master/3572ceb0-03bb-4818-b875-b4890c4578b4/metadata.json",
+		  "fileSize": 210,
+		  "fileContentString": "{\n    \"tags\": [],\n    \"name\": \"Support Chatbot LLM\",\n    \"description\": \"Model representing a chatbot for customer support\",\n    \"modelMethodology\": \"LLM\",\n    \"modelUseCategory\": \"LLM\",\n    \"type\": \"VENDOR\"\n}\n",
+		  "fileContent": "ewogICAgInRhZ3MiOiBbXSwKICAgICJuYW1lIjogIlN1cHBvcnQgQ2hhdGJvdCBMTE0iLAogICAgImRlc2NyaXB0aW9uIjogIk1vZGVsIHJlcHJlc2VudGluZyBhIGNoYXRib3QgZm9yIGN1c3RvbWVyIHN1cHBvcnQiLAogICAgIm1vZGVsTWV0aG9kb2xvZ3kiOiAiTExNIiwKICAgICJtb2RlbFVzZUNhdGVnb3J5IjogIkxMTSIsCiAgICAidHlwZSI6ICJWRU5ET1IiCn0K"
+		}
+	  ],
+	  "gitDifferences": [],
+	  "associatedModels": [],
+	  "requiredAssets": []
+	},
+	"metaData": {
+	  "custom": {},
+	  "tags": [
+		"STANDARDIZED"
+	  ],
+	  "name": "Taxi Model 4-20220322_1536"
+	},
+	"modelDocuments": [],
+	"targetRuntimes": [
+	  {
+		"engineType": "MODEL_OP_ENGINE",
+		"inputEndpoints": [],
+		"outputEndpoints": [],
+		"tags": [],
+		"inProduction": false,
+		"lastActivity": {}
+	  }
+	]
+  },
+  "modelWritesOutput": false,
+  "additionalAssets": [
+  ]
+}

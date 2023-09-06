@@ -1,0 +1,11 @@
+{
+    "input_variables": [
+        "question"
+    ],
+    "output_parser": null,
+    "partial_variables": {},
+    "template": "{question}\n\n",
+    "template_format": "f-string",
+    "validate_template": true,
+    "_type": "prompt"
+}

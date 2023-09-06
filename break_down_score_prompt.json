@@ -1,0 +1,13 @@
+{
+  "input_variables": [
+	"question",
+	"answer",
+	"factual_answer"
+  ],
+  "output_parser": null,
+  "partial_varaibles": {},
+  "template": "Here is a question that was asked:\n\t{question}\n The accurate answer to this question is:\n\t{factual_answer}\nExplain why the answer:\n\t{answer}\n is accurate or not compared only to the provided accurate answer",
+  "template_format": "f-string",
+  "validate_template": true,
+  "_type": "prompt"
+}

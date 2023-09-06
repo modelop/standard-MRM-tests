@@ -1,0 +1,11 @@
+{
+  "input_variables": [
+	"score_breakdown"
+  ],
+  "output_parser": null,
+  "partial_varaibles": {},
+  "template": "Given your analysis of the accuracy of the statement:\n{score_breakdown}\nHow accurate would you now say the statement was on a scale of zero to 100?  Only answer with the value from zero to 100.  If there is any truth in the answer, the score should not be zero.",
+  "template_format": "f-string",
+  "validate_template": true,
+  "_type": "prompt"
+}

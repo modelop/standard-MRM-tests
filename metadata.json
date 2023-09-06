@@ -1,11 +1,7 @@
 {
     "tags": [],
-    "name": "Standard Risk Tests",
-    "description": "Model to compute stability (PSI, CSI), bias, performance, data drift, concept drift, as well as homoscedasticity, autocorrelation, normality, linearity and multicollinearity metrics",
+    "name": "LLM Standardized Tests",
+    "description": "Performs a series of analyses on a given LLM model.  It will perform a variety of different NLP techniques, plus langchain techniques and self checking of facts.",
     "modelCategory": "MODEL_MONITORING_MODEL",
-    "defaultAssociationRole": "DATA_DRIFT_MODEL",
-    "frequentlyUsed": true,
-    "custom": {
-        "modelopPackageVersion": "1.0.0"
-    }
+    "frequentlyUsed": true
 }

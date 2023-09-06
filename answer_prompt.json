@@ -1,0 +1,12 @@
+{
+    "input_variables": [
+        "question",
+        "facts"
+    ],
+    "output_parser": null,
+    "partial_variables": {},
+    "template": "{facts}\nIn light of the above facts, how would you answer the question '{question}'",
+    "template_format": "f-string",
+    "validate_template": true,
+    "_type": "prompt"
+}

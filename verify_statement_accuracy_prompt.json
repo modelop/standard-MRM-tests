@@ -1,0 +1,13 @@
+{
+  "input_variables": [
+	"question",
+	"factual_answer",
+	"answer"
+  ],
+  "output_parser": null,
+  "partial_varaibles": {},
+  "template": "Here is a question that was asked:\n\t{question}\n The accurate answer to this question is:\n\t{factual_answer}\nYou should only use the provided accurate answer for determining accuracy.\nHow accurate is the answer:\n\t{answer}\ncompared to the factual answer on a scale of zero to 100.  Only answer with the value from zero to 100. If there is any truth in the statement, the answer should not be zero.",
+  "template_format": "f-string",
+  "validate_template": true,
+  "_type": "prompt"
+}

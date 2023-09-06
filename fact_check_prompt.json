@@ -1,0 +1,11 @@
+{
+    "input_variables": [
+        "assertions"
+    ],
+    "output_parser": null,
+    "partial_variables": {},
+    "template": "Here is a bullet point list of assertions:\n    \t{assertions}\n    \tFor each assertion, determine whether it is true or false. If it is false, explain why.\n\n",
+    "template_format": "f-string",
+    "validate_template": true,
+    "_type": "prompt"
+}
