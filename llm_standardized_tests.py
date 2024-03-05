@@ -1,206 +1,26 @@
 import glob
 import json
-import re
-import statistics
-import guardrails as gd
-import openai
+import logging
+import os
+import torch
+
 import pandas as pd
-import spacy
 
-from collections import Counter
 from pathlib import Path
-from flair.data import Sentence
-from flair.models import TextClassifier
-from langchain.chains import LLMChain, SequentialChain
-from langchain.llms import OpenAI  # import OpenAI model
-from langchain.prompts import load_prompt
-from presidio_analyzer import AnalyzerEngine, RecognizerResult
-from spacy.tokens import Doc
+from langchain.llms import LlamaCpp, OpenAI
 
-ALPHABETS = "([A-Za-z])"
-PREFIXES = "(Mr|St|Mrs|Ms|Dr)[.]"
-SUFFIXES = "(Inc|Ltd|Jr|Sr|Co)"
-STARTERS = "(Mr|Mrs|Ms|Dr|Prof|Capt|Cpt|Lt|He\s|She\s|It\s|They\s|Their\s|Our\s|We\s|But\s|However\s|That\s|This\s|Wherever)"
-ACRONYMS = "([A-Z][.][A-Z][.](?:[A-Z][.])?)"
-WEBSITES = "[.](com|net|org|io|gov|edu|me)"
-DIGITS = "([0-9])"
-MULTIPLE_DOTS = r'\.{2,}'
-CLASSIFIER = TextClassifier.load('en-sentiment')
-SENTIMENT_ANALYSIS_COLUMN = ""
-PII_ANALYSIS_COLUMN = ""
-WORD_COUNT_COLUMN = ""
+from modelop_tests.prompt_tests import (calculate_bias, validate_prompt_files, validate_rails_files,
+                                        calculate_accuracy_of_responses)
+from modelop_tests.nlp_tests import calculate_sentiment, examine_for_pii, perform_word_count, calculate_sbert_similarity
+
+LOG = logging.getLogger("modelop_test_wrappers.llm_standardized_tests")
 PROMPT_FILE_ASSETS = []
-
-
-def split_into_sentences(text: str) -> [str]:
-    """
-    Split the text into sentences.
-
-    If the text contains substrings "<prd>" or "<stop>", they would lead
-    to incorrect splitting because they are used as markers for splitting.
-
-    :param text: text to be split into sentences
-    :type text: str
-
-    :return: list of sentences
-    :rtype: list[str]
-    """
-    text = " " + text + "  "
-    text = text.replace("\n", " ")
-    text = re.sub(PREFIXES, "\\1<prd>", text)
-    text = re.sub(WEBSITES, "<prd>\\1", text)
-    text = re.sub(DIGITS + "[.]" + DIGITS, "\\1<prd>\\2", text)
-    text = re.sub(MULTIPLE_DOTS, lambda match: "<prd>" * len(match.group(0)) + "<stop>", text)
-    if "Ph.D" in text: text = text.replace("Ph.D.", "Ph<prd>D<prd>")
-    text = re.sub("\s" + ALPHABETS + "[.] ", " \\1<prd> ", text)
-    text = re.sub(ACRONYMS + " " + STARTERS, "\\1<stop> \\2", text)
-    text = re.sub(ALPHABETS + "[.]" + ALPHABETS + "[.]" + ALPHABETS + "[.]", "\\1<prd>\\2<prd>\\3<prd>", text)
-    text = re.sub(ALPHABETS + "[.]" + ALPHABETS + "[.]", "\\1<prd>\\2<prd>", text)
-    text = re.sub(" " + SUFFIXES + "[.] " + STARTERS, " \\1<stop> \\2", text)
-    text = re.sub(" " + SUFFIXES + "[.]", " \\1<prd>", text)
-    text = re.sub(" " + ALPHABETS + "[.]", " \\1<prd>", text)
-    if "”" in text: text = text.replace(".”", "”.")
-    if "\"" in text: text = text.replace(".\"", "\".")
-    if "!" in text: text = text.replace("!\"", "\"!")
-    if "?" in text: text = text.replace("?\"", "\"?")
-    text = text.replace(".", ".<stop>")
-    text = text.replace("?", "?<stop>")
-    text = text.replace("!", "!<stop>")
-    text = text.replace("<prd>", ".")
-    sentences = text.split("<stop>")
-    sentences = [s.strip() for s in sentences]
-    if sentences and not sentences[-1]: sentences = sentences[:-1]
-    return sentences
-
-
-def calculate_sentiment(sentence: str) -> (int, [], int, []):
-    negative_confidence_values = []
-    positive_confidence_values = []
-    negative_count = 0
-    positive_count = 0
-    sentences = split_into_sentences(sentence)
-    for sentence in sentences:
-        flair_sentence = Sentence(sentence)
-        CLASSIFIER.predict(flair_sentence)
-        if flair_sentence.labels[0].value == 'NEGATIVE':
-            negative_count += 1
-            negative_confidence_values.append(flair_sentence.labels[0].score)
-        else:
-            positive_count += 1
-            positive_confidence_values.append(flair_sentence.labels[0].score)
-
-    return negative_count, negative_confidence_values, positive_count, positive_confidence_values
-
-
-def process_pii_finding(finding: RecognizerResult, source_document: str) -> dict:
-    result = {
-        "entity_type": finding.entity_type,
-        "score": finding.score,
-        "content": source_document[finding.start:finding.end]
-    }
-    return result
-
-
-def count_token_type(document: Doc, token_type: str):
-    words = [token.text
-             for token in document
-             if (not token.is_stop and
-                 not token.is_punct and
-                 token.pos_ == token_type)]
-    word_freq = Counter(words)
-    most_frequent_words = word_freq.most_common(10)
-    return most_frequent_words
-
-
-def create_word_count_charts(data: pd.DataFrame) -> dict:
-    global WORD_COUNT_COLUMN
-
-    results = {
-    }
-    nlp = spacy.load('en_core_web_lg')
-    document = nlp(data[WORD_COUNT_COLUMN].str.cat(sep=' '))
-    nouns = count_token_type(document, "NOUN")
-    data = []
-    categories = []
-    for noun in nouns:
-        data.append(noun[1])
-        categories.append(noun[0])
-    results["Most Frequent Nouns"] = {
-        "title": "Most Frequent Nouns",
-        "x_axis_label": "Noun",
-        "y_axis_label": "Occurrences",
-        "rotated": False,
-        "data": {
-            "nouns": data
-        },
-        "categories": categories
-    }
-    verbs = count_token_type(document, "VERB")
-    data = []
-    categories = []
-    for verb in verbs:
-        data.append(verb[1])
-        categories.append(verb[0])
-    results["Most Frequent Verbs"] = {
-        "title": "Most Frequent Verbs",
-        "x_axis_label": "Verb",
-        "y_axis_label": "Occurrences",
-        "rotated": False,
-        "data": {
-            "verbs": data
-        },
-        "categories": categories
-    }
-    adjectives = count_token_type(document, "ADJ")
-    data = []
-    categories = []
-    for verb in verbs:
-        data.append(verb[1])
-        categories.append(verb[0])
-    results["Most Frequent Adjectives"] = {
-        "title": "Most Frequent Adjectives",
-        "x_axis_label": "Adjective",
-        "y_axis_label": "Occurrences",
-        "rotated": False,
-        "data": {
-            "adjectives": data
-        },
-        "categories": categories
-    }
-
-    return results
-
-
-def answer_question(question: str):
-    llm = OpenAI(temperature=0.7)
-
-    # Chain 1: Generating a rephrased version of the user's question
-    prompt_template = load_prompt("rephrase_prompt.json")
-    question_chain = LLMChain(llm=llm, prompt=prompt_template, output_key="statement")
-
-    # Chain 2: Generating assumptions made in the statement
-    prompt_template = load_prompt("assumptions_prompt.json")
-    assumptions_chain = LLMChain(llm=llm, prompt=prompt_template, output_key="assertions")
-
-    # Chain 3: Fact checking the assumptions
-    prompt_template = load_prompt("fact_check_prompt.json")
-    fact_checker_chain = LLMChain(llm=llm, prompt=prompt_template, output_key="facts")
-
-    # Final Chain: Generating the final answer to the user's question based on the facts and assumptions
-    prompt_template = load_prompt("answer_prompt.json")
-    answer_chain = LLMChain(llm=llm, prompt=prompt_template, output_key="answer")
-    overall_chain = SequentialChain(
-        chains=[question_chain, assumptions_chain, fact_checker_chain, answer_chain],
-        input_variables=["question"],
-        output_variables=["answer", "assertions", "facts"],
-        verbose=True
-    )
-    result = overall_chain({"question": question})
-
-    print(f"Facts: \n{result['facts']}")
-    print(f"\n\nAnswer:{result['answer']}\n\n")
-
-    return {'facts': result['facts'], 'answer': result['answer']}
+RAIL_FILE_ASSETS = []
+QUESTION_COLUMN: str = ""
+ANSWER_COLUMN: str = ""
+PII_THRESHOLD: float = 0.5
+VERIFIED_ANSWER_COLUMN: str = ""
+LLM = None
 
 
 #
@@ -215,14 +35,37 @@ def answer_question(question: str):
 # modelop.init
 def init(init_param):
     global PROMPT_FILE_ASSETS
-    global SENTIMENT_ANALYSIS_COLUMN
-    global PII_ANALYSIS_COLUMN
-    global WORD_COUNT_COLUMN
+    global ANSWER_COLUMN
+    global QUESTION_COLUMN
+    global VERIFIED_ANSWER_COLUMN
+    global PII_THRESHOLD
+    global RAIL_FILE_ASSETS
+    global LLM
+
+    print("CUDA Available - " + str(torch.cuda.is_available()))
+    if torch.cuda.is_available():
+        print("CUDA Devices Available: " + str(torch.cuda.device_count()))
+        print("CUDA Device Attached: " + torch.cuda.get_device_name(0))
 
     job = json.loads(init_param["rawJson"])
-    SENTIMENT_ANALYSIS_COLUMN = job.get('jobParameters', {}).get("sentimentAnalysisColumn", "")
-    PII_ANALYSIS_COLUMN = job.get('jobParameters', {}).get("piiAnalysisColumn", "")
-    WORD_COUNT_COLUMN = job.get('jobParameters', {}).get("wordCountColumn", "")
+    # Extract input schema
+    try:
+        input_schemas = job["referenceModel"]["storedModel"]["modelMetaData"]["inputSchema"]
+    except Exception:
+        LOG.warning("No input schema found on a reference storedModel. Using base storedModel for input schema")
+        input_schemas = job["model"]["storedModel"]["modelMetaData"]["inputSchema"]
+    if len(input_schemas) != 1:
+        LOG.error("Found more than one input schema in model definition, aborting execution.")
+        raise ValueError(f"Expected only 1 input schema definition, but found {len(input_schemas)}")
+    schema_df = pd.DataFrame(input_schemas[0]["schemaDefinition"]["fields"]).set_index("name")
+    ANSWER_COLUMN = schema_df.loc[schema_df['role'] == 'score'].index.values[0]
+    QUESTION_COLUMN = schema_df.loc[schema_df['role'] == 'predictor'].index.values[0]
+    VERIFIED_ANSWER_COLUMN = schema_df.loc[schema_df['role'] == 'label'].index.values[0]
+    if not ANSWER_COLUMN or not QUESTION_COLUMN or not VERIFIED_ANSWER_COLUMN:
+        LOG.warning("One or more column types were not available.  Some calculations will not be possible")
+    LOG.info(f"Using answer column {ANSWER_COLUMN}, question column {QUESTION_COLUMN}, verified answer column {VERIFIED_ANSWER_COLUMN}")
+    PII_THRESHOLD = job.get("jobParameters", {}).get("PII_THRESHOLD", 0.5)
+    LOG.info(f"Using PII minimum threshold of {PII_THRESHOLD}")
     assets = job.get("referenceModel", {}).get("storedModel", {}).get("modelAssets", [])
     for asset in assets:
         if asset.get("assetRole", "") == 'PROMPT_TEMPLATE':
@@ -231,177 +74,110 @@ def init(init_param):
             output_file.write_text(asset["sourceCode"])
             asset["sourceCodeFilePath"] = './tmp/' + asset["sourceCodeFilePath"]
             PROMPT_FILE_ASSETS.append(asset)
+    for modelAssociation in job.get("referenceModel", {}).get("storedModel", {}).get("associatedModels", []):
+        for asset in modelAssociation.get("associatedModel", {}).get("modelAssets", modelAssociation.get("storedModel", {}).get("modelAssets", [])):
+            if asset.get("assetRole", "") == 'PROMPT_TEMPLATE':
+                output_file = Path('./tmp/' + asset["sourceCodeFilePath"])
+                output_file.parent.mkdir(exist_ok=True, parents=True)
+                output_file.write_text(asset["sourceCode"])
+                asset["sourceCodeFilePath"] = './tmp/' + asset["sourceCodeFilePath"]
+                PROMPT_FILE_ASSETS.append(asset)
 
+    rail_assets = job.get("additionalAssets", [])
+    for asset in rail_assets:
+        if asset.get("assetRole", "") == "RAIL_FILE":
+            RAIL_FILE_ASSETS.append(asset)
 
-def validate_prompt_files() -> dict:
-    global PROMPT_FILE_ASSETS
-    results = {"invalidFiles": False, "prompt_files": []}
-
-    for prompt_file in PROMPT_FILE_ASSETS:
-        try:
-            prompt = load_prompt(prompt_file.get("sourceCodeFilePath", ""))
-            results["prompt_files"].append(
-                {"file": prompt_file.get("sourceCodeFilePath", "unknown").replace("./tmp/", ""),
-                 "valid": True, "input_variables": prompt.input_variables,
-                 "template": prompt.template})
-        except Exception as ve:
-            results["prompt_files"].append({"file": prompt_file.get("sourceCodeFilePath", "unknown"),
-                                            "valid": False, "reason": str(ve)})
-            if not results["invalidFiles"]:
-                results["invalidFiles"] = True
-
-    return results
-
-
-def perform_nlp_analysis(data: pd.DataFrame) -> dict:
-    global SENTIMENT_ANALYSIS_COLUMN
-    global PII_ANALYSIS_COLUMN
-
-    negative_confidence_values = []
-    positive_confidence_values = []
-    negative_count = 0
-    positive_count = 0
-    for index, row in data.iterrows():
-        result = calculate_sentiment(row[SENTIMENT_ANALYSIS_COLUMN])
-        negative_count += result[0]
-        negative_confidence_values = [*negative_confidence_values, *result[1]]
-        positive_count += result[2]
-        positive_confidence_values = [*positive_confidence_values, *result[3]]
-
-    print(
-        f"Total Negative Percentage: {negative_count / (negative_count + positive_count)}, Median Negative Confidence: {statistics.median(negative_confidence_values)}")
-    print(
-        f"Total Positive Percentage: {positive_count / (negative_count + positive_count)}, Median Positive Confidence: {statistics.median(positive_confidence_values)}")
-
-    results = {
-        'sentiment_negative_percentage': negative_count / (negative_count + positive_count),
-        'sentiment_negative_median_confidence': statistics.median(negative_confidence_values),
-        'sentiment_positive_percentage': positive_count / (negative_count + positive_count),
-        'sentiment_positive_median_confidence': statistics.median(positive_confidence_values),
-        'sentiment_analysis': {
-            'title': 'Sentiment Analysis of Dataset',
-            'x_axis_label': 'Sentiment',
-            'y_axis_label': 'Percentage',
-            'rotated': False,
-            'data': {
-                'sentiment': [negative_count / (negative_count + positive_count),
-                              positive_count / (negative_count + positive_count)],
-                'confidence': [statistics.median(negative_confidence_values),
-                               statistics.median(positive_confidence_values)]
-            },
-            'categories': ['Negative Sentiment', 'Positive Sentiment']
-        },
-        "PII Findings": []
-    }
-
-    analyzer = AnalyzerEngine()
-    document = data[PII_ANALYSIS_COLUMN].str.cat(sep=' ')
-    analyzer_findings = analyzer.analyze(text=document, language='en')
-    for finding in analyzer_findings:
-        results["PII Findings"].append(process_pii_finding(finding, document))
-
-    results.update(create_word_count_charts(data))
-
-    return results
-
-
-def calculate_facts(prompts: pd.DataFrame) -> dict:
-    results = {"Questions, Facts, and Answers": []}
-    for index, row in prompts.iterrows():
-        llm = OpenAI(temperature=0.7)
-        questions = llm.predict(row['prompt'])
-        for question in iter(questions.splitlines()):
-            if question.strip():
-                result = answer_question({'question': question})
-                results["Questions, Facts, and Answers"].append(
-                    {"question": question, "answer": result["answer"], "facts": result["facts"]})
-    return results
-
-
-def check_statement_accuracy(question: str, answer: str, fact: str) -> dict:
-    llm = OpenAI(temperature=0.0)
-
-    prompt_template = load_prompt("verify_statement_accuracy_prompt.json")
-    accuracy_chain = LLMChain(llm=llm, prompt=prompt_template, output_key="accuracy")
-
-    prompt_template = load_prompt("break_down_score_prompt.json")
-    score_breakdown_chain = LLMChain(llm=llm, prompt=prompt_template, output_key="score_breakdown")
-
-    prompt_template = load_prompt("revalidate_score_prompt.json")
-    final_score = LLMChain(llm=llm, prompt=prompt_template, output_key="final_score")
-
-    overall_chain = SequentialChain(chains=[accuracy_chain, score_breakdown_chain, final_score],
-                                    input_variables=["question", "factual_answer", "answer"],
-                                    output_variables=["accuracy", "score_breakdown", "final_score"],
-                                    verbose=True)
-    result = overall_chain({"question": question, "answer": answer, "factual_answer": fact})
-    result["final_score"] = result["final_score"].replace("\n", "")
-    result["accuracy"] = result["accuracy"].replace("\n", "")
-    return result
-
-
-def calculate_accuracy_of_responses(responses: pd.DataFrame) -> dict:
-    result = {"Statement Accuracy": []}
-    for index, row in responses.iterrows():
-        result["Statement Accuracy"].append(
-            check_statement_accuracy(row['user_input'], row['response'], row['factual_response']))
-
-    return result
-
-
-def perform_rails_checks(rails: pd.DataFrame) -> dict:
-    result = {"Rails Compliance": []}
-    failed_rails = 0
-    rail_files = glob.glob('./*.rail')
-    guard_rails = []
-    for rail_file in rail_files:
-        guard_rails.append(gd.Guard.from_rail(rail_file))
-
-    for index, row in rails.iterrows():
-        validated_response = {"answer": row["answer"]}
-        for guard_rail in guard_rails:
-            raw_llm_response, validated_response = guard_rail(openai.Completion.create,
-                                                              prompt_params=validated_response,
-                                                              engine="text-davinci-003",
-                                                              max_tokens=2048,
-                                                              temperature=0)
-        passes = True
-        if row["answer"].strip() == validated_response["answer"].strip():
-            if row["should_be_filtered"]:
-                passes = False
-                failed_rails += 1
-        elif not row["should_be_filtered"]:
-            passes = False
-            failed_rails += 1
-
-        result["Rails Compliance"].append(
-            {"raw_answer": row["answer"], "validated_repsonse": validated_response["answer"], "passes": passes})
-
-    result["num_failed_rails_compliance"] = failed_rails
-    return result
+    llm_files = glob.glob('./*.gguf')
+    if llm_files:
+        if len(llm_files) > 1:
+            raise FileNotFoundError("More than one GGUF file was present, so we can not know which one to utilize")
+        LLM = LlamaCpp(model_path=os.path.abspath(llm_files[0]),
+                       model_kwargs={"max_length": 10000}, n_ctx=2048,
+                       n_gpu_layers=80 if torch.cuda.is_available() else 0, verbose=True, top_p=1, temperature=0.2)
+    else:
+        config_files = glob.glob('./config.json')
+        if config_files:
+            config_json = json.loads(Path(config_files[0]).read_text())
+            LLM = OpenAI(**config_json)
 
 
 # modelop.metrics
-def metrics(data: pd.DataFrame, prompts: pd.DataFrame, rails: pd.DataFrame):
-    results = validate_prompt_files()
-    results.update(perform_nlp_analysis(data))
-    results.update(calculate_facts(prompts))
-    results.update(calculate_accuracy_of_responses(data))
-    results.update(perform_rails_checks(rails))
+def metrics(questions_and_responses: pd.DataFrame, rails_tests: pd.DataFrame):
+    global PROMPT_FILE_ASSETS
+    global ANSWER_COLUMN
+    global QUESTION_COLUMN
+    global VERIFIED_ANSWER_COLUMN
+    global PII_THRESHOLD
+    global LLM
+
+    results = {}
+
+    results.update(validate_prompt_files(PROMPT_FILE_ASSETS))
+
+    # Calculate Potential Subtle Bias
+    bias_profile_prompt = (
+        next((asset for asset in PROMPT_FILE_ASSETS if asset.get("name", "") == "bias_profile_prompt.json"), None))
+    bias_questions_prompt = (
+        next((asset for asset in PROMPT_FILE_ASSETS if asset.get("name", "") == "bias_questions_prompt.json"), None))
+    if not bias_profile_prompt or not bias_questions_prompt:
+        LOG.error("""
+        You must have both a file named bias_profile_prompt.json and bias_questions_prompt.json on your target model
+        that provides the profile of the individual for the questions as well as a prompt that generates appropriate
+        questions for your use case""")
+        raise ValueError("""
+        You must have both a file named bias_profile_prompt.json and bias_questions_prompt.json on your target model
+        that provides the profile of the individual for the questions as well as a prompt that generates appropriate
+        questions for your use case""")
+    results.update(calculate_bias(
+        Path(bias_profile_prompt.get("sourceCodeFilePath", None)).absolute(),
+        Path(bias_questions_prompt.get("sourceCodeFilePath", None)).absolute(),
+        llm=LLM))
+
+    if ANSWER_COLUMN:
+        results.update(calculate_sentiment(questions_and_responses[ANSWER_COLUMN].tolist()))
+    else:
+        LOG.warning("Skipped calculating sentiment as a column with role of score was not found in input schema")
+
+    if ANSWER_COLUMN:
+        results.update(examine_for_pii(questions_and_responses[ANSWER_COLUMN], minimum_threshold=PII_THRESHOLD))
+    else:
+        LOG.warning("Skipped PII analysis as a column with role of score was not found in input schema")
+
+    if ANSWER_COLUMN:
+        results.update(perform_word_count(questions_and_responses[ANSWER_COLUMN]))
+    else:
+        LOG.warning("Skipped word count as a column with role of score was not found in input schema")
+
+    if ANSWER_COLUMN and VERIFIED_ANSWER_COLUMN:
+        results.update(calculate_sbert_similarity(questions_and_responses[[ANSWER_COLUMN, VERIFIED_ANSWER_COLUMN]]))
+    else:
+        LOG.warning(
+            "Skipped sbert similarity as a column with role of score and a column with role of label is required")
+
+    if ANSWER_COLUMN and VERIFIED_ANSWER_COLUMN and QUESTION_COLUMN:
+        results.update(calculate_accuracy_of_responses(
+            questions_and_responses[[QUESTION_COLUMN, ANSWER_COLUMN, VERIFIED_ANSWER_COLUMN]], llm=LLM))
+    else:
+        LOG.warning(
+            "Skipped accuracy assessment as you must specify the predictor column, score column, and label column in "
+            "your input schema")
+
+    results.update(validate_rails_files(rails_tests, RAIL_FILE_ASSETS,llm=LLM))
 
     yield results
 
 
 def main():
-    raw_json = Path('example_job.json').read_text()
-    init_param = {'rawJson': raw_json}
+    job_json = json.loads(Path('test_data/example_job.json').read_text())
+
+    init_param = {'rawJson': json.dumps(job_json)}
     init(init_param)
 
-    dataset = pd.read_csv('./test_data/example_responses.csv', quotechar='"', header=0)
-    prompts = pd.read_csv('./test_data/questions_for_testing.csv', quotechar='"', header=0)
-    rails = pd.read_csv('./test_data/guardrail_questions.csv', quotechar='"', header=0)
+    questions_and_responses = pd.read_csv('test_data/example_responses.csv', quotechar='"', header=0)
+    rails_tests = pd.read_csv('test_data/example_rails_test.csv', quotechar='"', header=0)
 
-    print(json.dumps(next(metrics(dataset, prompts, rails)), indent=2))
+    print(json.dumps(next(metrics(questions_and_responses, rails_tests)), indent=2))
 
 
 if __name__ == '__main__':
