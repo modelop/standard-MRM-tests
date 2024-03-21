@@ -1,16 +1,16 @@
 [
     {
         "usage": "INPUT_ASSET",
-        "assetRole": "BASELINE_DATA",
+        "assetRole": "COMPARATOR_DATA",
         "metaData": {
-            "description": "Baseline/Reference Dataset"
+            "description": "questions_and_responses"
         }
     },
     {
-        "usage": "INPUT_ASSET",
-        "assetRole": "COMPARATOR_DATA",
+        "usage": "ADDITIONAL_ASSET",
+        "assetRole": "UNKNOWN",
         "metaData": {
-            "description": "Slice of Production Data"
+            "description": "rails_tests"
         }
     }
 ]
