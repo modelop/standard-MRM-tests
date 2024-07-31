@@ -83,7 +83,9 @@ def calculate_performance(comparator, execution_errors_array):
         dashboard_utils.assert_df_not_none_and_not_empty(
             comparator, "Required comparator"
         )
-        model_evaluator = performance.ModelEvaluator(dataframe=comparator, job_json=JOB)
+        print("Dropping any nulls in comparator dataframe for performance monitors.")
+        comparator_cleaned = check_and_drop_nulls(comparator)
+        model_evaluator = performance.ModelEvaluator(dataframe=comparator_cleaned, job_json=JOB)
         if "regression" in MODEL_METHODOLOGY.casefold():
             return model_evaluator.evaluate_performance(
                 pre_defined_metrics="regression_metrics"
@@ -104,7 +106,9 @@ def calculate_bias(comparator, execution_errors_array):
         dashboard_utils.assert_df_not_none_and_not_empty(
             comparator, "Required comparator"
         )
-        bias_monitor = bias.BiasMonitor(dataframe=comparator, job_json=JOB)
+        print("Dropping any nulls in comparator dataframe for bias monitors.")
+        comparator_cleaned = check_and_drop_nulls(comparator)
+        bias_monitor = bias.BiasMonitor(dataframe=comparator_cleaned, job_json=JOB)
         if "regression" in MODEL_METHODOLOGY.casefold():
             raise Exception("Bias metrics can not be run for regression models.")
         else:
@@ -415,3 +419,21 @@ def calculate_kolmogorov_smirnov_test(dataframe, execution_errors_array):
         print(error_message)
         execution_errors_array.append(error_message)
         return {"ks_p_value": -99}
+
+def check_and_drop_nulls(dataframe):
+    """
+    A function to check for and drop NULLs in given columns.
+
+    Args:
+        dataframe (pandas.DataFrame): Pandas DataFrame of data, most likely scored and labeled.
+
+    Returns:
+        pandas.DataFrame: Copy of the dataframe with dropped nulls.
+    """
+    # Checking for NULLs in columns
+    for column in dataframe.columns:
+        null_count = dataframe[column].isna().sum()
+        if null_count > 0:
+            dataframe = dataframe.dropna(subset=[column])
+
+    return dataframe
