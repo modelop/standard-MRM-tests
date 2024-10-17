@@ -1,4 +1,6 @@
 import json
+import logging
+import pandas as pd
 
 import modelop.monitors.bias as bias
 import modelop.monitors.drift as drift
@@ -9,9 +11,12 @@ import modelop.stats.diagnostics as diagnostics
 import modelop.utils as utils
 from modelop_sdk.utils import dashboard_utils as dashboard_utils
 
+LOG = logging.getLogger("standard_risk_tests")
 DEPLOYABLE_MODEL = {}
 JOB = {}
 MODEL_METHODOLOGY = ""
+SCORE_COLUMN = ""
+SCORE_DATA_TYPE = ""
 
 
 # modelop.init
@@ -19,10 +24,26 @@ def init(job_json):
     global DEPLOYABLE_MODEL
     global JOB
     global MODEL_METHODOLOGY
+    global SCORE_COLUMN
+    global SCORE_DATA_TYPE
 
     job = json.loads(job_json["rawJson"])
+
+    # Extract input schema
+    try:
+        input_schemas = job["referenceModel"]["storedModel"]["modelMetaData"]["inputSchema"]
+    except Exception:
+        LOG.warning("No input schema found on a reference storedModel. Using base storedModel for input schema")
+        input_schemas = job["model"]["storedModel"]["modelMetaData"]["inputSchema"]
+    if len(input_schemas) != 1:
+        LOG.error("Found more than one input schema in model definition, aborting execution.")
+        raise ValueError(f"Expected only 1 input schema definition, but found {len(input_schemas)}")
+
     DEPLOYABLE_MODEL = job["referenceModel"]
     MODEL_METHODOLOGY = DEPLOYABLE_MODEL.get("storedModel", {}).get("modelMetaData", {}).get("modelMethodology", "")
+    schema_df = pd.DataFrame(input_schemas[0]["schemaDefinition"]["fields"]).set_index("name")
+    SCORE_COLUMN = schema_df.loc[schema_df['role'] == 'score'].index.values[0]
+    SCORE_DATA_TYPE = schema_df.loc[schema_df['role'] == 'score']['type'].values[0]
 
     JOB = job_json
     infer.validate_schema(job_json)
@@ -30,7 +51,6 @@ def init(job_json):
 
 # modelop.metrics
 def metrics(baseline, comparator) -> dict:
-
     execution_errors_array = []
 
     result = utils.merge(
@@ -49,8 +69,8 @@ def metrics(baseline, comparator) -> dict:
         calculate_anderson_darling_test(comparator, execution_errors_array),
         calculate_cramer_von_mises_test(comparator, execution_errors_array),
         calculate_kolmogorov_smirnov_test(comparator, execution_errors_array),
+        calculate_pii(comparator, execution_errors_array)
     )
-
     result.update({"executionErrors": execution_errors_array})
     result.update({"executionErrorsCount": len(execution_errors_array)})
 
@@ -61,14 +81,14 @@ def extract_model_fields(execution_errors_array):
     try:
         return {
             "modelUseCategory": DEPLOYABLE_MODEL.get("storedModel", {})
-                .get("modelMetaData", {})
-                .get("modelUseCategory", ""),
+            .get("modelMetaData", {})
+            .get("modelUseCategory", ""),
             "modelOrganization": DEPLOYABLE_MODEL.get("storedModel", {})
-                .get("modelMetaData", {})
-                .get("modelOrganization", ""),
+            .get("modelMetaData", {})
+            .get("modelOrganization", ""),
             "modelRisk": DEPLOYABLE_MODEL.get("storedModel", {})
-                .get("modelMetaData", {})
-                .get("modelRisk", ""),
+            .get("modelMetaData", {})
+            .get("modelRisk", ""),
             "modelMethodology": MODEL_METHODOLOGY
         }
     except Exception as ex:
@@ -415,3 +435,19 @@ def calculate_kolmogorov_smirnov_test(dataframe, execution_errors_array):
         print(error_message)
         execution_errors_array.append(error_message)
         return {"ks_p_value": -99}
+
+
+def calculate_pii(dataframe, execution_errors_array):
+    try:
+        from pii_analysis import examine_for_pii
+        if SCORE_COLUMN and SCORE_DATA_TYPE == 'string':
+            return examine_for_pii(dataframe[SCORE_COLUMN])
+        else:
+            LOG.warning("Skipped PII analysis as a column with role of score was not found in input schema")
+    except Exception as ex:
+        error_message = (
+            f"Error occurred while calculating PII violations: {str(ex)}"
+        )
+        print(error_message)
+        execution_errors_array.append(error_message)
+    return {"num_PII_violations": -99}
