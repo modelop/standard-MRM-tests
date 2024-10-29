@@ -443,7 +443,7 @@ def calculate_pii(dataframe, execution_errors_array):
         if SCORE_COLUMN and SCORE_DATA_TYPE == 'string':
             return examine_for_pii(dataframe[SCORE_COLUMN])
         else:
-            LOG.warning("Skipped PII analysis as a column with role of score was not found in input schema")
+            LOG.warning("Skipping PII analysis - score column must exist and be of type string")
     except Exception as ex:
         error_message = (
             f"Error occurred while calculating PII violations: {str(ex)}"
